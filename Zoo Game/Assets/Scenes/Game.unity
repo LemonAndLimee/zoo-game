@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 113580478}
   - component: {fileID: 113580477}
+  - component: {fileID: 113580479}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -162,16 +163,23 @@ MonoBehaviour:
   - {fileID: 7246651096323253906, guid: e09231568410b490a8a1dddc1640cfbc, type: 3}
   - {fileID: 4034583626880092301, guid: b6a0d8e034aae4d6fb3a404be63f61bc, type: 3}
   - {fileID: 2520188891639764661, guid: 16b54c69a111143dcb945d85e38dcb63, type: 3}
-  trees: []
+  treeNames:
+  - Tree01
+  - Tree02
+  - Tree03
   rockPrefabs:
   - {fileID: 160121616367232067, guid: eb91a081d0aee40689f7b398af3d86fa, type: 3}
   - {fileID: 2122355454063211053, guid: 05c50e297bd3f4541be16c0e2de2e85b, type: 3}
   - {fileID: 4155851902952441944, guid: ffa9198de2a784f3a93c10cc4a983e17, type: 3}
-  rocks: []
+  rockNames:
+  - Rock01
+  - Rock02
+  - Rock03
   currentObject: {fileID: 0}
   treesNum: 60
   rocksNum: 20
   positions: []
+  worldScript: {fileID: 113580479}
 --- !u!4 &113580478
 Transform:
   m_ObjectHideFlags: 0
@@ -186,6 +194,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &113580479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113580476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e64b8f0648943e9bb26658ceeb91c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects: []
+  names: []
+  x_positions: []
+  y_positions: []
+  sizes: []
+  canSave: 0
 --- !u!1 &160940417
 GameObject:
   m_ObjectHideFlags: 0

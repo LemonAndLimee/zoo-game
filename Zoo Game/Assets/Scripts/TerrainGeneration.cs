@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TerrainGeneration : MonoBehaviour
 {
@@ -17,10 +19,10 @@ public class TerrainGeneration : MonoBehaviour
     public int maxRockSize;
 
     public GameObject[] treePrefabs;
-    public List<GameObject> trees = new List<GameObject>();
+    public string[] treeNames;
 
     public GameObject[] rockPrefabs;
-    public List<GameObject> rocks = new List<GameObject>();
+    public string[] rockNames;
 
     public GameObject currentObject;
 
@@ -30,8 +32,30 @@ public class TerrainGeneration : MonoBehaviour
 
     public List<Vector3> positions = new List<Vector3>();
 
+    public WorldManagement worldScript;
+
     // Start is called before the first frame update
     void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown("n"))
+        {
+            GenerateNew();
+            worldScript.canSave = true;
+        }
+        else if (Input.GetKeyDown("l"))
+        {
+            worldScript.Load();
+            LoadWorld();
+        }
+    }
+
+    public void GenerateNew()
     {
         for (int i = 0; i < treesNum; i++)
         {
@@ -57,11 +81,18 @@ public class TerrainGeneration : MonoBehaviour
 
             currentObject.transform.localScale = new Vector3(size, size, 1f);
 
-            //adds to list of trees
-            trees.Add(currentObject);
 
             //adds position to list storing positions
             positions.Add(currentObject.transform.position);
+
+            //adds data to worldmanagement script lists
+            worldScript.objects.Add(currentObject);
+
+            worldScript.x_positions.Add(currentObject.transform.position.x);
+            worldScript.y_positions.Add(currentObject.transform.position.y);
+            worldScript.sizes.Add(currentObject.transform.localScale.x);
+
+            worldScript.names.Add(treePrefabs[num].name);
         }
 
         for (int i = 0; i < rocksNum; i++)
@@ -84,15 +115,40 @@ public class TerrainGeneration : MonoBehaviour
 
             currentObject.transform.localScale = new Vector3(size, size, 1f);
 
-            rocks.Add(currentObject);
-
             positions.Add(currentObject.transform.position);
+
+
+            worldScript.objects.Add(currentObject);
+
+            worldScript.x_positions.Add(currentObject.transform.position.x);
+            worldScript.y_positions.Add(currentObject.transform.position.y);
+            worldScript.sizes.Add(currentObject.transform.localScale.x);
+
+            worldScript.names.Add(rockPrefabs[num].name);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LoadWorld()
     {
-        
+        for (int i = 0; i < worldScript.names.Count; i++)
+        {
+            int pos = Array.IndexOf(treeNames, worldScript.names[i]);
+            if (pos > -1)
+            {
+                currentObject = Instantiate(treePrefabs[pos]);
+                currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], 0f);
+
+                currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
+            }
+
+            pos = Array.IndexOf(rockNames, worldScript.names[i]);
+            if (pos > -1)
+            {
+                currentObject = Instantiate(rockPrefabs[pos]);
+                currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], 0f);
+
+                currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
+            }
+        }
     }
 }
