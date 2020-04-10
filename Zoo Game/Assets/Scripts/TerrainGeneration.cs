@@ -34,25 +34,27 @@ public class TerrainGeneration : MonoBehaviour
 
     public WorldManagement worldScript;
 
+    public StartManagement startScript;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        startScript = GameObject.FindGameObjectWithTag("StartManager").GetComponent<StartManagement>();
+
+        if (startScript.isNew == true && startScript.isLoad == false)
+        {
+            GenerateNew();
+        }
+        else if (startScript.isLoad == true && startScript.isNew == false)
+        {
+            LoadWorld();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("n"))
-        {
-            GenerateNew();
-            worldScript.canSave = true;
-        }
-        else if (Input.GetKeyDown("l"))
-        {
-            worldScript.Load();
-            LoadWorld();
-        }
+        
     }
 
     public void GenerateNew()
@@ -93,6 +95,7 @@ public class TerrainGeneration : MonoBehaviour
             worldScript.sizes.Add(currentObject.transform.localScale.x);
 
             worldScript.names.Add(treePrefabs[num].name);
+
         }
 
         for (int i = 0; i < rocksNum; i++)
@@ -126,10 +129,15 @@ public class TerrainGeneration : MonoBehaviour
 
             worldScript.names.Add(rockPrefabs[num].name);
         }
+
+        //allows world to be saved
+        worldScript.canSave = true;
     }
 
     public void LoadWorld()
     {
+        worldScript.Load();
+
         for (int i = 0; i < worldScript.names.Count; i++)
         {
             int pos = Array.IndexOf(treeNames, worldScript.names[i]);
