@@ -39,6 +39,7 @@ public class TerrainGeneration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         startScript = GameObject.FindGameObjectWithTag("StartManager").GetComponent<StartManagement>();
 
         if (startScript.isNew == true && startScript.isLoad == false)
@@ -49,6 +50,7 @@ public class TerrainGeneration : MonoBehaviour
         {
             LoadWorld();
         }
+        
     }
 
     // Update is called once per frame

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+//manages storage variables
 public class WorldManagement : MonoBehaviour
 {
     public List<GameObject> objects = new List<GameObject>();
