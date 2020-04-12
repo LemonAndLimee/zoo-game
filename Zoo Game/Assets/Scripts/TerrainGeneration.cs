@@ -36,6 +36,10 @@ public class TerrainGeneration : MonoBehaviour
 
     public StartManagement startScript;
 
+
+    public GameObject[] pathPrefabs;
+    public string[] pathNames;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -132,6 +136,9 @@ public class TerrainGeneration : MonoBehaviour
             worldScript.names.Add(rockPrefabs[num].name);
         }
 
+        //generates paths
+        GenerateStartPaths();
+
         //allows world to be saved
         worldScript.canSave = true;
     }
@@ -140,17 +147,21 @@ public class TerrainGeneration : MonoBehaviour
     {
         worldScript.Load();
 
+        //for every object in the list of names
         for (int i = 0; i < worldScript.names.Count; i++)
         {
+            //checks if in list of tree names
             int pos = Array.IndexOf(treeNames, worldScript.names[i]);
             if (pos > -1)
             {
+                //generates new tree, assigns it to correct position and size
                 currentObject = Instantiate(treePrefabs[pos]);
                 currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], 0f);
 
                 currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
             }
 
+            //checks if in list of rock names
             pos = Array.IndexOf(rockNames, worldScript.names[i]);
             if (pos > -1)
             {
@@ -159,6 +170,43 @@ public class TerrainGeneration : MonoBehaviour
 
                 currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
             }
+
+            //checks if in list of paths names
+            pos = Array.IndexOf(pathNames, worldScript.names[i]);
+            if (pos > -1)
+            {
+                currentObject = Instantiate(pathPrefabs[pos]);
+                currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], 0f);
+
+                currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
+            }
         }
+    }
+
+    public void GenerateStartPaths()
+    {
+        int n = Random.Range(0, pathPrefabs.Length);
+        currentObject = Instantiate(pathPrefabs[n]);
+        currentObject.transform.position = new Vector3(0f, -4f, 0f);
+        worldScript.names.Add(pathPrefabs[n].name);
+        worldScript.x_positions.Add(currentObject.transform.position.x);
+        worldScript.y_positions.Add(currentObject.transform.position.y);
+        worldScript.sizes.Add(currentObject.transform.localScale.x);
+
+        n = Random.Range(0, pathPrefabs.Length);
+        currentObject = Instantiate(pathPrefabs[n]);
+        currentObject.transform.position = new Vector3(0f, -6f, 0f);
+        worldScript.names.Add(pathPrefabs[n].name);
+        worldScript.x_positions.Add(currentObject.transform.position.x);
+        worldScript.y_positions.Add(currentObject.transform.position.y);
+        worldScript.sizes.Add(currentObject.transform.localScale.x);
+
+        n = Random.Range(0, pathPrefabs.Length);
+        currentObject = Instantiate(pathPrefabs[n]);
+        currentObject.transform.position = new Vector3(0f, -8f, 0f);
+        worldScript.names.Add(pathPrefabs[n].name);
+        worldScript.x_positions.Add(currentObject.transform.position.x);
+        worldScript.y_positions.Add(currentObject.transform.position.y);
+        worldScript.sizes.Add(currentObject.transform.localScale.x);
     }
 }

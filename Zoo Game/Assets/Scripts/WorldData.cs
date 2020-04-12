@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+//holds the data to be stored in binary file - gets them from worldmanagement
+
 [System.Serializable]
 public class WorldData
 {

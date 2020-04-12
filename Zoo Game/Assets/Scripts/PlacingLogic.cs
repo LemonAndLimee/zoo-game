@@ -19,6 +19,8 @@ public class PlacingLogic : MonoBehaviour
     public GameObject currentObject;
     public GameObject previousObject;
 
+    public WorldManagement worldScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +47,7 @@ public class PlacingLogic : MonoBehaviour
     {
         snappedPos = snapPosition(getMousePos(), isEvenX, isEvenY);
 
+        //if mouse position has changed, delete old object and spawn new at new mouse pos
         if (snappedPos != previousSnappedPos)
         {
             if (previousObject != null)
@@ -53,7 +56,36 @@ public class PlacingLogic : MonoBehaviour
             }
             currentObject = Instantiate(prefab);
             currentObject.transform.position = new Vector3(snappedPos.x, snappedPos.y, 0f);
+
         }
+
+        //checks if object is touching another object
+        TriggerDetection touchingScript = currentObject.GetComponent<TriggerDetection>();
+        if (touchingScript.isTouching == true)
+        {
+            //hides currentobject if true
+            SpriteRenderer[] renderers = currentObject.GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer sr in renderers)
+            {
+                sr.enabled = false;
+            }
+        }
+
+        //if mouse is clicked
+        if (Input.GetMouseButtonDown(0))
+        {
+            //if touching, toggle placemode without placing object
+            if (touchingScript.isTouching == true)
+            {
+                TogglePlacing(prefab);
+            }
+            //if free to place, place the object
+            else
+            {
+                Place();
+            }
+        }
+
 
         previousSnappedPos = snappedPos;
         previousObject = currentObject;
@@ -71,6 +103,7 @@ public class PlacingLogic : MonoBehaviour
         {
             placeMode = false;
             Destroy(currentObject);
+            previousSnappedPos = new Vector2(800f, 800f);
         }
     }
 
@@ -155,5 +188,17 @@ public class PlacingLogic : MonoBehaviour
         }
 
         return snap;
+    }
+
+    public void Place()
+    {
+        placeMode = false;
+        previousSnappedPos = new Vector2(800f, 800f);
+        previousObject = null;
+
+        worldScript.names.Add(prefab.name);
+        worldScript.x_positions.Add(currentObject.transform.position.x);
+        worldScript.y_positions.Add(currentObject.transform.position.y);
+        worldScript.sizes.Add(currentObject.transform.localScale.x);
     }
 }

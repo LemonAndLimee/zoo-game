@@ -4,6 +4,8 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
+//holds the subroutines for saving and loading the data from binary files - can be referenced in worldmanagement
+
 public static class SaveManagement
 {
     public static void SaveWorld(WorldManagement worldScript)

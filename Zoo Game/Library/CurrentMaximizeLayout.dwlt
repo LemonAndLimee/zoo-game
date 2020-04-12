@@ -21,10 +21,10 @@ MonoBehaviour:
     y: 30
     width: 1440
     height: 725
-  m_MinSize: {x: 879, y: 492}
-  m_MaxSize: {x: 16004, y: 14042}
+  m_MinSize: {x: 878, y: 492}
+  m_MaxSize: {x: 16003, y: 14042}
   vertical: 0
-  controlID: 68254
+  controlID: 73801
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,10 +135,10 @@ MonoBehaviour:
     y: 0
     width: 1049
     height: 725
-  m_MinSize: {x: 604, y: 492}
-  m_MaxSize: {x: 12004, y: 14042}
+  m_MinSize: {x: 603, y: 492}
+  m_MaxSize: {x: 12003, y: 14042}
   vertical: 1
-  controlID: 68255
+  controlID: 73802
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -161,10 +161,10 @@ MonoBehaviour:
     y: 0
     width: 1049
     height: 438
-  m_MinSize: {x: 604, y: 221}
-  m_MaxSize: {x: 12004, y: 4021}
+  m_MinSize: {x: 603, y: 221}
+  m_MaxSize: {x: 12003, y: 4021}
   vertical: 0
-  controlID: 68256
+  controlID: 73771
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -184,8 +184,8 @@ MonoBehaviour:
     y: 0
     width: 201
     height: 438
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -222,21 +222,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 0edcfbffe2f2fbffc405fcff7407fcffa208fcfff01afcff3c1cfcff3e2efcffdc7afcff528cfcff6a92fcff0895fcff90a4fcff1ea5fcffcab6fcff16c4fcff98cdfcff18f0fcffdc06fdffb607fdff6219fdff1231fdff8c3cfdff9a3cfdff3473fdfff488fdff1889fdff769dfdffbaa4fdff6cc4fdffd4c4fdff34c5fdffb6c5fdff1c88ffffbefaffff6afbfffff4ffffffdc3b0000a86400001865000042720000c68800007e890000dc890000de95000054960000fc9e000034a800001aa90000
+      m_ExpandedIDs: 9062faff3264faffcaa1faff28a3faff30b7faffa4b7faff4eb9faffbce1faff3ee7faffcaf9faff4e0dfbffc20dfbff5e0ffbff9e60fbfff899fbff78adfbffeeadfbff34b0fbffd0c3fbff46c4fbfff2c5fbffa8dbfbff0edcfbffe2f2fbffc405fcff7407fcffa208fcfff01afcff3c1cfcff3e2efcffdc7afcff528cfcff6a92fcff0895fcff90a4fcff1ea5fcffcab6fcff16c4fcff98cdfcff18f0fcffdc06fdffb607fdff6219fdff1231fdff8c3cfdff9a3cfdff3473fdfff488fdff1889fdff769dfdffbaa4fdff6cc4fdffd4c4fdff34c5fdffb6c5fdff1c88ffffbefaffff6afbfffff4ffffffdc3b0000a86400001865000042720000c68800007e890000dc890000de95000054960000fc9e000034a800001aa90000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Path01
-        m_OriginalName: Path01
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -265504
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 5}
       m_SearchString: 
@@ -506,19 +506,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/lucy/Documents/Home/Zoo-Game/zoo-game/Zoo Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d0380000
-    m_LastClickedID: 14544
+    m_SelectedIDs: c8380000
+    m_LastClickedID: 14536
     m_ExpandedIDs: 00000000c838000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -572,9 +572,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: fe630000
-    m_LastClickedInstanceID: 25598
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c623000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -591,7 +591,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -692,7 +692,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
-  m_LastInspectedObjectInstanceID: 25598
+  m_LastInspectedObjectInstanceID: -1
   m_LastVerticalScrollValue: 0
 --- !u!114 &16
 MonoBehaviour:

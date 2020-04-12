@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-//manages storage variables
+//sorts out lists to be stored - also manages the references to subroutines for loading and saving
 public class WorldManagement : MonoBehaviour
 {
     public List<GameObject> objects = new List<GameObject>();
