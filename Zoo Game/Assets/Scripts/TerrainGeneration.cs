@@ -181,6 +181,9 @@ public class TerrainGeneration : MonoBehaviour
                 currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
             }
         }
+
+        worldScript.canSave = true;
+        
     }
 
     public void GenerateStartPaths()
@@ -188,6 +191,7 @@ public class TerrainGeneration : MonoBehaviour
         int n = Random.Range(0, pathPrefabs.Length);
         currentObject = Instantiate(pathPrefabs[n]);
         currentObject.transform.position = new Vector3(0f, -4f, 0f);
+        worldScript.objects.Add(currentObject);
         worldScript.names.Add(pathPrefabs[n].name);
         worldScript.x_positions.Add(currentObject.transform.position.x);
         worldScript.y_positions.Add(currentObject.transform.position.y);
@@ -196,6 +200,7 @@ public class TerrainGeneration : MonoBehaviour
         n = Random.Range(0, pathPrefabs.Length);
         currentObject = Instantiate(pathPrefabs[n]);
         currentObject.transform.position = new Vector3(0f, -6f, 0f);
+        worldScript.objects.Add(currentObject);
         worldScript.names.Add(pathPrefabs[n].name);
         worldScript.x_positions.Add(currentObject.transform.position.x);
         worldScript.y_positions.Add(currentObject.transform.position.y);
@@ -204,6 +209,7 @@ public class TerrainGeneration : MonoBehaviour
         n = Random.Range(0, pathPrefabs.Length);
         currentObject = Instantiate(pathPrefabs[n]);
         currentObject.transform.position = new Vector3(0f, -8f, 0f);
+        worldScript.objects.Add(currentObject);
         worldScript.names.Add(pathPrefabs[n].name);
         worldScript.x_positions.Add(currentObject.transform.position.x);
         worldScript.y_positions.Add(currentObject.transform.position.y);

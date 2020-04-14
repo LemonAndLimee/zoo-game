@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
+
+//process size of object, determine which snap mode it needs
 
 public class PlacingLogic : MonoBehaviour
 {
-    //temp placeholder for testing purpose
-    public GameObject testPrefab;
 
     public bool placeMode;
     public GameObject prefab;
@@ -21,6 +22,11 @@ public class PlacingLogic : MonoBehaviour
 
     public WorldManagement worldScript;
 
+    public bool continuousPlacingMode;
+
+    //tells user to press x to quit
+    public Text placeModeText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,16 +36,13 @@ public class PlacingLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //temp placeholder for trigger
-        if (Input.GetKeyDown("p"))
-        {
-            TogglePlacing(testPrefab);
-        }
+        
 
         if (placeMode == true)
         {
             PlacingUpdate();
         }
+        
     }
 
     //to be run every update while placemode is on
@@ -48,7 +51,7 @@ public class PlacingLogic : MonoBehaviour
         snappedPos = snapPosition(getMousePos(), isEvenX, isEvenY);
 
         //if mouse position has changed, delete old object and spawn new at new mouse pos
-        if (snappedPos != previousSnappedPos)
+        if (snappedPos != previousSnappedPos || currentObject == null)
         {
             if (previousObject != null)
             {
@@ -70,14 +73,36 @@ public class PlacingLogic : MonoBehaviour
                 sr.enabled = false;
             }
         }
+        //also checks for position overlaps
+        for (int i = 0; i < worldScript.x_positions.Count; i++)
+        {
+            if (worldScript.x_positions[i] == currentObject.transform.position.x && worldScript.y_positions[i] == currentObject.transform.position.y)
+            {
+                //hides currentobject if true
+                SpriteRenderer[] renderers = currentObject.GetComponentsInChildren<SpriteRenderer>();
+                foreach (SpriteRenderer sr in renderers)
+                {
+                    sr.enabled = false;
+                }
+            }
+        }
 
         //if mouse is clicked
         if (Input.GetMouseButtonDown(0))
         {
+            //also checks for position overlaps
+            for (int i = 0; i < worldScript.x_positions.Count; i++)
+            {
+                if (worldScript.x_positions[i] == currentObject.transform.position.x && worldScript.y_positions[i] == currentObject.transform.position.y)
+                {
+                    TogglePlacing(prefab, false);
+                }
+            }
+
             //if touching, toggle placemode without placing object
             if (touchingScript.isTouching == true)
             {
-                TogglePlacing(prefab);
+                TogglePlacing(prefab, false);
             }
             //if free to place, place the object
             else
@@ -86,24 +111,32 @@ public class PlacingLogic : MonoBehaviour
             }
         }
 
+        // if x is pressed, exit placing mode
+        if (Input.GetKeyDown("x"))
+        {
+            TogglePlacing(prefab, false);
+        }
 
         previousSnappedPos = snappedPos;
         previousObject = currentObject;
     }
 
-    public void TogglePlacing(GameObject obj)
+    public void TogglePlacing(GameObject obj, bool continous)
     {
         if (placeMode == false)
         {
             placeMode = true;
             prefab = obj;
-            getMousePos();
+            //getMousePos();
+            continuousPlacingMode = continous;
+            placeModeText.text = "Press 'x' to exit placing mode";
         }
         else
         {
             placeMode = false;
             Destroy(currentObject);
             previousSnappedPos = new Vector2(800f, 800f);
+            placeModeText.text = "";
         }
     }
 
@@ -193,12 +226,21 @@ public class PlacingLogic : MonoBehaviour
     public void Place()
     {
         placeMode = false;
-        previousSnappedPos = new Vector2(800f, 800f);
-        previousObject = null;
 
+        worldScript.objects.Add(currentObject);
         worldScript.names.Add(prefab.name);
         worldScript.x_positions.Add(currentObject.transform.position.x);
         worldScript.y_positions.Add(currentObject.transform.position.y);
         worldScript.sizes.Add(currentObject.transform.localScale.x);
+
+        previousObject = null;
+        currentObject = null;
+
+        previousSnappedPos = new Vector2(800f, 800f);
+
+        if (continuousPlacingMode == true)
+        {
+            TogglePlacing(prefab, true);
+        }
     }
 }

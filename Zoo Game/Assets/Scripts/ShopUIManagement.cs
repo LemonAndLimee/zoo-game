@@ -1,0 +1,135 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class ShopUIManagement : MonoBehaviour
+{
+    public Animation anim;
+
+    public bool isShopUp;
+    public bool isFacilities;
+    public bool isHabitats;
+
+    public GameObject facilitiesPanel;
+    public GameObject habitatsPanel;
+
+    public GameObject activeSubPanel;
+
+    public GameObject pathsPanel;
+
+    public PlacingLogic placeScript;
+
+    //different prefabs
+    public GameObject[] stonePathPrefabs;
+
+
+    public GameObject prefab;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+    }
+
+    public void FacilitiesButton()
+    {
+        ToggleShop("f");
+        if (isHabitats == true)
+        {
+            ToggleHabitats("");
+        }
+        ToggleFacilities("true");
+    }
+    public void HabitatsButton()
+    {
+        ToggleShop("h");
+        if (isFacilities == true)
+        {
+            ToggleFacilities("");
+        }
+        ToggleHabitats("true");
+    }
+
+    public void ToggleShop(string buttonPressed)
+    {
+        if (isShopUp == false)
+        {
+            anim.Play("SlideUp");
+            isShopUp = true;
+        }
+        else if (buttonPressed == "f" && isFacilities == true)
+        {
+            anim.Play("SlideDown");
+            isShopUp = false;
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+        else if (buttonPressed == "h" && isHabitats == true)
+        {
+            anim.Play("SlideDown");
+            isShopUp = false;
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+        //if entering place mode
+        else if (buttonPressed == "place")
+        {
+            anim.Play("SlideDown");
+            isShopUp = false;
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+    }
+
+    public void ToggleFacilities(string state)
+    {
+        if (isFacilities == false || state == "true")
+        {
+            facilitiesPanel.SetActive(true);
+            isFacilities = true;
+            SwitchToPaths();
+        }
+        else if (isFacilities == true || state == "false")
+        {
+            facilitiesPanel.SetActive(false);
+            isFacilities = false;
+        }
+    }
+
+    public void ToggleHabitats(string state)
+    {
+        if (isHabitats == false || state == "true")
+        {
+            isHabitats = true;
+        }
+        else if (isHabitats == true || state == "false")
+        {
+            isHabitats = false;
+        }
+    }
+
+
+    //different facilites categories
+    public void SwitchToPaths()
+    {
+        if (activeSubPanel != pathsPanel)
+        {
+            activeSubPanel = pathsPanel;
+            pathsPanel.SetActive(true);
+        }
+    }
+
+
+    //different purchase options
+    public void StonePath()
+    {
+        int num = Random.Range(0, stonePathPrefabs.Length);
+        prefab = stonePathPrefabs[num];
+        placeScript.TogglePlacing(prefab, true);
+        ToggleShop("place");
+    }
+}
