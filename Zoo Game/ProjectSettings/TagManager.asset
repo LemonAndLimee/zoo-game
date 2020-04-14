@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - StartManager
+  - Terrain
   layers:
   - Default
   - TransparentFX
@@ -50,4 +51,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enclosures
+    uniqueID: 1513311201
     locked: 0

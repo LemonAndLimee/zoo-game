@@ -18,11 +18,14 @@ public class ShopUIManagement : MonoBehaviour
     public GameObject activeSubPanel;
 
     public GameObject pathsPanel;
+    public GameObject farmPanel;
 
     public PlacingLogic placeScript;
 
     //different prefabs
     public GameObject[] stonePathPrefabs;
+
+    public GameObject smallFarmPrefab;
 
 
     public GameObject prefab;
@@ -105,10 +108,13 @@ public class ShopUIManagement : MonoBehaviour
         if (isHabitats == false || state == "true")
         {
             isHabitats = true;
+            habitatsPanel.SetActive(true);
+            SwitchToFarms();
         }
         else if (isHabitats == true || state == "false")
         {
             isHabitats = false;
+            habitatsPanel.SetActive(false);
         }
     }
 
@@ -123,13 +129,29 @@ public class ShopUIManagement : MonoBehaviour
         }
     }
 
+    public void SwitchToFarms()
+    {
+        if (activeSubPanel != farmPanel)
+        {
+            activeSubPanel = farmPanel;
+            farmPanel.SetActive(true);
+        }
+    }
+
 
     //different purchase options
     public void StonePath()
     {
         int num = Random.Range(0, stonePathPrefabs.Length);
         prefab = stonePathPrefabs[num];
-        placeScript.TogglePlacing(prefab, true);
+        placeScript.TogglePlacing(prefab, true, true, true);
+        ToggleShop("place");
+    }
+
+    public void SmallFarmHabitat()
+    {
+        prefab = smallFarmPrefab;
+        placeScript.TogglePlacing(prefab, false, false, false);
         ToggleShop("place");
     }
 }

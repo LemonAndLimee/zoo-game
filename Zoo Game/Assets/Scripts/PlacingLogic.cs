@@ -4,8 +4,6 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
-//process size of object, determine which snap mode it needs
-
 public class PlacingLogic : MonoBehaviour
 {
 
@@ -26,6 +24,8 @@ public class PlacingLogic : MonoBehaviour
 
     //tells user to press x to quit
     public Text placeModeText;
+
+    public bool canPlace;
 
     // Start is called before the first frame update
     void Start()
@@ -62,67 +62,36 @@ public class PlacingLogic : MonoBehaviour
 
         }
 
-        //checks if object is touching another object
-        TriggerDetection touchingScript = currentObject.GetComponent<TriggerDetection>();
-        if (touchingScript.isTouching == true)
-        {
-            //hides currentobject if true
-            SpriteRenderer[] renderers = currentObject.GetComponentsInChildren<SpriteRenderer>();
-            foreach (SpriteRenderer sr in renderers)
-            {
-                sr.enabled = false;
-            }
-        }
-        //also checks for position overlaps
-        for (int i = 0; i < worldScript.x_positions.Count; i++)
-        {
-            if (worldScript.x_positions[i] == currentObject.transform.position.x && worldScript.y_positions[i] == currentObject.transform.position.y)
-            {
-                //hides currentobject if true
-                SpriteRenderer[] renderers = currentObject.GetComponentsInChildren<SpriteRenderer>();
-                foreach (SpriteRenderer sr in renderers)
-                {
-                    sr.enabled = false;
-                }
-            }
-        }
+        //checks if space is taken - subroutine assigns a value to canPlace
+        CheckAvailableSpace();
 
         //if mouse is clicked
         if (Input.GetMouseButtonDown(0))
         {
-            //also checks for position overlaps
-            for (int i = 0; i < worldScript.x_positions.Count; i++)
-            {
-                if (worldScript.x_positions[i] == currentObject.transform.position.x && worldScript.y_positions[i] == currentObject.transform.position.y)
-                {
-                    TogglePlacing(prefab, false);
-                }
-            }
-
-            //if touching, toggle placemode without placing object
-            if (touchingScript.isTouching == true)
-            {
-                TogglePlacing(prefab, false);
-            }
-            //if free to place, place the object
-            else
+            if (canPlace == true)
             {
                 Place();
+            }
+            else
+            {
+                TogglePlacing(prefab, false, true, true);
             }
         }
 
         // if x is pressed, exit placing mode
         if (Input.GetKeyDown("x"))
         {
-            TogglePlacing(prefab, false);
+            TogglePlacing(prefab, false, true, true);
         }
 
         previousSnappedPos = snappedPos;
         previousObject = currentObject;
     }
 
-    public void TogglePlacing(GameObject obj, bool continous)
+    public void TogglePlacing(GameObject obj, bool continous, bool evenX, bool evenY)
     {
+        isEvenX = evenX;
+        isEvenY = evenY;
         if (placeMode == false)
         {
             placeMode = true;
@@ -223,6 +192,31 @@ public class PlacingLogic : MonoBehaviour
         return snap;
     }
 
+    public void CheckAvailableSpace()
+    {
+        //checks if object is touching another object
+        TriggerDetection touchingScript = currentObject.GetComponent<TriggerDetection>();
+        if (touchingScript.isTouching == true)
+        {
+            currentObject.GetComponent<SpriteRenderer>().enabled = true;
+            canPlace = false;
+        }
+        else
+        {
+            canPlace = true;
+        }
+        //also checks for position overlaps
+        for (int i = 0; i < worldScript.x_positions.Count; i++)
+        {
+            if (worldScript.x_positions[i] == currentObject.transform.position.x && worldScript.y_positions[i] == currentObject.transform.position.y)
+            {
+                //makes object go red
+                currentObject.GetComponent<SpriteRenderer>().enabled = true;
+                canPlace = false;
+            }
+        }
+    }
+
     public void Place()
     {
         placeMode = false;
@@ -240,7 +234,7 @@ public class PlacingLogic : MonoBehaviour
 
         if (continuousPlacingMode == true)
         {
-            TogglePlacing(prefab, true);
+            TogglePlacing(prefab, true, true, true);
         }
     }
 }
