@@ -333,7 +333,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4562760550998882164}
-  - component: {fileID: 7422002669138932870}
+  - component: {fileID: -4766522849961171709}
   m_Layer: 0
   m_Name: Rock03
   m_TagString: Terrain
@@ -362,7 +362,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &7422002669138932870
+--- !u!58 &-4766522849961171709
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -375,9 +375,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5, y: 0.2}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.2
+  m_Radius: 0.5
 --- !u!1 &5254354205160139668
 GameObject:
   m_ObjectHideFlags: 0

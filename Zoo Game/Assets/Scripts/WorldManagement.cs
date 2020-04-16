@@ -13,6 +13,12 @@ public class WorldManagement : MonoBehaviour
     public List<float> y_positions = new List<float>();
     public List<float> sizes = new List<float>();
 
+    public int dayCount;
+    public float dayTimer;
+    public int yearCount;
+
+    public int balance;
+
     public bool canSave;
 
     public void Save()
@@ -29,6 +35,12 @@ public class WorldManagement : MonoBehaviour
         x_positions = data.x_positions.ToList<float>();
         y_positions = data.y_positions.ToList<float>();
         sizes = data.sizes.ToList<float>();
+
+        dayCount = data.dayCount;
+        dayTimer = data.dayTimer;
+        yearCount = data.yearCount;
+
+        balance = data.balance;
     }
 
     public void Update()

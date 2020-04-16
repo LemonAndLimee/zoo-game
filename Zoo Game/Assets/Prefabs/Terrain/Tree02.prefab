@@ -252,7 +252,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1666477528853953499}
-  - component: {fileID: 4696433034728804958}
+  - component: {fileID: 9179936005151331621}
   m_Layer: 0
   m_Name: Tree02
   m_TagString: Terrain
@@ -283,7 +283,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &4696433034728804958
+--- !u!58 &9179936005151331621
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -296,9 +296,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1, y: 0.3}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.7
+  m_Radius: 0.5
 --- !u!1 &5057243646889557873
 GameObject:
   m_ObjectHideFlags: 0

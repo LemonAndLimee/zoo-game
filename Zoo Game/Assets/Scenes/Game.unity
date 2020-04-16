@@ -664,6 +664,8 @@ GameObject:
   - component: {fileID: 113580478}
   - component: {fileID: 113580477}
   - component: {fileID: 113580479}
+  - component: {fileID: 113580480}
+  - component: {fileID: 113580481}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -719,6 +721,8 @@ MonoBehaviour:
   pathNames:
   - Path01
   - Path02
+  smallFarmHabitat: {fileID: 6787353839244051694, guid: a0d2791712c0d40f888c283fbc2f66b0,
+    type: 3}
 --- !u!4 &113580478
 Transform:
   m_ObjectHideFlags: 0
@@ -750,7 +754,49 @@ MonoBehaviour:
   x_positions: []
   y_positions: []
   sizes: []
+  dayCount: 0
+  dayTimer: 0
+  yearCount: 0
+  balance: 0
   canSave: 0
+--- !u!114 &113580480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113580476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dacfa74406314f788efd11fe3b1e52f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayLength: 10
+  timer: 0
+  dayCount: 0
+  yearCount: 0
+  worldScript: {fileID: 113580479}
+  startScript: {fileID: 0}
+  dayText: {fileID: 234401580}
+  yearText: {fileID: 38232496}
+  moneyScript: {fileID: 113580481}
+--- !u!114 &113580481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113580476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6cc4ef8b8b4b4c368fb2da0d4bee9ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startBalance: 1000
+  balance: 0
+  moneyText: {fileID: 1310292481}
+  worldScript: {fileID: 113580479}
+  startScript: {fileID: 0}
 --- !u!1 &150802064
 GameObject:
   m_ObjectHideFlags: 0
@@ -5058,7 +5104,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 50 000 000
+  m_Text: 50
 --- !u!222 &1310292482
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6138,6 +6184,7 @@ MonoBehaviour:
   worldScript: {fileID: 113580479}
   continuousPlacingMode: 0
   placeModeText: {fileID: 1813456976}
+  canPlace: 0
 --- !u!114 &1496655450
 MonoBehaviour:
   m_ObjectHideFlags: 0

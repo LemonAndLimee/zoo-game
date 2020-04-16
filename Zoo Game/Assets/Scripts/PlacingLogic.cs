@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
@@ -210,16 +211,27 @@ public class PlacingLogic : MonoBehaviour
         {
             if (worldScript.x_positions[i] == currentObject.transform.position.x && worldScript.y_positions[i] == currentObject.transform.position.y)
             {
-                //makes object go red
-                currentObject.GetComponent<SpriteRenderer>().enabled = true;
-                canPlace = false;
+                //if not trees or rocks
+                if (worldScript.objects[i].tag != "Terrain")
+                {
+                    //makes object go red
+                    currentObject.GetComponent<SpriteRenderer>().enabled = true;
+                    canPlace = false;
+                }
+
             }
         }
     }
 
     public void Place()
     {
+        //deletes any trees or rocks at same position
+        DeleteTerrainAtPosition();
+
+        
+
         placeMode = false;
+        placeModeText.text = "";
 
         worldScript.objects.Add(currentObject);
         worldScript.names.Add(prefab.name);
@@ -236,5 +248,39 @@ public class PlacingLogic : MonoBehaviour
         {
             TogglePlacing(prefab, true, true, true);
         }
+    }
+
+    public void DeleteTerrainAtPosition()
+    {
+        //deletes any trees or rocks at same position
+        for (int i = 0; i < worldScript.x_positions.Count; i++)
+        {
+            if (worldScript.x_positions[i] == currentObject.transform.position.x && worldScript.y_positions[i] == currentObject.transform.position.y)
+            {
+                //ensures only trees or rocks
+                if (worldScript.objects[i].tag == "Terrain")
+                {
+
+                    Destroy(worldScript.objects[i]);
+                    worldScript.objects.RemoveAt(i);
+                    worldScript.names.RemoveAt(i);
+                    worldScript.x_positions.RemoveAt(i);
+                    worldScript.y_positions.RemoveAt(i);
+                    worldScript.sizes.RemoveAt(i);
+                }
+
+            }
+        }
+
+        TriggerDetection touchingScript = currentObject.GetComponent<TriggerDetection>();
+        GameObject ob = touchingScript.collisionObject;
+        int index = worldScript.objects.IndexOf(ob);
+
+        Destroy(worldScript.objects[index]);
+        worldScript.objects.RemoveAt(index);
+        worldScript.names.RemoveAt(index);
+        worldScript.x_positions.RemoveAt(index);
+        worldScript.y_positions.RemoveAt(index);
+        worldScript.sizes.RemoveAt(index);
     }
 }

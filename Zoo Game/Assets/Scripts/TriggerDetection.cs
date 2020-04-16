@@ -8,6 +8,8 @@ public class TriggerDetection : MonoBehaviour
 
     public SpriteRenderer sr;
 
+    public GameObject collisionObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,10 +27,17 @@ public class TriggerDetection : MonoBehaviour
         //if triggers with something other than background
         if (collision.gameObject.name != "Background")
         {
-            //set touching to true, turns red
-            Debug.Log(gameObject.name + " trig " + collision.gameObject.name);
-            isTouching = true;
-            Red();
+            if (collision.gameObject.tag != "Terrain")
+            {
+                //set touching to true, turns red
+                //Debug.Log(gameObject.name + " trig " + collision.gameObject.name);
+                isTouching = true;
+                Red();
+            }
+            else
+            {
+                collisionObject = collision.gameObject;
+            }
         }
     }
     void OnTriggerExit2D(Collider2D collision)

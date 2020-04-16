@@ -40,6 +40,8 @@ public class TerrainGeneration : MonoBehaviour
     public GameObject[] pathPrefabs;
     public string[] pathNames;
 
+    public GameObject smallFarmHabitat;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -180,6 +182,8 @@ public class TerrainGeneration : MonoBehaviour
 
                 currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
             }
+
+            SpawnIndividualObjects(i);
         }
 
         worldScript.canSave = true;
@@ -214,5 +218,16 @@ public class TerrainGeneration : MonoBehaviour
         worldScript.x_positions.Add(currentObject.transform.position.x);
         worldScript.y_positions.Add(currentObject.transform.position.y);
         worldScript.sizes.Add(currentObject.transform.localScale.x);
+    }
+
+    public void SpawnIndividualObjects(int i)
+    {
+        if (worldScript.names[i] == "SmallFarmHabitat")
+        {
+            currentObject = Instantiate(smallFarmHabitat);
+            currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], 0f);
+
+            currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
+        }
     }
 }
