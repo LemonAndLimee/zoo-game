@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//manages day cycle
 public class DayLogic : MonoBehaviour
 {
     public float dayLength;

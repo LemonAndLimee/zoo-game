@@ -6,6 +6,7 @@ TagManager:
   tags:
   - StartManager
   - Terrain
+  - Habitat
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - Background
   - Player
   - Walls
-  - 
-  - 
+  - AnimalBoundaries
+  - Animals
   - 
   - 
   - 
@@ -54,4 +55,7 @@ TagManager:
     locked: 0
   - name: Enclosures
     uniqueID: 1513311201
+    locked: 0
+  - name: Animals
+    uniqueID: 2506740783
     locked: 0

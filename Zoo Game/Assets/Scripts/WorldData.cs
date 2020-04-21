@@ -19,6 +19,10 @@ public class WorldData
 
     public int balance;
 
+    public string[] animalNames;
+    public float[] animal_x_positions;
+    public float[] animal_y_positions;
+
     public WorldData (WorldManagement worldScript)
     {
         names = worldScript.names.ToArray();
@@ -31,6 +35,10 @@ public class WorldData
         yearCount = worldScript.yearCount;
 
         balance = worldScript.balance;
+
+        animalNames = worldScript.animalNames.ToArray();
+        animal_x_positions = worldScript.animal_x_positions.ToArray();
+        animal_y_positions = worldScript.animal_y_positions.ToArray();
 
     }
 }

@@ -144,6 +144,7 @@ public class ShopUIManagement : MonoBehaviour
     {
         int num = Random.Range(0, stonePathPrefabs.Length);
         prefab = stonePathPrefabs[num];
+        placeScript.currentCost = 2;
         placeScript.TogglePlacing(prefab, true, true, true);
         ToggleShop("place");
     }
@@ -151,6 +152,7 @@ public class ShopUIManagement : MonoBehaviour
     public void SmallFarmHabitat()
     {
         prefab = smallFarmPrefab;
+        placeScript.currentCost = 50;
         placeScript.TogglePlacing(prefab, false, false, false);
         ToggleShop("place");
     }

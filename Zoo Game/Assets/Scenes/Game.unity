@@ -666,6 +666,7 @@ GameObject:
   - component: {fileID: 113580479}
   - component: {fileID: 113580480}
   - component: {fileID: 113580481}
+  - component: {fileID: 113580482}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -759,6 +760,9 @@ MonoBehaviour:
   yearCount: 0
   balance: 0
   canSave: 0
+  animalNames: []
+  animal_x_positions: []
+  animal_y_positions: []
 --- !u!114 &113580480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,6 +801,24 @@ MonoBehaviour:
   moneyText: {fileID: 1310292481}
   worldScript: {fileID: 113580479}
   startScript: {fileID: 0}
+--- !u!114 &113580482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113580476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbac5237bfcc04dce9ff30572ae28d4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startScript: {fileID: 0}
+  worldScript: {fileID: 113580479}
+  currentObject: {fileID: 0}
+  prefab: {fileID: 0}
+  pigPrefab: {fileID: 8283085786118565881, guid: d4a331a6d7ced4d8f8a4508bd20d6666,
+    type: 3}
 --- !u!1 &150802064
 GameObject:
   m_ObjectHideFlags: 0
@@ -6026,6 +6048,7 @@ GameObject:
   - component: {fileID: 1496655445}
   - component: {fileID: 1496655449}
   - component: {fileID: 1496655450}
+  - component: {fileID: 1496655451}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -6053,7 +6076,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1496655445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6185,6 +6208,8 @@ MonoBehaviour:
   continuousPlacingMode: 0
   placeModeText: {fileID: 1813456976}
   canPlace: 0
+  currentCost: 0
+  moneyScript: {fileID: 113580481}
 --- !u!114 &1496655450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6213,6 +6238,20 @@ MonoBehaviour:
   smallFarmPrefab: {fileID: 6787353839244051694, guid: a0d2791712c0d40f888c283fbc2f66b0,
     type: 3}
   prefab: {fileID: 0}
+--- !u!114 &1496655451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496655443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe749af74657049c4a203d8c5b5b2f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pigPrefab: {fileID: 8283085786118565881, guid: d4a331a6d7ced4d8f8a4508bd20d6666,
+    type: 3}
 --- !u!1 &1498183978
 GameObject:
   m_ObjectHideFlags: 0
@@ -6281,7 +6320,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: $2
+  m_Text: $50
 --- !u!222 &1498183981
 CanvasRenderer:
   m_ObjectHideFlags: 0

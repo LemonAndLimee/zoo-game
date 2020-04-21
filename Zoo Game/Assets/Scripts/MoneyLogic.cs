@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//manager for money
 public class MoneyLogic : MonoBehaviour
 {
     public int startBalance;

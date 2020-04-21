@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//given to each placeable object, to check if overlapping with another object
 public class TriggerDetection : MonoBehaviour
 {
     public bool isTouching;
@@ -27,10 +28,11 @@ public class TriggerDetection : MonoBehaviour
         //if triggers with something other than background
         if (collision.gameObject.name != "Background")
         {
-            if (collision.gameObject.tag != "Terrain")
+            Debug.Log(gameObject.name + " trig " + collision.gameObject.name);
+            if (collision.gameObject.tag != "Terrain" && collision.gameObject.tag != "Animal")
             {
                 //set touching to true, turns red
-                //Debug.Log(gameObject.name + " trig " + collision.gameObject.name);
+                
                 isTouching = true;
                 Red();
             }

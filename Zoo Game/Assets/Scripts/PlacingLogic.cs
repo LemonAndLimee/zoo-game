@@ -28,6 +28,9 @@ public class PlacingLogic : MonoBehaviour
 
     public bool canPlace;
 
+    public int currentCost;
+    public MoneyLogic moneyScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -228,7 +231,7 @@ public class PlacingLogic : MonoBehaviour
         //deletes any trees or rocks at same position
         DeleteTerrainAtPosition();
 
-        
+        moneyScript.balance -= currentCost;
 
         placeMode = false;
         placeModeText.text = "";
@@ -275,12 +278,15 @@ public class PlacingLogic : MonoBehaviour
         TriggerDetection touchingScript = currentObject.GetComponent<TriggerDetection>();
         GameObject ob = touchingScript.collisionObject;
         int index = worldScript.objects.IndexOf(ob);
-
-        Destroy(worldScript.objects[index]);
-        worldScript.objects.RemoveAt(index);
-        worldScript.names.RemoveAt(index);
-        worldScript.x_positions.RemoveAt(index);
-        worldScript.y_positions.RemoveAt(index);
-        worldScript.sizes.RemoveAt(index);
+        if (index > -1)
+        {
+            Destroy(worldScript.objects[index]);
+            worldScript.objects.RemoveAt(index);
+            worldScript.names.RemoveAt(index);
+            worldScript.x_positions.RemoveAt(index);
+            worldScript.y_positions.RemoveAt(index);
+            worldScript.sizes.RemoveAt(index);
+        }
+        
     }
 }

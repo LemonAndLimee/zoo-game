@@ -21,6 +21,10 @@ public class WorldManagement : MonoBehaviour
 
     public bool canSave;
 
+    public List<string> animalNames = new List<string>();
+    public List<float> animal_x_positions = new List<float>();
+    public List<float> animal_y_positions = new List<float>();
+
     public void Save()
     {
         SaveManagement.SaveWorld(this);
@@ -41,6 +45,11 @@ public class WorldManagement : MonoBehaviour
         yearCount = data.yearCount;
 
         balance = data.balance;
+
+        animalNames = data.animalNames.ToList<string>();
+        animal_x_positions = data.animal_x_positions.ToList<float>();
+        animal_y_positions = data.animal_y_positions.ToList<float>();
+        
     }
 
     public void Update()
