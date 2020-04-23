@@ -11,7 +11,6 @@ public class AnimalMovement : MonoBehaviour
 
     public float rotSpeed;
     public float speed;
-    public float maxSpeed;
 
     public bool isRotating;
 
@@ -53,16 +52,15 @@ public class AnimalMovement : MonoBehaviour
                 targetRotation = Random.Range(0, 361);
             }
         }
-        else
+
+
+        int num = Random.Range(0, 101);
+        if (num <= moveChance)
         {
-            int num = Random.Range(0, 101);
-            if (num <= moveChance)
-            {
-                Debug.Log("move");
-                rb.velocity += new Vector2(-transform.right.x, -transform.right.y) * speed;
-                Debug.Log(transform.right);
-            }
+            speed = Random.Range(5, 25);
+            rb.velocity += new Vector2(-transform.right.x, -transform.right.y) * speed / 10;
+
         }
-        
+
     }
 }

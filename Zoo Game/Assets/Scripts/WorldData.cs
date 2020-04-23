@@ -23,6 +23,8 @@ public class WorldData
     public float[] animal_x_positions;
     public float[] animal_y_positions;
 
+    public int[] habitatSpaceLeft;
+
     public WorldData (WorldManagement worldScript)
     {
         names = worldScript.names.ToArray();
@@ -40,5 +42,6 @@ public class WorldData
         animal_x_positions = worldScript.animal_x_positions.ToArray();
         animal_y_positions = worldScript.animal_y_positions.ToArray();
 
+        habitatSpaceLeft = worldScript.habitatsSpaceLeft.ToArray();
     }
 }

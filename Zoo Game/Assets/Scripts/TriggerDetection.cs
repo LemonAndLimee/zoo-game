@@ -28,11 +28,11 @@ public class TriggerDetection : MonoBehaviour
         //if triggers with something other than background
         if (collision.gameObject.name != "Background")
         {
-            Debug.Log(gameObject.name + " trig " + collision.gameObject.name);
+            //Debug.Log(gameObject.name + " trig " + collision.gameObject.name);
+            Debug.Log(collision.gameObject.name + " " + collision.gameObject.tag);
             if (collision.gameObject.tag != "Terrain" && collision.gameObject.tag != "Animal")
             {
                 //set touching to true, turns red
-                
                 isTouching = true;
                 Red();
             }

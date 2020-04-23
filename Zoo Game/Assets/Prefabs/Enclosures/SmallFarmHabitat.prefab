@@ -114,9 +114,10 @@ GameObject:
   - component: {fileID: 2553099219220904285}
   - component: {fileID: 1101970028603800957}
   - component: {fileID: 3449957837178679561}
+  - component: {fileID: 1117074808742212264}
   - component: {fileID: 1446547459366844553}
   - component: {fileID: -1770977497596490967}
-  - component: {fileID: 1117074808742212264}
+  - component: {fileID: -8559731605039669977}
   m_Layer: 0
   m_Name: SmallFarmHabitat
   m_TagString: Habitat
@@ -216,6 +217,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &1117074808742212264
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6787353839244051694}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 7
 --- !u!114 &1446547459366844553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,27 +267,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentObject: {fileID: 0}
   worldScript: {fileID: 0}
---- !u!50 &1117074808742212264
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!114 &-8559731605039669977
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6787353839244051694}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 7
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5499659d2034548c0b8f3455057ee58b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7567110907431136039
 GameObject:
   m_ObjectHideFlags: 0

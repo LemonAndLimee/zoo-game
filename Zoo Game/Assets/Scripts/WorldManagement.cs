@@ -25,6 +25,8 @@ public class WorldManagement : MonoBehaviour
     public List<float> animal_x_positions = new List<float>();
     public List<float> animal_y_positions = new List<float>();
 
+    public List<int> habitatsSpaceLeft;
+
     public void Save()
     {
         SaveManagement.SaveWorld(this);
@@ -49,7 +51,8 @@ public class WorldManagement : MonoBehaviour
         animalNames = data.animalNames.ToList<string>();
         animal_x_positions = data.animal_x_positions.ToList<float>();
         animal_y_positions = data.animal_y_positions.ToList<float>();
-        
+
+        habitatsSpaceLeft = data.habitatSpaceLeft.ToList<int>();
     }
 
     public void Update()

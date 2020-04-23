@@ -40,6 +40,7 @@ public class TerrainGeneration : MonoBehaviour
     public GameObject[] pathPrefabs;
     public string[] pathNames;
 
+    public List<GameObject> habitats = new List<GameObject>();
     public GameObject smallFarmHabitat;
 
     // Start is called before the first frame update
@@ -161,6 +162,7 @@ public class TerrainGeneration : MonoBehaviour
                 currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], 0f);
 
                 currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
+                worldScript.objects.Add(currentObject);
             }
 
             //checks if in list of rock names
@@ -171,6 +173,7 @@ public class TerrainGeneration : MonoBehaviour
                 currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], 0f);
 
                 currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
+                worldScript.objects.Add(currentObject);
             }
 
             //checks if in list of paths names
@@ -181,10 +184,13 @@ public class TerrainGeneration : MonoBehaviour
                 currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], 0f);
 
                 currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
+                worldScript.objects.Add(currentObject);
+
             }
 
-            SpawnIndividualObjects(i);
+            SpawnHabitat(i);
         }
+
 
         worldScript.canSave = true;
         
@@ -220,14 +226,24 @@ public class TerrainGeneration : MonoBehaviour
         worldScript.sizes.Add(currentObject.transform.localScale.x);
     }
 
-    public void SpawnIndividualObjects(int i)
+    public void SpawnHabitat(int i)
     {
         if (worldScript.names[i] == "SmallFarmHabitat")
         {
             currentObject = Instantiate(smallFarmHabitat);
+
             currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], 0f);
 
             currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
+            habitats.Add(currentObject);
+
+            //sends array index of current object to its script
+            HabitatStats statsScript = currentObject.GetComponent<HabitatStats>();
+            statsScript.worldScriptIndex = habitats.IndexOf(currentObject);
+
+            statsScript.placed = true;
         }
+        
     }
+
 }

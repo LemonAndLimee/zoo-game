@@ -215,6 +215,7 @@ public class PlacingLogic : MonoBehaviour
             if (worldScript.x_positions[i] == currentObject.transform.position.x && worldScript.y_positions[i] == currentObject.transform.position.y)
             {
                 //if not trees or rocks
+                Debug.Log(i);
                 if (worldScript.objects[i].tag != "Terrain")
                 {
                     //makes object go red
@@ -241,6 +242,14 @@ public class PlacingLogic : MonoBehaviour
         worldScript.x_positions.Add(currentObject.transform.position.x);
         worldScript.y_positions.Add(currentObject.transform.position.y);
         worldScript.sizes.Add(currentObject.transform.localScale.x);
+
+        if (currentObject.tag == "Habitat")
+        {
+            HabitatStats statsScript = currentObject.GetComponent<HabitatStats>();
+            worldScript.habitatsSpaceLeft.Add(statsScript.spaceLeft);
+            statsScript.placed = true;
+        }
+
 
         previousObject = null;
         currentObject = null;

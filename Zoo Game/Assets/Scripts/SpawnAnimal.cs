@@ -21,5 +21,8 @@ public class SpawnAnimal : MonoBehaviour
         worldScript.animalNames.Add(animal.name);
         worldScript.animal_x_positions.Add(currentObject.transform.position.x);
         worldScript.animal_y_positions.Add(currentObject.transform.position.y);
+
+        HabitatStats statsScript = gameObject.GetComponent<HabitatStats>();
+        statsScript.spaceLeft -= 1;
     }
 }

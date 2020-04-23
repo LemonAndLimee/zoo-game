@@ -207,7 +207,6 @@ MonoBehaviour:
   rb: {fileID: 0}
   rotSpeed: 60
   speed: 2
-  maxSpeed: 2
   isRotating: 0
   timer: 0
   timeLimit: 0
@@ -226,7 +225,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 10
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
