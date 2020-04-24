@@ -62,6 +62,10 @@ public class HabitatStats : MonoBehaviour
         {
             worldScript.habitatsSpaceLeft[worldScriptIndex] = spaceLeft;
         }
+        else
+        {
+            spaceLeft = capacity;
+        }
         
     }
 }

@@ -22,6 +22,8 @@ public class WorldData
     public string[] animalNames;
     public float[] animal_x_positions;
     public float[] animal_y_positions;
+    public int[] animalFoodLevels;
+    public int[] animalWaterLevels;
 
     public int[] habitatSpaceLeft;
 
@@ -41,6 +43,8 @@ public class WorldData
         animalNames = worldScript.animalNames.ToArray();
         animal_x_positions = worldScript.animal_x_positions.ToArray();
         animal_y_positions = worldScript.animal_y_positions.ToArray();
+        animalFoodLevels = worldScript.animalFoodLevels.ToArray();
+        animalWaterLevels = worldScript.animalWaterLevels.ToArray();
 
         habitatSpaceLeft = worldScript.habitatsSpaceLeft.ToArray();
     }

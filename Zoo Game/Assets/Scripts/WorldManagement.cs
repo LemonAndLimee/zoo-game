@@ -21,11 +21,17 @@ public class WorldManagement : MonoBehaviour
 
     public bool canSave;
 
+    public List<GameObject> animals = new List<GameObject>(); // not saved or loaded, just used for index assignment
     public List<string> animalNames = new List<string>();
     public List<float> animal_x_positions = new List<float>();
     public List<float> animal_y_positions = new List<float>();
+    public List<int> animalFoodLevels = new List<int>();
+    public List<int> animalWaterLevels = new List<int>();
 
+    public List<GameObject> habitats; //not saved and loaded, just used for giving a habitat an index
     public List<int> habitatsSpaceLeft;
+
+    public float gameTimer; //not for saving, for tracking game running
 
     public void Save()
     {
@@ -37,10 +43,10 @@ public class WorldManagement : MonoBehaviour
 
         WorldData data = SaveManagement.LoadWorld();
 
-        names = data.names.ToList<string>();
-        x_positions = data.x_positions.ToList<float>();
-        y_positions = data.y_positions.ToList<float>();
-        sizes = data.sizes.ToList<float>();
+        names = data.names.ToList();
+        x_positions = data.x_positions.ToList();
+        y_positions = data.y_positions.ToList();
+        sizes = data.sizes.ToList();
 
         dayCount = data.dayCount;
         dayTimer = data.dayTimer;
@@ -48,15 +54,19 @@ public class WorldManagement : MonoBehaviour
 
         balance = data.balance;
 
-        animalNames = data.animalNames.ToList<string>();
-        animal_x_positions = data.animal_x_positions.ToList<float>();
-        animal_y_positions = data.animal_y_positions.ToList<float>();
+        animalNames = data.animalNames.ToList();
+        animal_x_positions = data.animal_x_positions.ToList();
+        animal_y_positions = data.animal_y_positions.ToList();
+        animalFoodLevels = data.animalFoodLevels.ToList();
+        animalWaterLevels = data.animalWaterLevels.ToList();
 
-        habitatsSpaceLeft = data.habitatSpaceLeft.ToList<int>();
+        habitatsSpaceLeft = data.habitatSpaceLeft.ToList();
     }
 
     public void Update()
     {
+        gameTimer += Time.deltaTime;
+
         if (canSave == true)
         {
             Save();

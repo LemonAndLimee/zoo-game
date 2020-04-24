@@ -12,6 +12,7 @@ public class AnimalGeneration : MonoBehaviour
 
     public GameObject pigPrefab;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class AnimalGeneration : MonoBehaviour
         if (startScript.isLoad == true && startScript.isNew == false)
         {
             LoadAnimals();
+            
         }
     }
 
@@ -35,13 +37,18 @@ public class AnimalGeneration : MonoBehaviour
                 prefab = pigPrefab;
             }
 
-            SpawnAnimal(prefab, worldScript.animal_x_positions[i], worldScript.animal_y_positions[i]);
+            SpawnAnimal(prefab, worldScript.animal_x_positions[i], worldScript.animal_y_positions[i], i);
         }
     }
 
-    public void SpawnAnimal(GameObject pref, float x, float y)
+    public void SpawnAnimal(GameObject pref, float x, float y, int i)
     {
         currentObject = Instantiate(pref);
         currentObject.transform.position = new Vector3(x, y, 0f);
+
+        worldScript.animals.Add(currentObject);
+
+        AnimalStats statsScript = currentObject.GetComponent<AnimalStats>();
+        statsScript.worldScriptIndex = i;
     }
 }

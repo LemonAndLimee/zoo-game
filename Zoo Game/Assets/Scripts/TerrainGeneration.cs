@@ -235,11 +235,12 @@ public class TerrainGeneration : MonoBehaviour
             currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], 0f);
 
             currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
-            habitats.Add(currentObject);
+
+            worldScript.habitats.Add(currentObject);
 
             //sends array index of current object to its script
             HabitatStats statsScript = currentObject.GetComponent<HabitatStats>();
-            statsScript.worldScriptIndex = habitats.IndexOf(currentObject);
+            statsScript.worldScriptIndex = worldScript.habitats.IndexOf(currentObject);
 
             statsScript.placed = true;
         }

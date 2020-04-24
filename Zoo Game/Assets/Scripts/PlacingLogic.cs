@@ -247,6 +247,8 @@ public class PlacingLogic : MonoBehaviour
         {
             HabitatStats statsScript = currentObject.GetComponent<HabitatStats>();
             worldScript.habitatsSpaceLeft.Add(statsScript.spaceLeft);
+            worldScript.habitats.Add(currentObject);
+            statsScript.worldScriptIndex = worldScript.habitats.IndexOf(currentObject);
             statsScript.placed = true;
         }
 
