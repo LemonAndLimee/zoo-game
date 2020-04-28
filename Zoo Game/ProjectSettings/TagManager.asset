@@ -7,6 +7,7 @@ TagManager:
   - StartManager
   - Terrain
   - Habitat
+  - Animal
   layers:
   - Default
   - TransparentFX
@@ -58,4 +59,7 @@ TagManager:
     locked: 0
   - name: Animals
     uniqueID: 2506740783
+    locked: 0
+  - name: UI
+    uniqueID: 3194790657
     locked: 0

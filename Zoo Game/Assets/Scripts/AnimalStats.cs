@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnimalStats : MonoBehaviour
 {
@@ -20,9 +21,13 @@ public class AnimalStats : MonoBehaviour
     public WorldManagement worldScript;
     public int worldScriptIndex;
 
+    public GameObject childStatsPanel;
+
     // Start is called before the first frame update
     void Start()
     {
+        childStatsPanel.SetActive(false);
+
         foodLevel = 100;
         waterLevel = 100;
 
@@ -53,6 +58,8 @@ public class AnimalStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateStatsSliders();
+
         day = dayScript.dayCount;
         if (day > previousDay)
         {
@@ -71,5 +78,26 @@ public class AnimalStats : MonoBehaviour
         Debug.Log("Day");
         foodLevel -= hungerPerDay;
         waterLevel -= thirstPerDay;
+    }
+
+    public void ToggleStatsPanel()
+    {
+        if (childStatsPanel.activeInHierarchy == true)
+        {
+            childStatsPanel.SetActive(false);
+        }
+        else
+        {
+            childStatsPanel.SetActive(true);
+        }
+    }
+
+    public void UpdateStatsSliders()
+    {
+        Slider foodSlider = childStatsPanel.transform.Find("FoodSlider").GetComponent<Slider>();
+        Slider waterSlider = childStatsPanel.transform.Find("WaterSlider").GetComponent<Slider>();
+
+        foodSlider.value = foodLevel / 100f;
+        waterSlider.value = waterLevel / 100f;
     }
 }

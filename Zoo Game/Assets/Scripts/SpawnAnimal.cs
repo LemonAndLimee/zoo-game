@@ -6,6 +6,7 @@ using UnityEngine;
 public class SpawnAnimal : MonoBehaviour
 {
     public GameObject currentObject;
+    public GameObject currentCanvas;
 
     public WorldManagement worldScript;
 
@@ -15,7 +16,7 @@ public class SpawnAnimal : MonoBehaviour
         worldScript = GameObject.Find("GameManager").GetComponent<WorldManagement>();
     }
 
-    public void Spawn(GameObject animal)
+    public void Spawn(GameObject animal, GameObject canvas)
     {
         HabitatStats statsScript = gameObject.GetComponent<HabitatStats>();
         if (statsScript.spaceLeft >= 1)
@@ -39,6 +40,13 @@ public class SpawnAnimal : MonoBehaviour
                 animalStatsScript.worldScriptIndex = worldScript.animals.IndexOf(currentObject);
 
                 statsScript.spaceLeft -= 1;
+
+                //spawn stats canvas
+                currentCanvas = Instantiate(canvas);
+                FollowAnimal followScript = currentCanvas.GetComponent<FollowAnimal>();
+                followScript.animal = currentObject;
+
+                animalStatsScript.childStatsPanel = currentCanvas.transform.GetChild(0).gameObject;
             }
         }
         

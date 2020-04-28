@@ -722,6 +722,7 @@ MonoBehaviour:
   pathNames:
   - Path01
   - Path02
+  habitats: []
   smallFarmHabitat: {fileID: 6787353839244051694, guid: a0d2791712c0d40f888c283fbc2f66b0,
     type: 3}
 --- !u!4 &113580478
@@ -760,9 +761,16 @@ MonoBehaviour:
   yearCount: 0
   balance: 0
   canSave: 0
+  animals: []
+  animalCanvases: []
   animalNames: []
   animal_x_positions: []
   animal_y_positions: []
+  animalFoodLevels: 
+  animalWaterLevels: 
+  habitats: []
+  habitatsSpaceLeft: 
+  gameTimer: 0
 --- !u!114 &113580480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -816,6 +824,9 @@ MonoBehaviour:
   startScript: {fileID: 0}
   worldScript: {fileID: 113580479}
   currentObject: {fileID: 0}
+  currentCanvas: {fileID: 0}
+  canvasPrefab: {fileID: 8005434218261172094, guid: 2be59d4bcf6a04b0e8bd3dcdfb1d9ffb,
+    type: 3}
   prefab: {fileID: 0}
   pigPrefab: {fileID: 8283085786118565881, guid: d4a331a6d7ced4d8f8a4508bd20d6666,
     type: 3}
@@ -6251,6 +6262,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pigPrefab: {fileID: 8283085786118565881, guid: d4a331a6d7ced4d8f8a4508bd20d6666,
+    type: 3}
+  statsCanvasPrefab: {fileID: 8005434218261172094, guid: 2be59d4bcf6a04b0e8bd3dcdfb1d9ffb,
     type: 3}
 --- !u!1 &1498183978
 GameObject:

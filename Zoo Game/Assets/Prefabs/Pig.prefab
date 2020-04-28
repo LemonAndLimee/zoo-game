@@ -246,3 +246,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2f8b78e7936497cad08526203aaba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  foodLevel: 0
+  waterLevel: 0
+  health: 0
+  hungerPerDay: 0
+  thirstPerDay: 0
+  dayScript: {fileID: 0}
+  day: 0
+  previousDay: 0
+  startScript: {fileID: 0}
+  worldScript: {fileID: 0}
+  worldScriptIndex: 0

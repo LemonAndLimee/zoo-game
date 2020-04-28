@@ -8,6 +8,8 @@ public class AnimalGeneration : MonoBehaviour
     public WorldManagement worldScript;
 
     public GameObject currentObject;
+    public GameObject currentCanvas;
+    public GameObject canvasPrefab;
     public GameObject prefab;
 
     public GameObject pigPrefab;
@@ -50,5 +52,13 @@ public class AnimalGeneration : MonoBehaviour
 
         AnimalStats statsScript = currentObject.GetComponent<AnimalStats>();
         statsScript.worldScriptIndex = i;
+
+        //spawn stats canvas
+        currentCanvas = Instantiate(canvasPrefab);
+        FollowAnimal followScript = currentCanvas.GetComponent<FollowAnimal>();
+        followScript.animal = currentObject;
+
+        statsScript.childStatsPanel = currentCanvas.transform.GetChild(0).gameObject;
+
     }
 }

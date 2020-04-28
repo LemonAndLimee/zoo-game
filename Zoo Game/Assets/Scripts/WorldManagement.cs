@@ -22,6 +22,7 @@ public class WorldManagement : MonoBehaviour
     public bool canSave;
 
     public List<GameObject> animals = new List<GameObject>(); // not saved or loaded, just used for index assignment
+    public List<GameObject> animalCanvases = new List<GameObject>(); //not saved or loaded, used for linking animals with their canvases
     public List<string> animalNames = new List<string>();
     public List<float> animal_x_positions = new List<float>();
     public List<float> animal_y_positions = new List<float>();

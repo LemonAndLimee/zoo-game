@@ -279,6 +279,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5499659d2034548c0b8f3455057ee58b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  possibleAnimals: []
+  size: 0
+  sizeInUnits: 0
+  capacity: 0
+  spaceLeft: 0
+  worldScript: {fileID: 0}
+  worldScriptIndex: 0
+  startScript: {fileID: 0}
+  placed: 0
 --- !u!1 &7567110907431136039
 GameObject:
   m_ObjectHideFlags: 0

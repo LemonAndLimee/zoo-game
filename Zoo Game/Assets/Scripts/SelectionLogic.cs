@@ -6,6 +6,7 @@ using UnityEngine;
 public class SelectionLogic : MonoBehaviour
 {
     public GameObject pigPrefab;
+    public GameObject statsCanvasPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -28,8 +29,13 @@ public class SelectionLogic : MonoBehaviour
                 if (hit.collider.gameObject.tag == "Habitat")
                 {
                     SpawnAnimal spawnScript = hit.collider.gameObject.GetComponent<SpawnAnimal>();
-                    spawnScript.Spawn(pigPrefab);
+                    spawnScript.Spawn(pigPrefab, statsCanvasPrefab);
                     Debug.Log("spawn");
+                }
+                else if (hit.collider.gameObject.tag == "Animal")
+                {
+                    AnimalStats animalScript = hit.collider.gameObject.GetComponent<AnimalStats>();
+                    animalScript.ToggleStatsPanel();
                 }
             }
         }
