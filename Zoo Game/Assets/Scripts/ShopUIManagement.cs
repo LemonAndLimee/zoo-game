@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -146,6 +147,7 @@ public class ShopUIManagement : MonoBehaviour
         prefab = stonePathPrefabs[num];
         placeScript.currentCost = 2;
         placeScript.TogglePlacing(prefab, true, true, true);
+        placeScript.continousPrefabs = stonePathPrefabs.ToList();
         ToggleShop("place");
     }
 

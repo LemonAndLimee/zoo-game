@@ -232,7 +232,10 @@ public class TerrainGeneration : MonoBehaviour
         {
             currentObject = Instantiate(smallFarmHabitat);
 
-            currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], 0f);
+            //not relevant to code, seems to remove error of raycast missing loaded objects
+            Debug.Log(currentObject.GetComponent<BoxCollider2D>());
+
+            currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], -1f);
 
             currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
 

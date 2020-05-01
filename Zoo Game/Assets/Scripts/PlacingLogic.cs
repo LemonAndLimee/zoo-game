@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PlacingLogic : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class PlacingLogic : MonoBehaviour
 
     public int currentCost;
     public MoneyLogic moneyScript;
+
+    public List<GameObject> continousPrefabs = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -100,7 +103,6 @@ public class PlacingLogic : MonoBehaviour
         {
             placeMode = true;
             prefab = obj;
-            //getMousePos();
             continuousPlacingMode = continous;
             placeModeText.text = "Press 'x' to exit placing mode";
         }
@@ -243,6 +245,8 @@ public class PlacingLogic : MonoBehaviour
         worldScript.y_positions.Add(currentObject.transform.position.y);
         worldScript.sizes.Add(currentObject.transform.localScale.x);
 
+        currentObject.transform.position = new Vector3(currentObject.transform.position.x, currentObject.transform.position.y, -1f);
+
         if (currentObject.tag == "Habitat")
         {
             HabitatStats statsScript = currentObject.GetComponent<HabitatStats>();
@@ -260,6 +264,9 @@ public class PlacingLogic : MonoBehaviour
 
         if (continuousPlacingMode == true)
         {
+            int num = Random.Range(0, continousPrefabs.Count);
+            prefab = continousPrefabs[num];
+
             TogglePlacing(prefab, true, true, true);
         }
     }

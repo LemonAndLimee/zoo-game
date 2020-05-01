@@ -5,8 +5,7 @@ using UnityEngine;
 //overall manager for selecting objects with mouse
 public class SelectionLogic : MonoBehaviour
 {
-    public GameObject pigPrefab;
-    public GameObject statsCanvasPrefab;
+    public HabitatUIManagement habitatUIScript;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +16,7 @@ public class SelectionLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("e"))
+        if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("mouse");
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
@@ -25,12 +24,14 @@ public class SelectionLogic : MonoBehaviour
             //if something is hit by raycast
             if (hit.collider.gameObject != null)
             {
+                Debug.DrawRay(Camera.main.ScreenToWorldPoint(Input.mousePosition), hit.point, Color.red, 10.0f);
                 Debug.Log(hit.collider.gameObject.name);
                 if (hit.collider.gameObject.tag == "Habitat")
                 {
-                    SpawnAnimal spawnScript = hit.collider.gameObject.GetComponent<SpawnAnimal>();
-                    spawnScript.Spawn(pigPrefab, statsCanvasPrefab);
-                    Debug.Log("spawn");
+                    //SpawnAnimal spawnScript = hit.collider.gameObject.GetComponent<SpawnAnimal>();
+                    //spawnScript.Spawn(pigPrefab, statsCanvasPrefab);
+                    habitatUIScript.currentHabitat = hit.collider.gameObject;
+                    habitatUIScript.TogglePanel();
                 }
                 else if (hit.collider.gameObject.tag == "Animal")
                 {

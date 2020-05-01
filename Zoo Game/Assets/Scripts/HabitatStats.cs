@@ -48,8 +48,9 @@ public class HabitatStats : MonoBehaviour
         worldScript = GameObject.Find("GameManager").GetComponent<WorldManagement>();
 
         //if world is being loaded, loads in correct spaceleft
-        if (startScript.isLoad == true && startScript.isNew == false)
+        if (startScript.isLoad == true && startScript.isNew == false && worldScript.gameTimer == 0f)
         {
+            //ERROR - PLACING A HABITAT IN A LOADED WORLD MEANS IT TRIES TO LOAD SPACELEFT
             worldScript.Load();
             spaceLeft = worldScript.habitatsSpaceLeft[worldScriptIndex];
         }

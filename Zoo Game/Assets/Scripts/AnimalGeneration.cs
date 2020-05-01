@@ -47,6 +47,7 @@ public class AnimalGeneration : MonoBehaviour
     {
         currentObject = Instantiate(pref);
         currentObject.transform.position = new Vector3(x, y, 0f);
+        
 
         worldScript.animals.Add(currentObject);
 
