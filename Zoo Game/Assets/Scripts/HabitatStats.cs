@@ -17,6 +17,8 @@ public class HabitatStats : MonoBehaviour
 
     public bool placed;
 
+    public List<GameObject> animals = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {

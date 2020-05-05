@@ -24,12 +24,14 @@ public class SpawnAnimal : MonoBehaviour
             if (statsScript.possibleAnimals.Contains(animal.name))
             {
                 currentObject = Instantiate(animal);
-                currentObject.transform.position = transform.position;
+                currentObject.transform.position = new Vector3(transform.position.x, transform.position.y, -2f);
 
                 worldScript.animals.Add(currentObject);
                 worldScript.animalNames.Add(animal.name);
                 worldScript.animal_x_positions.Add(currentObject.transform.position.x);
                 worldScript.animal_y_positions.Add(currentObject.transform.position.y);
+
+                statsScript.animals.Add(currentObject);
 
                 AnimalStats animalStatsScript = currentObject.GetComponent<AnimalStats>();
                 Debug.Log(worldScript.animalFoodLevels);

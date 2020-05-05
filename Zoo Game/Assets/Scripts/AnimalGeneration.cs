@@ -46,8 +46,24 @@ public class AnimalGeneration : MonoBehaviour
     public void SpawnAnimal(GameObject pref, float x, float y, int i)
     {
         currentObject = Instantiate(pref);
-        currentObject.transform.position = new Vector3(x, y, 0f);
-        
+        currentObject.transform.position = new Vector3(x, y, -2f);
+
+        GameObject currentHabitat = null;
+
+        //find corresponding habitat
+        for (int indx = 0; indx < worldScript.habitats.Count; indx++)
+        {
+            float xPos = worldScript.habitats[indx].transform.position.x;
+            float yPos = worldScript.habitats[indx].transform.position.y;
+
+            if (xPos == x && yPos == y)
+            {
+                currentHabitat = worldScript.habitats[indx];
+            }
+        }
+
+        HabitatStats habitatStatsScript = currentHabitat.GetComponent<HabitatStats>();
+        habitatStatsScript.animals.Add(currentObject);
 
         worldScript.animals.Add(currentObject);
 

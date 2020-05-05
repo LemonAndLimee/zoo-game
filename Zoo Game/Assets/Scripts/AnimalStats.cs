@@ -100,4 +100,6 @@ public class AnimalStats : MonoBehaviour
         foodSlider.value = foodLevel / 100f;
         waterSlider.value = waterLevel / 100f;
     }
+
+    
 }

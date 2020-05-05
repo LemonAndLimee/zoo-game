@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,9 @@ public class HabitatUIManagement : MonoBehaviour
     public string currentSize;
 
     public bool panelUp;
+
+    public int animalCount;
+    public GameObject[] animalPanels;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +46,28 @@ public class HabitatUIManagement : MonoBehaviour
             }
 
             statsScript = currentHabitat.GetComponent<HabitatStats>();
+
+            //controls how many animal panels are enabled, depending on no. of animals in the habitat
+            animalCount = statsScript.animals.Count;
+            for (int i = 0; i < animalPanels.Count(); i++)
+            {
+                if (i < animalCount)
+                {
+                    animalPanels[i].SetActive(true);
+
+                    //assign correct values into sliders
+                    Slider foodSlider = animalPanels[i].transform.Find("FoodSlider").GetComponent<Slider>();
+                    Slider waterSlider = animalPanels[i].transform.Find("WaterSlider").GetComponent<Slider>();
+
+                    GameObject currentAnimal = statsScript.animals[i];
+                    foodSlider.value = currentAnimal.GetComponent<AnimalStats>().foodLevel / 100f;
+                    waterSlider.value = currentAnimal.GetComponent<AnimalStats>().waterLevel / 100f;
+                }
+                else
+                {
+                    animalPanels[i].SetActive(false);
+                }
+            }
         }
 
         habitatTypeText.text = currentType;
@@ -64,8 +90,8 @@ public class HabitatUIManagement : MonoBehaviour
 
     public void SpawnAnimalZero()
     {
-        string[] animals = statsScript.possibleAnimals;
-        string animal = animals[0];
+        string[] possibleAnimals = statsScript.possibleAnimals;
+        string animal = possibleAnimals[0];
 
         if (animal == "Pig")
         {
