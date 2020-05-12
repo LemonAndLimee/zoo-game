@@ -24,10 +24,11 @@ public class HabitatUIManagement : MonoBehaviour
     public int animalCount;
     public GameObject[] animalPanels;
 
+    public StaffManagement staffScript;
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -98,5 +99,54 @@ public class HabitatUIManagement : MonoBehaviour
             SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
             spawnScript.Spawn(pigPrefab, statsCanvasPrefab);
         }
+    }
+
+    public void Hire0()
+    {
+        HireWorker(0);
+    }
+    public void Hire1()
+    {
+        HireWorker(1);
+    }
+    public void Hire2()
+    {
+        HireWorker(2);
+    }
+    public void Hire3()
+    {
+        HireWorker(3);
+    }
+
+    public void HireWorker(int index)
+    {
+        statsScript = currentHabitat.GetComponent<HabitatStats>();
+        GameObject animal = statsScript.animals[index];
+        staffScript.AddWorker(animal);
+    }
+
+    public void Feed0()
+    {
+        FeedAnimal(0);
+    }
+    public void Feed1()
+    {
+        FeedAnimal(1);
+    }
+    public void Feed2()
+    {
+        FeedAnimal(2);
+    }
+    public void Feed3()
+    {
+        FeedAnimal(3);
+    }
+
+    public void FeedAnimal(int index)
+    {
+        statsScript = currentHabitat.GetComponent<HabitatStats>();
+        GameObject animal = statsScript.animals[index];
+        AnimalStats animalScript = animal.GetComponent<AnimalStats>();
+        animalScript.Feed();
     }
 }

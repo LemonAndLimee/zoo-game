@@ -20,6 +20,7 @@ public class WorldData
     public int balance;
 
     public string[] animalNames;
+    public bool[] hasWorker;
     public float[] animal_x_positions;
     public float[] animal_y_positions;
     public int[] animalFoodLevels;
@@ -41,6 +42,7 @@ public class WorldData
         balance = worldScript.balance;
 
         animalNames = worldScript.animalNames.ToArray();
+        hasWorker = worldScript.hasWorker.ToArray();
         animal_x_positions = worldScript.animal_x_positions.ToArray();
         animal_y_positions = worldScript.animal_y_positions.ToArray();
         animalFoodLevels = worldScript.animalFoodLevels.ToArray();

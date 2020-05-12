@@ -28,6 +28,7 @@ public class SpawnAnimal : MonoBehaviour
 
                 worldScript.animals.Add(currentObject);
                 worldScript.animalNames.Add(animal.name);
+                worldScript.hasWorker.Add(false);
                 worldScript.animal_x_positions.Add(currentObject.transform.position.x);
                 worldScript.animal_y_positions.Add(currentObject.transform.position.y);
 

@@ -19,6 +19,8 @@ public class DayLogic : MonoBehaviour
 
     public MoneyLogic moneyScript;
 
+    public StaffManagement staffScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,13 @@ public class DayLogic : MonoBehaviour
             timer = 0;
             dayCount += 1;
             moneyScript.balance += 100;
+
+            for (int i = 0; i < worldScript.animals.Count; i++)
+            {
+                worldScript.animals[i].GetComponent<AnimalStats>().Day();
+            }
+
+            staffScript.Day();
         }
         //each year
         if (dayCount >= 366)

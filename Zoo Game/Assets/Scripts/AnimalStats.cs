@@ -49,6 +49,7 @@ public class AnimalStats : MonoBehaviour
         //if world is loaded
         if (startScript.isLoad == true && startScript.isNew == false && worldScript.gameTimer == 0f)
         {
+            Debug.Log("load");
             worldScript.Load();
             foodLevel = worldScript.animalFoodLevels[worldScriptIndex];
             waterLevel = worldScript.animalWaterLevels[worldScriptIndex];
@@ -59,13 +60,6 @@ public class AnimalStats : MonoBehaviour
     void Update()
     {
         UpdateStatsSliders();
-
-        day = dayScript.dayCount;
-        if (day > previousDay)
-        {
-            Day();
-            previousDay = day;
-        }
 
         //Debug.Log("index - " + worldScriptIndex);
         //Debug.Log("count - " + worldScript.animalFoodLevels.Count);
@@ -101,5 +95,9 @@ public class AnimalStats : MonoBehaviour
         waterSlider.value = waterLevel / 100f;
     }
 
-    
+    public void Feed()
+    {
+        foodLevel = 100;
+        waterLevel = 100;
+    }
 }
