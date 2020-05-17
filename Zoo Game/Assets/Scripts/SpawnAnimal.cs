@@ -10,7 +10,6 @@ public class SpawnAnimal : MonoBehaviour
 
     public WorldManagement worldScript;
 
-
     void Start()
     {
         worldScript = GameObject.Find("GameManager").GetComponent<WorldManagement>();
@@ -35,9 +34,9 @@ public class SpawnAnimal : MonoBehaviour
                 statsScript.animals.Add(currentObject);
 
                 AnimalStats animalStatsScript = currentObject.GetComponent<AnimalStats>();
-                Debug.Log(worldScript.animalFoodLevels);
+                //Debug.Log(worldScript.animalFoodLevels);
                 worldScript.animalFoodLevels.Add(animalStatsScript.foodLevel);
-                Debug.Log(worldScript.animalFoodLevels);
+                //Debug.Log(worldScript.animalFoodLevels);
                 worldScript.animalWaterLevels.Add(animalStatsScript.waterLevel);
 
                 animalStatsScript.worldScriptIndex = worldScript.animals.IndexOf(currentObject);

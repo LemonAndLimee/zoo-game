@@ -1041,6 +1041,7 @@ GameObject:
   - component: {fileID: 113580481}
   - component: {fileID: 113580482}
   - component: {fileID: 113580483}
+  - component: {fileID: 113580484}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1158,7 +1159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dacfa74406314f788efd11fe3b1e52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayLength: 10
+  dayLength: 60
   timer: 0
   dayCount: 0
   yearCount: 0
@@ -1168,6 +1169,7 @@ MonoBehaviour:
   yearText: {fileID: 38232496}
   moneyScript: {fileID: 113580481}
   staffScript: {fileID: 113580483}
+  customerScript: {fileID: 113580484}
 --- !u!114 &113580481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1221,6 +1223,33 @@ MonoBehaviour:
   moneyScript: {fileID: 113580481}
   worldScript: {fileID: 113580479}
   startScript: {fileID: 0}
+--- !u!114 &113580484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113580476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786ace6ab471f4de8a97c407856bf065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalInterestRating: 0
+  meanInterestRating: 0
+  worldScript: {fileID: 113580479}
+  customerNumber: 0
+  customerText: {fileID: 1293480651}
+  customerEntryFee: 5
+  meanCustomerRating: 0
+  stars:
+  - {fileID: 1675562937}
+  - {fileID: 2076543812}
+  - {fileID: 45883329}
+  - {fileID: 2011677202}
+  - {fileID: 17328175}
+  ratingGreen: {r: 0.22745098, g: 0.35686275, b: 0.21568628, a: 1}
+  ratingGrey: {r: 0.7647059, g: 0.7647059, b: 0.7647059, a: 1}
 --- !u!1 &133070689
 GameObject:
   m_ObjectHideFlags: 0

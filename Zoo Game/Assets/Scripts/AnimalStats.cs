@@ -7,7 +7,7 @@ public class AnimalStats : MonoBehaviour
 {
     public int foodLevel;
     public int waterLevel;
-    public int health;
+    public int interestRating;
 
     public int hungerPerDay;
     public int thirstPerDay;
@@ -40,6 +40,8 @@ public class AnimalStats : MonoBehaviour
         {
             hungerPerDay = PigStats.hungerPerDay;
             thirstPerDay = PigStats.thirstPerDay;
+
+            interestRating = PigStats.interestRating;
         }
 
         startScript = GameObject.FindGameObjectWithTag("StartManager").GetComponent<StartManagement>();

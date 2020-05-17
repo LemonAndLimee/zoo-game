@@ -20,6 +20,7 @@ public class DayLogic : MonoBehaviour
     public MoneyLogic moneyScript;
 
     public StaffManagement staffScript;
+    public CustomerManagement customerScript;
 
     // Start is called before the first frame update
     void Start()
@@ -46,11 +47,12 @@ public class DayLogic : MonoBehaviour
         timer += Time.deltaTime;
 
         //each day
-        if (timer >= dayLength)
+        if (timer >= dayLength || Input.GetKeyDown("."))
         {
             timer = 0;
             dayCount += 1;
-            moneyScript.balance += 100;
+            //add customer payment
+            moneyScript.balance += Mathf.RoundToInt(customerScript.customerNumber * customerScript.customerEntryFee);
 
             for (int i = 0; i < worldScript.animals.Count; i++)
             {
