@@ -1142,8 +1142,12 @@ MonoBehaviour:
   animalNames: []
   animal_x_positions: []
   animal_y_positions: []
+  animal_z_rotations: []
   animalFoodLevels: 
   animalWaterLevels: 
+  animalZeroCounters: 
+  isAlive: 
+  animalHabitatIndexes: 
   habitats: []
   habitatsSpaceLeft: 
   gameTimer: 0
