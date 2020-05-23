@@ -27,8 +27,14 @@ public class WorldManagement : MonoBehaviour
     public List<string> animalNames = new List<string>();
     public List<float> animal_x_positions = new List<float>();
     public List<float> animal_y_positions = new List<float>();
+    public List<float> animal_z_rotations = new List<float>();
     public List<int> animalFoodLevels = new List<int>();
     public List<int> animalWaterLevels = new List<int>();
+
+    public List<int> animalZeroCounters = new List<int>();
+    public List<bool> isAlive = new List<bool>();
+
+    public List<int> animalHabitatIndexes = new List<int>(); // used for linking animals with their attached habitat, by listing the habitat indexes
 
     public List<GameObject> habitats; //not saved and loaded, just used for giving a habitat an index
     public List<int> habitatsSpaceLeft;
@@ -60,8 +66,14 @@ public class WorldManagement : MonoBehaviour
         hasWorker = data.hasWorker.ToList();
         animal_x_positions = data.animal_x_positions.ToList();
         animal_y_positions = data.animal_y_positions.ToList();
+        animal_z_rotations = data.animal_z_rotations.ToList();
         animalFoodLevels = data.animalFoodLevels.ToList();
         animalWaterLevels = data.animalWaterLevels.ToList();
+
+        animalZeroCounters = data.zeroCounters.ToList();
+        isAlive = data.isAlive.ToList();
+
+        animalHabitatIndexes = data.habitatIndexes.ToList();
 
         habitatsSpaceLeft = data.habitatSpaceLeft.ToList();
     }

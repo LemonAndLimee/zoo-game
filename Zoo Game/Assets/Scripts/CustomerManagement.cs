@@ -37,14 +37,35 @@ public class CustomerManagement : MonoBehaviour
         if (worldScript.animals.Count >= 1)
         {
             int total = 0;
+
+            float ratingTotal = 0;
+
             for (int i = 0; i < worldScript.animals.Count; i++)
             {
-                total += worldScript.animals[i].GetComponent<AnimalStats>().interestRating;
+                AnimalStats statsScript = worldScript.animals[i].GetComponent<AnimalStats>();
+
+                total += statsScript.interestRating;
+
+                if (statsScript.isAlive == true)
+                {
+                    ratingTotal += 5f;
+                }
             }
             totalInterestRating = total;
 
             meanInterestRating = totalInterestRating / worldScript.animals.Count;
+
+            if (ratingTotal > 0)
+            {
+                meanCustomerRating = Mathf.Round(ratingTotal / worldScript.animals.Count);
+            }
+            else
+            {
+                meanCustomerRating = 1;
+            }
         }
+
+
 
         int num = Mathf.RoundToInt(worldScript.animals.Count * meanInterestRating * meanCustomerRating * 2);
         customerNumber = num;

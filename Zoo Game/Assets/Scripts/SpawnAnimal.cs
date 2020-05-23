@@ -24,12 +24,19 @@ public class SpawnAnimal : MonoBehaviour
             {
                 currentObject = Instantiate(animal);
                 currentObject.transform.position = new Vector3(transform.position.x, transform.position.y, -2f);
+                currentObject.transform.Rotate(0f, 0f, Random.Range(0, 361));
 
                 worldScript.animals.Add(currentObject);
                 worldScript.animalNames.Add(animal.name);
                 worldScript.hasWorker.Add(false);
                 worldScript.animal_x_positions.Add(currentObject.transform.position.x);
                 worldScript.animal_y_positions.Add(currentObject.transform.position.y);
+                worldScript.animal_z_rotations.Add(currentObject.transform.eulerAngles.z);
+
+                worldScript.animalZeroCounters.Add(0);
+                worldScript.isAlive.Add(true);
+
+                worldScript.animalHabitatIndexes.Add(statsScript.worldScriptIndex);
 
                 statsScript.animals.Add(currentObject);
 

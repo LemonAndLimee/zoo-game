@@ -47,20 +47,9 @@ public class AnimalGeneration : MonoBehaviour
     {
         currentObject = Instantiate(pref);
         currentObject.transform.position = new Vector3(x, y, -2f);
+        currentObject.transform.Rotate(0f, 0f, worldScript.animal_z_rotations[i]);
 
-        GameObject currentHabitat = null;
-
-        //find corresponding habitat
-        for (int indx = 0; indx < worldScript.habitats.Count; indx++)
-        {
-            float xPos = worldScript.habitats[indx].transform.position.x;
-            float yPos = worldScript.habitats[indx].transform.position.y;
-
-            if (xPos == x && yPos == y)
-            {
-                currentHabitat = worldScript.habitats[indx];
-            }
-        }
+        GameObject currentHabitat = worldScript.habitats[worldScript.animalHabitatIndexes[i]];
 
         HabitatStats habitatStatsScript = currentHabitat.GetComponent<HabitatStats>();
         habitatStatsScript.animals.Add(currentObject);
@@ -76,6 +65,9 @@ public class AnimalGeneration : MonoBehaviour
         followScript.animal = currentObject;
 
         statsScript.childStatsPanel = currentCanvas.transform.GetChild(0).gameObject;
+
+        statsScript.zeroHealthCounter = worldScript.animalZeroCounters[i];
+        statsScript.isAlive = worldScript.isAlive[i];
 
     }
 }

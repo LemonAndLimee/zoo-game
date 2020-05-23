@@ -23,8 +23,14 @@ public class WorldData
     public bool[] hasWorker;
     public float[] animal_x_positions;
     public float[] animal_y_positions;
+    public float[] animal_z_rotations;
     public int[] animalFoodLevels;
     public int[] animalWaterLevels;
+
+    public int[] zeroCounters;
+    public bool[] isAlive;
+
+    public int[] habitatIndexes;
 
     public int[] habitatSpaceLeft;
 
@@ -45,8 +51,14 @@ public class WorldData
         hasWorker = worldScript.hasWorker.ToArray();
         animal_x_positions = worldScript.animal_x_positions.ToArray();
         animal_y_positions = worldScript.animal_y_positions.ToArray();
+        animal_z_rotations = worldScript.animal_z_rotations.ToArray();
         animalFoodLevels = worldScript.animalFoodLevels.ToArray();
         animalWaterLevels = worldScript.animalWaterLevels.ToArray();
+
+        zeroCounters = worldScript.animalZeroCounters.ToArray();
+        isAlive = worldScript.isAlive.ToArray();
+
+        habitatIndexes = worldScript.animalHabitatIndexes.ToArray();
 
         habitatSpaceLeft = worldScript.habitatsSpaceLeft.ToArray();
     }
