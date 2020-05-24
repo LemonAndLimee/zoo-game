@@ -7,6 +7,7 @@ public class SpawnAnimal : MonoBehaviour
 {
     public GameObject currentObject;
     public GameObject currentCanvas;
+    public GameObject currentIcon;
 
     public WorldManagement worldScript;
 
@@ -15,7 +16,7 @@ public class SpawnAnimal : MonoBehaviour
         worldScript = GameObject.Find("GameManager").GetComponent<WorldManagement>();
     }
 
-    public void Spawn(GameObject animal, GameObject canvas)
+    public void Spawn(GameObject animal, GameObject canvas, GameObject warningIcon)
     {
         HabitatStats statsScript = gameObject.GetComponent<HabitatStats>();
         if (statsScript.spaceLeft >= 1)
@@ -54,8 +55,15 @@ public class SpawnAnimal : MonoBehaviour
                 currentCanvas = Instantiate(canvas);
                 FollowAnimal followScript = currentCanvas.GetComponent<FollowAnimal>();
                 followScript.animal = currentObject;
+                followScript.offset = new Vector3(0f, 1.5f, 0f);
+
+                currentIcon = Instantiate(warningIcon);
+                followScript = currentIcon.GetComponent<FollowAnimal>();
+                followScript.animal = currentObject;
+                followScript.offset = new Vector3(0f, 0f, 0f);
 
                 animalStatsScript.childStatsPanel = currentCanvas.transform.GetChild(0).gameObject;
+                animalStatsScript.warningIcon = currentIcon;
             }
         }
         

@@ -13,6 +13,7 @@ public class HabitatUIManagement : MonoBehaviour
 
     public GameObject pigPrefab;
     public GameObject statsCanvasPrefab;
+    public GameObject warningIconPrefab;
 
     public GameObject currentHabitat;
     public HabitatStats statsScript;
@@ -97,7 +98,7 @@ public class HabitatUIManagement : MonoBehaviour
         if (animal == "Pig")
         {
             SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
-            spawnScript.Spawn(pigPrefab, statsCanvasPrefab);
+            spawnScript.Spawn(pigPrefab, statsCanvasPrefab, warningIconPrefab);
         }
     }
 

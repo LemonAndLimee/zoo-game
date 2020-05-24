@@ -10,6 +10,8 @@ public class AnimalGeneration : MonoBehaviour
     public GameObject currentObject;
     public GameObject currentCanvas;
     public GameObject canvasPrefab;
+    public GameObject warningIconPrefab;
+    public GameObject currentIcon;
     public GameObject prefab;
 
     public GameObject pigPrefab;
@@ -63,8 +65,15 @@ public class AnimalGeneration : MonoBehaviour
         currentCanvas = Instantiate(canvasPrefab);
         FollowAnimal followScript = currentCanvas.GetComponent<FollowAnimal>();
         followScript.animal = currentObject;
+        followScript.offset = new Vector3(0f, 1.5f, 0f);
+
+        currentIcon = Instantiate(warningIconPrefab);
+        followScript = currentIcon.GetComponent<FollowAnimal>();
+        followScript.animal = currentObject;
+        followScript.offset = new Vector3(0f, 0f, 0f);
 
         statsScript.childStatsPanel = currentCanvas.transform.GetChild(0).gameObject;
+        statsScript.warningIcon = currentIcon;
 
         statsScript.zeroHealthCounter = worldScript.animalZeroCounters[i];
         statsScript.isAlive = worldScript.isAlive[i];

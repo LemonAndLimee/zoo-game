@@ -23,19 +23,25 @@ public class AnimalStats : MonoBehaviour
     public int worldScriptIndex;
 
     public GameObject childStatsPanel;
+    public GameObject warningIcon;
 
     public int daysTilDeath;
     public bool isAlive = true;
+    public bool isDanger;
     public int zeroHealthCounter;
 
     public Color healthyColour;
-    public Color dangerColour;
     public Color deadColour;
+
+    public NotificationManagement notificationScript;
 
     // Start is called before the first frame update
     void Start()
     {
+        notificationScript = GameObject.Find("GameManager").GetComponent<NotificationManagement>();
+
         childStatsPanel.SetActive(false);
+        warningIcon.SetActive(false);
 
         foodLevel = 100;
         waterLevel = 100;
@@ -55,7 +61,6 @@ public class AnimalStats : MonoBehaviour
             daysTilDeath = PigStats.daysTilDeath;
 
             healthyColour = PigStats.healthyColour;
-            dangerColour = PigStats.dangerColour;
             deadColour = PigStats.deadColour;
         }
 
@@ -92,6 +97,8 @@ public class AnimalStats : MonoBehaviour
 
         if (isAlive == false) //if dead
         {
+            isDanger = false;
+            warningIcon.SetActive(false);
             AnimalMovement movementScript = gameObject.GetComponent<AnimalMovement>();
             movementScript.enabled = false;
             Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
@@ -107,16 +114,19 @@ public class AnimalStats : MonoBehaviour
         }
         else if (foodLevel <= 0 || waterLevel <= 0) //elif in danger zone
         {
-            foreach (Transform child in transform)
+            isDanger = true;
+            if (warningIcon.activeInHierarchy == false)
             {
-                SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
-                sr.color = dangerColour;
+                notificationScript.target = gameObject;
+                notificationScript.AddNotification("Warning");
+                notificationScript.animals.Add(gameObject);
             }
-            SpriteRenderer spriter = gameObject.GetComponent<SpriteRenderer>();
-            spriter.color = dangerColour;
+            warningIcon.SetActive(true);
         }
-        else
+        else //if healthy
         {
+            isDanger = false;
+            warningIcon.SetActive(false);
             foreach (Transform child in transform)
             {
                 SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
