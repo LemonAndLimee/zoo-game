@@ -11,7 +11,8 @@ public static class PigStats
 
     public static int daysTilDeath = 2;
 
-    public static Color healthyColour = new Color(0.9622642f, 0.739854f, 0.8382277f);
-    public static Color deadColour = new Color(0.4370328f, 0.4370328f, 0.4370328f);
+    public static int adultThreshold = 20;
 
+    public static float adultSize = 0.4f;
+    public static float babySize = 0.25f;
 }

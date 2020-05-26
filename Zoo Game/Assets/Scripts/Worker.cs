@@ -11,10 +11,17 @@ public class Worker
 
     public void Feed(int index)
     {
-        AnimalStats statsScript = animalsToFeed[index].GetComponent<AnimalStats>();
-        if (statsScript.foodLevel <= 30 || statsScript.waterLevel <= 30)
+        if (animalsToFeed[index] != null)
         {
-            statsScript.Feed();
+            AnimalStats statsScript = animalsToFeed[index].GetComponent<AnimalStats>();
+            if (statsScript.foodLevel <= 30 || statsScript.waterLevel <= 30)
+            {
+                statsScript.Feed();
+            }
+        }
+        else
+        {
+            animalsToFeed.RemoveAt(index);
         }
     }
 }

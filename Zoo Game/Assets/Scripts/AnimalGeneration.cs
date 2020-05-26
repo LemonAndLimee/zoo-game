@@ -61,6 +61,8 @@ public class AnimalGeneration : MonoBehaviour
         AnimalStats statsScript = currentObject.GetComponent<AnimalStats>();
         statsScript.worldScriptIndex = i;
 
+        statsScript.age = worldScript.ages[i];
+
         //spawn stats canvas
         currentCanvas = Instantiate(canvasPrefab);
         FollowAnimal followScript = currentCanvas.GetComponent<FollowAnimal>();

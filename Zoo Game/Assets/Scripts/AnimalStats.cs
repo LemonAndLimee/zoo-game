@@ -30,10 +30,16 @@ public class AnimalStats : MonoBehaviour
     public bool isDanger;
     public int zeroHealthCounter;
 
-    public Color healthyColour;
-    public Color deadColour;
-
     public NotificationManagement notificationScript;
+
+    public string animalType;
+
+    public int age; //days
+    public bool isAdult;
+    public int adultThreshold;
+
+    public float babySize;
+    public float adultSize;
 
     // Start is called before the first frame update
     void Start()
@@ -53,15 +59,19 @@ public class AnimalStats : MonoBehaviour
         //inherits correct values
         if (gameObject.name.Contains("Pig"))
         {
+            animalType = "Pig";
+
             hungerPerDay = PigStats.hungerPerDay;
             thirstPerDay = PigStats.thirstPerDay;
 
             interestRating = PigStats.interestRating;
 
             daysTilDeath = PigStats.daysTilDeath;
+            adultThreshold = PigStats.adultThreshold;
 
-            healthyColour = PigStats.healthyColour;
-            deadColour = PigStats.deadColour;
+            adultSize = PigStats.adultSize;
+            babySize = PigStats.babySize;
+
         }
 
         startScript = GameObject.FindGameObjectWithTag("StartManager").GetComponent<StartManagement>();
@@ -81,8 +91,23 @@ public class AnimalStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        worldScriptIndex = worldScript.animals.IndexOf(gameObject);
+
+        if (age >= adultThreshold)
+        {
+            isAdult = true;
+            gameObject.transform.localScale = new Vector3(adultSize, adultSize, 1f);
+        }
+        else
+        {
+            isAdult = false;
+            gameObject.transform.localScale = new Vector3(babySize, babySize, 1f);
+
+        }
+
         UpdateStatsSliders();
 
+        worldScript.ages[worldScriptIndex] = age;
         //Debug.Log("index - " + worldScriptIndex);
         //Debug.Log("count - " + worldScript.animalFoodLevels.Count);
         worldScript.animal_x_positions[worldScriptIndex] = transform.position.x;
@@ -104,13 +129,10 @@ public class AnimalStats : MonoBehaviour
             Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
             rb.freezeRotation = true;
 
-            foreach (Transform child in transform)
-            {
-                SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
-                sr.color = deadColour;
-            }
-            SpriteRenderer spriter = gameObject.GetComponent<SpriteRenderer>();
-            spriter.color = deadColour;
+            Animation anim = gameObject.GetComponent<Animation>();
+            anim.Play();
+            Invoke("Delete", anim.clip.length);
+
         }
         else if (foodLevel <= 0 || waterLevel <= 0) //elif in danger zone
         {
@@ -127,13 +149,6 @@ public class AnimalStats : MonoBehaviour
         {
             isDanger = false;
             warningIcon.SetActive(false);
-            foreach (Transform child in transform)
-            {
-                SpriteRenderer sr = child.GetComponent<SpriteRenderer>();
-                sr.color = healthyColour;
-            }
-            SpriteRenderer spriter = gameObject.GetComponent<SpriteRenderer>();
-            spriter.color = healthyColour;
         }
 
     }
@@ -144,6 +159,8 @@ public class AnimalStats : MonoBehaviour
         foodLevel -= hungerPerDay;
         waterLevel -= thirstPerDay;
 
+        age += 1;
+
         if (foodLevel <= 0 || waterLevel <= 0)
         {
             Debug.Log("danger");
@@ -151,8 +168,10 @@ public class AnimalStats : MonoBehaviour
 
             if (zeroHealthCounter > daysTilDeath)
             {
-                Debug.Log(gameObject.name + " died");
+                Debug.Log(gameObject.name + " died"); //death notification
                 isAlive = false;
+
+                notificationScript.DeathMessage(animalType, "died of starvation");
             }
         }
         else
@@ -190,4 +209,28 @@ public class AnimalStats : MonoBehaviour
             waterLevel = 100;
         }
     }
+
+    public void Delete()
+    {
+        worldScript.animals.RemoveAt(worldScriptIndex);
+        worldScript.hasWorker.RemoveAt(worldScriptIndex);
+        worldScript.animalNames.RemoveAt(worldScriptIndex);
+        worldScript.animal_x_positions.RemoveAt(worldScriptIndex);
+        worldScript.animal_y_positions.RemoveAt(worldScriptIndex);
+        worldScript.animal_z_rotations.RemoveAt(worldScriptIndex);
+        worldScript.animalFoodLevels.RemoveAt(worldScriptIndex);
+        worldScript.animalWaterLevels.RemoveAt(worldScriptIndex);
+        worldScript.animalZeroCounters.RemoveAt(worldScriptIndex);
+        worldScript.isAlive.RemoveAt(worldScriptIndex);
+
+        HabitatStats habitatStats = worldScript.habitats[worldScript.animalHabitatIndexes[worldScriptIndex]].GetComponent<HabitatStats>();
+        habitatStats.animals.Remove(gameObject);
+        worldScript.animalHabitatIndexes.RemoveAt(worldScriptIndex);
+
+        Destroy(childStatsPanel.transform.parent.gameObject);
+        Destroy(warningIcon);
+
+        Destroy(gameObject);
+    }
+
 }

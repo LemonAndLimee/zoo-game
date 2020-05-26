@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class HabitatStats : MonoBehaviour
 {
-    public string[] possibleAnimals;
+    public List<string> possibleAnimals = new List<string>();
+    public List<int> babyCosts = new List<int>();
+    public List<int> adultCosts = new List<int>();
     public int size;
     public int sizeInUnits;
     public int capacity;
@@ -22,6 +25,7 @@ public class HabitatStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         //assigns integer value to size
         if (gameObject.name.Contains("Small"))
         {
@@ -39,11 +43,15 @@ public class HabitatStats : MonoBehaviour
         //assigns correct values to habitat stats - sets spaceleft to capacity
         if (gameObject.name.Contains("Farm"))
         {
-            possibleAnimals = FarmEnclosureInfo.animals;
+            possibleAnimals = FarmEnclosureInfo.animals.ToList();
             sizeInUnits = FarmEnclosureInfo.sizes[size];
             capacity = FarmEnclosureInfo.capacity[size];
 
             spaceLeft = capacity;
+
+            babyCosts = FarmEnclosureInfo.babyCosts.ToList();
+            adultCosts = FarmEnclosureInfo.adultCosts.ToList();
+
         }
 
         startScript = GameObject.FindGameObjectWithTag("StartManager").GetComponent<StartManagement>();
@@ -64,6 +72,7 @@ public class HabitatStats : MonoBehaviour
         if (placed == true)
         {
             worldScript.habitatsSpaceLeft[worldScriptIndex] = spaceLeft;
+            spaceLeft = capacity - animals.Count;
         }
         else
         {

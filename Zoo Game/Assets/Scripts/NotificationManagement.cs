@@ -15,6 +15,8 @@ public class NotificationManagement : MonoBehaviour
 
     public List<GameObject> animals = new List<GameObject>();
 
+    public GameObject messageText;
+
     void Start()
     {
         for (int i = 0; i < buttons.Count(); i++)
@@ -25,6 +27,11 @@ public class NotificationManagement : MonoBehaviour
 
     void Update()
     {
+        for (int i = 0; i < buttons.Count(); i++)
+        {
+            buttons[i].SetActive(false);
+        }
+
         if (notifications.Count >= 1) // very important - script assumes the no of animals is the same as no of notifications, and that animal 0 corresponds to notif. 0, etc.
         {
             for (int i = 0; i < notifications.Count; i++)
@@ -57,6 +64,14 @@ public class NotificationManagement : MonoBehaviour
         }
         notifications.Add(n);
 
+    }
+
+    public void DeathMessage(string animal, string mannerOfDeath)
+    {
+        Text txt = messageText.GetComponent<Text>();
+        txt.text = "A " + animal + " " + mannerOfDeath;
+        Animation anim = messageText.GetComponent<Animation>();
+        anim.Play("MessageDisplay");
     }
 
     public void Button0()

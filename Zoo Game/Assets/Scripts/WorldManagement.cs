@@ -22,6 +22,7 @@ public class WorldManagement : MonoBehaviour
     public bool canSave;
 
     public List<GameObject> animals = new List<GameObject>(); // not saved or loaded, just used for index assignment
+    public List<int> ages = new List<int>();
     public List<bool> hasWorker = new List<bool>();
     public List<GameObject> animalCanvases = new List<GameObject>(); //not saved or loaded, used for linking animals with their canvases
     public List<string> animalNames = new List<string>();
@@ -63,6 +64,7 @@ public class WorldManagement : MonoBehaviour
         balance = data.balance;
 
         animalNames = data.animalNames.ToList();
+        ages = data.ages.ToList();
         hasWorker = data.hasWorker.ToList();
         animal_x_positions = data.animal_x_positions.ToList();
         animal_y_positions = data.animal_y_positions.ToList();

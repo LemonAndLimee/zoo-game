@@ -27,6 +27,15 @@ public class HabitatUIManagement : MonoBehaviour
 
     public StaffManagement staffScript;
 
+    public MoneyLogic moneyScript;
+
+    public bool isBabyMode;
+    public GameObject babyButton;
+    public GameObject adultButton;
+
+    public Color nonSelected;
+    public Color selected;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,11 +55,20 @@ public class HabitatUIManagement : MonoBehaviour
             {
                 currentSize = "Small";
             }
+            if (lowercase.Contains("medium"))
+            {
+                currentSize = "Medium";
+            }
+            if (lowercase.Contains("large"))
+            {
+                currentSize = "Large";
+            }
 
             statsScript = currentHabitat.GetComponent<HabitatStats>();
 
             //controls how many animal panels are enabled, depending on no. of animals in the habitat
             animalCount = statsScript.animals.Count;
+
             for (int i = 0; i < animalPanels.Count(); i++)
             {
                 if (i < animalCount)
@@ -72,6 +90,17 @@ public class HabitatUIManagement : MonoBehaviour
             }
         }
 
+        if (isBabyMode == true)
+        {
+            babyButton.GetComponent<Button>().image.color = selected;
+            adultButton.GetComponent<Button>().image.color = nonSelected;
+        }
+        else
+        {
+            babyButton.GetComponent<Button>().image.color = nonSelected;
+            adultButton.GetComponent<Button>().image.color = selected;
+        }
+
         habitatTypeText.text = currentType;
         habitatSizeText.text = currentSize;
     }
@@ -90,15 +119,35 @@ public class HabitatUIManagement : MonoBehaviour
         }
     }
 
+    public void BabyMode()
+    {
+        isBabyMode = true;
+    }
+    public void AdultMode()
+    {
+        isBabyMode = false;
+    }
+
     public void SpawnAnimalZero()
     {
-        string[] possibleAnimals = statsScript.possibleAnimals;
+        string[] possibleAnimals = statsScript.possibleAnimals.ToArray();
         string animal = possibleAnimals[0];
 
-        if (animal == "Pig")
+        int age;
+
+        if (animal.Contains("Pig"))
         {
+            if (isBabyMode == false)
+            {
+                age = PigStats.adultThreshold;
+            }
+            else
+            {
+                age = 0;
+            }
+
             SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
-            spawnScript.Spawn(pigPrefab, statsCanvasPrefab, warningIconPrefab);
+            spawnScript.Spawn(pigPrefab, age, statsCanvasPrefab, warningIconPrefab);
         }
     }
 

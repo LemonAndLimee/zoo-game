@@ -267,6 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentObject: {fileID: 0}
   currentCanvas: {fileID: 0}
+  currentIcon: {fileID: 0}
   worldScript: {fileID: 0}
 --- !u!114 &-8559731605039669977
 MonoBehaviour:
@@ -281,6 +282,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleAnimals: []
+  babyCosts: 
+  adultCosts: 
   size: 0
   sizeInUnits: 0
   capacity: 0
@@ -289,6 +292,7 @@ MonoBehaviour:
   worldScriptIndex: 0
   startScript: {fileID: 0}
   placed: 0
+  animals: []
 --- !u!1 &7567110907431136039
 GameObject:
   m_ObjectHideFlags: 0

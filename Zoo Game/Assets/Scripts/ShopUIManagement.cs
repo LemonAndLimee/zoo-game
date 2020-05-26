@@ -27,7 +27,7 @@ public class ShopUIManagement : MonoBehaviour
     public GameObject[] stonePathPrefabs;
 
     public GameObject smallFarmPrefab;
-
+    public GameObject mediumFarmPrefab;
 
     public GameObject prefab;
 
@@ -155,6 +155,13 @@ public class ShopUIManagement : MonoBehaviour
     {
         prefab = smallFarmPrefab;
         placeScript.currentCost = 50;
+        placeScript.TogglePlacing(prefab, false, false, false);
+        ToggleShop("place");
+    }
+    public void MediumFarmHabitat()
+    {
+        prefab = mediumFarmPrefab;
+        placeScript.currentCost = 200;
         placeScript.TogglePlacing(prefab, false, false, false);
         ToggleShop("place");
     }
