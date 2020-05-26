@@ -41,12 +41,17 @@ public class AnimalStats : MonoBehaviour
     public float babySize;
     public float adultSize;
 
+    public string animalName;
+
     // Start is called before the first frame update
     void Start()
     {
         notificationScript = GameObject.Find("GameManager").GetComponent<NotificationManagement>();
 
         childStatsPanel.SetActive(false);
+        Text nameText = childStatsPanel.transform.Find("Name").GetComponent<Text>();
+        nameText.text = animalName;
+
         warningIcon.SetActive(false);
 
         foodLevel = 100;
@@ -59,7 +64,7 @@ public class AnimalStats : MonoBehaviour
         //inherits correct values
         if (gameObject.name.Contains("Pig"))
         {
-            animalType = "Pig";
+            animalType = "pig";
 
             hungerPerDay = PigStats.hungerPerDay;
             thirstPerDay = PigStats.thirstPerDay;
@@ -171,7 +176,7 @@ public class AnimalStats : MonoBehaviour
                 Debug.Log(gameObject.name + " died"); //death notification
                 isAlive = false;
 
-                notificationScript.DeathMessage(animalType, "died of starvation");
+                notificationScript.DeathMessage(animalType, animalName, "died of starvation");
             }
         }
         else

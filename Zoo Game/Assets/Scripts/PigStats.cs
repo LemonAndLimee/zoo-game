@@ -15,4 +15,6 @@ public static class PigStats
 
     public static float adultSize = 0.4f;
     public static float babySize = 0.25f;
+
+    public static int[] costs = new int[2] {100, 150};
 }

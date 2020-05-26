@@ -16,7 +16,7 @@ public class SpawnAnimal : MonoBehaviour
         worldScript = GameObject.Find("GameManager").GetComponent<WorldManagement>();
     }
 
-    public void Spawn(GameObject animal, int age, GameObject canvas, GameObject warningIcon)
+    public void Spawn(GameObject animal, int age, string name, GameObject canvas, GameObject warningIcon)
     {
         HabitatStats statsScript = gameObject.GetComponent<HabitatStats>();
         if (statsScript.spaceLeft >= 1)
@@ -45,6 +45,9 @@ public class SpawnAnimal : MonoBehaviour
 
                 animalStatsScript.age = age;
                 worldScript.ages.Add(animalStatsScript.age);
+
+                animalStatsScript.animalName = name;
+                worldScript.animalGivenNames.Add(animalStatsScript.animalName);
 
                 //Debug.Log(worldScript.animalFoodLevels);
                 worldScript.animalFoodLevels.Add(animalStatsScript.foodLevel);

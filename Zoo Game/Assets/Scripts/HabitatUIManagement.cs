@@ -36,10 +36,12 @@ public class HabitatUIManagement : MonoBehaviour
     public Color nonSelected;
     public Color selected;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+    public GameObject animalNamePanel;
+    public InputField nameInput;
+    public string animalName;
+    public int animalNumber;
+
+    public WorldManagement worldScript;
 
     // Update is called once per frame
     void Update()
@@ -79,9 +81,13 @@ public class HabitatUIManagement : MonoBehaviour
                     Slider foodSlider = animalPanels[i].transform.Find("FoodSlider").GetComponent<Slider>();
                     Slider waterSlider = animalPanels[i].transform.Find("WaterSlider").GetComponent<Slider>();
 
+                    Text nameText = animalPanels[i].transform.Find("Name").GetComponent<Text>();
+
                     GameObject currentAnimal = statsScript.animals[i];
                     foodSlider.value = currentAnimal.GetComponent<AnimalStats>().foodLevel / 100f;
                     waterSlider.value = currentAnimal.GetComponent<AnimalStats>().waterLevel / 100f;
+
+                    nameText.text = currentAnimal.GetComponent<AnimalStats>().animalName;
                 }
                 else
                 {
@@ -128,10 +134,40 @@ public class HabitatUIManagement : MonoBehaviour
         isBabyMode = false;
     }
 
+    public void ShowAnimalNamePanel()
+    {
+        animalNamePanel.SetActive(true);
+        Animation anim = animalNamePanel.GetComponent<Animation>();
+        anim.Play("FadeIn");
+        PlayerMovement movementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        movementScript.enabled = false;
+    }
+
+    public void SubmitName()
+    {
+        animalName = nameInput.text;
+        Animation anim = animalNamePanel.GetComponent<Animation>();
+        anim.Play("FadeOut");
+        Invoke("DeactivateAnimalNamePanel", 0.5f);
+        PlayerMovement movementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        movementScript.enabled = true;
+
+        Animal(animalName);
+    }
+    public void DeactivateAnimalNamePanel()
+    {
+        animalNamePanel.SetActive(false);
+    }
+
     public void SpawnAnimalZero()
     {
+        animalNumber = 0;
+        ShowAnimalNamePanel();
+    }
+    public void Animal(string name)
+    {
         string[] possibleAnimals = statsScript.possibleAnimals.ToArray();
-        string animal = possibleAnimals[0];
+        string animal = possibleAnimals[animalNumber];
 
         int age;
 
@@ -140,14 +176,16 @@ public class HabitatUIManagement : MonoBehaviour
             if (isBabyMode == false)
             {
                 age = PigStats.adultThreshold;
+                moneyScript.balance -= PigStats.costs[1];
             }
             else
             {
                 age = 0;
+                moneyScript.balance -= PigStats.costs[0];
             }
 
             SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
-            spawnScript.Spawn(pigPrefab, age, statsCanvasPrefab, warningIconPrefab);
+            spawnScript.Spawn(pigPrefab, age, name, statsCanvasPrefab, warningIconPrefab);
         }
     }
 

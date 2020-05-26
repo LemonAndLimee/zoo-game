@@ -8,6 +8,7 @@ public class NotificationManagement : MonoBehaviour
 {
     public GameObject[] buttons;
     public List<Notification> notifications = new List<Notification>();
+    public List<Notification> queue = new List<Notification>();
 
     public Sprite warningIcon;
 
@@ -34,6 +35,13 @@ public class NotificationManagement : MonoBehaviour
 
         if (notifications.Count >= 1) // very important - script assumes the no of animals is the same as no of notifications, and that animal 0 corresponds to notif. 0, etc.
         {
+            if (notifications.Count < buttons.Count() && queue.Count() >= 1)
+            {
+                notifications.Add(queue[0]);
+                queue.RemoveAt(0);
+                Debug.Log("bump from queue");
+            }
+
             for (int i = 0; i < notifications.Count; i++)
             {
                 buttons[i].SetActive(true);
@@ -62,14 +70,22 @@ public class NotificationManagement : MonoBehaviour
         {
             n.teleportTarget = target;
         }
-        notifications.Add(n);
+        if (notifications.Count >= buttons.Count())
+        {
+            queue.Add(n);
+            Debug.Log("queue");
+        }
+        else
+        {
+            notifications.Add(n);
+        }
 
     }
 
-    public void DeathMessage(string animal, string mannerOfDeath)
+    public void DeathMessage(string animal, string name, string mannerOfDeath)
     {
         Text txt = messageText.GetComponent<Text>();
-        txt.text = "A " + animal + " " + mannerOfDeath;
+        txt.text = "The " + animal + " " + name + " " + mannerOfDeath;
         Animation anim = messageText.GetComponent<Animation>();
         anim.Play("MessageDisplay");
     }

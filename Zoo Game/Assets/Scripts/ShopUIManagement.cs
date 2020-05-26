@@ -28,19 +28,9 @@ public class ShopUIManagement : MonoBehaviour
 
     public GameObject smallFarmPrefab;
     public GameObject mediumFarmPrefab;
+    public GameObject largeFarmPrefab;
 
     public GameObject prefab;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
     public void FacilitiesButton()
     {
@@ -154,14 +144,21 @@ public class ShopUIManagement : MonoBehaviour
     public void SmallFarmHabitat()
     {
         prefab = smallFarmPrefab;
-        placeScript.currentCost = 50;
+        placeScript.currentCost = FarmEnclosureInfo.costPerUnit * FarmEnclosureInfo.sizes[0];
         placeScript.TogglePlacing(prefab, false, false, false);
         ToggleShop("place");
     }
     public void MediumFarmHabitat()
     {
         prefab = mediumFarmPrefab;
-        placeScript.currentCost = 200;
+        placeScript.currentCost = FarmEnclosureInfo.costPerUnit * FarmEnclosureInfo.sizes[1];
+        placeScript.TogglePlacing(prefab, false, false, false);
+        ToggleShop("place");
+    }
+    public void LargeFarmHabitat()
+    {
+        prefab = largeFarmPrefab;
+        placeScript.currentCost = FarmEnclosureInfo.costPerUnit * FarmEnclosureInfo.sizes[2];
         placeScript.TogglePlacing(prefab, false, false, false);
         ToggleShop("place");
     }

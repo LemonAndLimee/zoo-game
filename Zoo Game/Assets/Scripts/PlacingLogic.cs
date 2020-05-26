@@ -34,12 +34,6 @@ public class PlacingLogic : MonoBehaviour
 
     public List<GameObject> continousPrefabs = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {

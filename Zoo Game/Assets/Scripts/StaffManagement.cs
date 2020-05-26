@@ -29,11 +29,6 @@ public class StaffManagement : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void AddWorker(GameObject animal)
     {

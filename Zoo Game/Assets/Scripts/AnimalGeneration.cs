@@ -62,6 +62,7 @@ public class AnimalGeneration : MonoBehaviour
         statsScript.worldScriptIndex = i;
 
         statsScript.age = worldScript.ages[i];
+        statsScript.animalName = worldScript.animalGivenNames[i];
 
         //spawn stats canvas
         currentCanvas = Instantiate(canvasPrefab);
