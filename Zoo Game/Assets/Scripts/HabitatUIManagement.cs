@@ -12,8 +12,12 @@ public class HabitatUIManagement : MonoBehaviour
     public Text habitatSizeText;
 
     public GameObject pigPrefab;
+    public GameObject llamaPrefab;
     public GameObject statsCanvasPrefab;
     public GameObject warningIconPrefab;
+
+    public Sprite pigImage;
+    public Sprite llamaImage;
 
     public GameObject currentHabitat;
     public HabitatStats statsScript;
@@ -83,11 +87,28 @@ public class HabitatUIManagement : MonoBehaviour
 
                     Text nameText = animalPanels[i].transform.Find("Name").GetComponent<Text>();
 
+                    Image animalImage = animalPanels[i].transform.Find("AnimalImage").GetComponent<Image>();
+
                     GameObject currentAnimal = statsScript.animals[i];
                     foodSlider.value = currentAnimal.GetComponent<AnimalStats>().foodLevel / 100f;
                     waterSlider.value = currentAnimal.GetComponent<AnimalStats>().waterLevel / 100f;
 
                     nameText.text = currentAnimal.GetComponent<AnimalStats>().animalName;
+
+                    if (currentAnimal.GetComponent<AnimalStats>().animalType == "Pig")
+                    {
+                        animalImage.sprite = pigImage;
+                        Color c = new Color();
+                        ColorUtility.TryParseHtmlString("#FACCE1", out c);
+                        animalImage.color = c;
+                    }
+                    else if (currentAnimal.GetComponent<AnimalStats>().animalType == "Llama")
+                    {
+                        animalImage.sprite = llamaImage;
+                        Color c = new Color();
+                        ColorUtility.TryParseHtmlString("#8C6C0B", out c);
+                        animalImage.color = c;
+                    }
                 }
                 else
                 {
@@ -136,11 +157,15 @@ public class HabitatUIManagement : MonoBehaviour
 
     public void ShowAnimalNamePanel()
     {
-        animalNamePanel.SetActive(true);
-        Animation anim = animalNamePanel.GetComponent<Animation>();
-        anim.Play("FadeIn");
-        PlayerMovement movementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        movementScript.enabled = false;
+        if (statsScript.spaceLeft >= 1)
+        {
+            animalNamePanel.SetActive(true);
+            Animation anim = animalNamePanel.GetComponent<Animation>();
+            anim.Play("FadeIn");
+            PlayerMovement movementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+            movementScript.enabled = false;
+        }
+
     }
 
     public void SubmitName()
@@ -162,6 +187,11 @@ public class HabitatUIManagement : MonoBehaviour
     public void SpawnAnimalZero()
     {
         animalNumber = 0;
+        ShowAnimalNamePanel();
+    }
+    public void SpawnAnimalOne()
+    {
+        animalNumber = 1;
         ShowAnimalNamePanel();
     }
     public void Animal(string name)
@@ -186,6 +216,22 @@ public class HabitatUIManagement : MonoBehaviour
 
             SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
             spawnScript.Spawn(pigPrefab, age, name, statsCanvasPrefab, warningIconPrefab);
+        }
+        if (animal.Contains("Llama"))
+        {
+            if (isBabyMode == false)
+            {
+                age = LlamaStats.adultThreshold;
+                moneyScript.balance -= LlamaStats.costs[1];
+            }
+            else
+            {
+                age = 0;
+                moneyScript.balance -= LlamaStats.costs[0];
+            }
+
+            SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
+            spawnScript.Spawn(llamaPrefab, age, name, statsCanvasPrefab, warningIconPrefab);
         }
     }
 

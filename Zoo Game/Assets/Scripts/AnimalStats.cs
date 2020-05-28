@@ -78,6 +78,21 @@ public class AnimalStats : MonoBehaviour
             babySize = PigStats.babySize;
 
         }
+        else if (gameObject.name.Contains("Llama"))
+        {
+            animalType = "Llama";
+
+            hungerPerDay = LlamaStats.hungerPerDay;
+            thirstPerDay = LlamaStats.thirstPerDay;
+
+            interestRating = LlamaStats.interestRating;
+
+            daysTilDeath = LlamaStats.daysTilDeath;
+            adultThreshold = LlamaStats.adultThreshold;
+
+            adultSize = LlamaStats.adultSize;
+            babySize = LlamaStats.babySize;
+        }
 
         startScript = GameObject.FindGameObjectWithTag("StartManager").GetComponent<StartManagement>();
         worldScript = GameObject.Find("GameManager").GetComponent<WorldManagement>();
@@ -217,6 +232,7 @@ public class AnimalStats : MonoBehaviour
 
     public void Delete()
     {
+        Debug.Log("delete");
         worldScript.animals.RemoveAt(worldScriptIndex);
         worldScript.hasWorker.RemoveAt(worldScriptIndex);
         worldScript.animalNames.RemoveAt(worldScriptIndex);

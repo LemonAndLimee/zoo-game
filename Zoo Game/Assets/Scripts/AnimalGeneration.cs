@@ -15,6 +15,7 @@ public class AnimalGeneration : MonoBehaviour
     public GameObject prefab;
 
     public GameObject pigPrefab;
+    public GameObject llamaPrefab;
 
 
     // Start is called before the first frame update
@@ -39,6 +40,10 @@ public class AnimalGeneration : MonoBehaviour
             if (worldScript.animalNames[i] == "Pig")
             {
                 prefab = pigPrefab;
+            }
+            else if (worldScript.animalNames[i] == "Llama")
+            {
+                prefab = llamaPrefab;
             }
 
             SpawnAnimal(prefab, worldScript.animal_x_positions[i], worldScript.animal_y_positions[i], i);
