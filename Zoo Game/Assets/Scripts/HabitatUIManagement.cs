@@ -256,7 +256,7 @@ public class HabitatUIManagement : MonoBehaviour
     {
         statsScript = currentHabitat.GetComponent<HabitatStats>();
         GameObject animal = statsScript.animals[index];
-        staffScript.AddWorker(animal);
+        staffScript.AddWorker(animal, false);
     }
 
     public void Feed0()

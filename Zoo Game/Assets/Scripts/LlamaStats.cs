@@ -17,4 +17,6 @@ public static class LlamaStats
     public static float babySize = 0.3f;
 
     public static int[] costs = new int[2] { 150, 200 };
+
+    public static int costToFeed = 10;
 }

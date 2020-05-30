@@ -5,12 +5,17 @@ using UnityEngine;
 public class Worker
 {
     public List<GameObject> animalsToFeed = new List<GameObject>();
-    public int capacity = 5;
 
-    public int dailySalary = 80;
+    public string name = "Jim";
+
+    public int capacity = 6;
+
+    public int dailySalary;
 
     public void Feed(int index)
     {
+        CalculateSalary();
+
         if (animalsToFeed[index] != null)
         {
             AnimalStats statsScript = animalsToFeed[index].GetComponent<AnimalStats>();
@@ -23,5 +28,16 @@ public class Worker
         {
             animalsToFeed.RemoveAt(index);
         }
+    }
+
+    public void CalculateSalary()
+    {
+        dailySalary = 0;
+        for (int i = 0; i < animalsToFeed.Count; i++)
+        {
+            dailySalary += animalsToFeed[i].GetComponent<AnimalStats>().costToFeed;
+            //Debug.Log(animalsToFeed[i].GetComponent<AnimalStats>().costToFeed);
+        }
+        dailySalary += 25;
     }
 }

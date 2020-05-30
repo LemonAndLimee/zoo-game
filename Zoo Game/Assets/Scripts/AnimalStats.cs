@@ -43,6 +43,8 @@ public class AnimalStats : MonoBehaviour
 
     public string animalName;
 
+    public int costToFeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,7 +66,7 @@ public class AnimalStats : MonoBehaviour
         //inherits correct values
         if (gameObject.name.Contains("Pig"))
         {
-            animalType = "pig";
+            animalType = "Pig";
 
             hungerPerDay = PigStats.hungerPerDay;
             thirstPerDay = PigStats.thirstPerDay;
@@ -76,6 +78,8 @@ public class AnimalStats : MonoBehaviour
 
             adultSize = PigStats.adultSize;
             babySize = PigStats.babySize;
+
+            costToFeed = PigStats.costToFeed;
 
         }
         else if (gameObject.name.Contains("Llama"))
@@ -92,6 +96,8 @@ public class AnimalStats : MonoBehaviour
 
             adultSize = LlamaStats.adultSize;
             babySize = LlamaStats.babySize;
+
+            costToFeed = LlamaStats.costToFeed;
         }
 
         startScript = GameObject.FindGameObjectWithTag("StartManager").GetComponent<StartManagement>();

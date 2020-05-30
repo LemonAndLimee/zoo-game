@@ -23,21 +23,21 @@ public class StaffManagement : MonoBehaviour
             {
                 if (worldScript.hasWorker[i] == true)
                 {
-                    AddWorker(worldScript.animals[i]);
+                    AddWorker(worldScript.animals[i], true);
                 }
             }
         }
     }
 
-
-    public void AddWorker(GameObject animal)
+    public void AddWorker(GameObject animal, bool isLoaded)
     {
-        if (worldScript.hasWorker[animal.GetComponent<AnimalStats>().worldScriptIndex] == false)
+        if (worldScript.hasWorker[animal.GetComponent<AnimalStats>().worldScriptIndex] == false || isLoaded == true)
         {
             if (workers.Count == 0)
             {
                 Worker worker = new Worker();
                 worker.animalsToFeed.Add(animal);
+                worker.CalculateSalary();
                 workers.Add(worker);
                 Debug.Log("hire new");
             }
@@ -45,12 +45,14 @@ public class StaffManagement : MonoBehaviour
             {
                 Worker worker = new Worker();
                 worker.animalsToFeed.Add(animal);
+                worker.CalculateSalary();
                 workers.Add(worker);
                 Debug.Log("hire new");
             }
             else
             {
                 workers[workers.Count - 1].animalsToFeed.Add(animal);
+                workers[workers.Count - 1].CalculateSalary();
                 Debug.Log("assign");
             }
 
