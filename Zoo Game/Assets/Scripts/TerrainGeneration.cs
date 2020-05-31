@@ -194,27 +194,18 @@ public class TerrainGeneration : MonoBehaviour
 
     public void GenerateStartPaths()
     {
+        for (int i = -2; i >= -8; i--)
+        {
+            Path(new Vector3(0f, i*2, 0f));
+        }
+
+    }
+
+    public void Path(Vector3 pos)
+    {
         int n = Random.Range(0, pathPrefabs.Length);
         currentObject = Instantiate(pathPrefabs[n]);
-        currentObject.transform.position = new Vector3(0f, -4f, 0f);
-        worldScript.objects.Add(currentObject);
-        worldScript.names.Add(pathPrefabs[n].name);
-        worldScript.x_positions.Add(currentObject.transform.position.x);
-        worldScript.y_positions.Add(currentObject.transform.position.y);
-        worldScript.sizes.Add(currentObject.transform.localScale.x);
-
-        n = Random.Range(0, pathPrefabs.Length);
-        currentObject = Instantiate(pathPrefabs[n]);
-        currentObject.transform.position = new Vector3(0f, -6f, 0f);
-        worldScript.objects.Add(currentObject);
-        worldScript.names.Add(pathPrefabs[n].name);
-        worldScript.x_positions.Add(currentObject.transform.position.x);
-        worldScript.y_positions.Add(currentObject.transform.position.y);
-        worldScript.sizes.Add(currentObject.transform.localScale.x);
-
-        n = Random.Range(0, pathPrefabs.Length);
-        currentObject = Instantiate(pathPrefabs[n]);
-        currentObject.transform.position = new Vector3(0f, -8f, 0f);
+        currentObject.transform.position = pos;
         worldScript.objects.Add(currentObject);
         worldScript.names.Add(pathPrefabs[n].name);
         worldScript.x_positions.Add(currentObject.transform.position.x);
