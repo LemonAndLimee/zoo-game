@@ -13,11 +13,13 @@ public class HabitatUIManagement : MonoBehaviour
 
     public GameObject pigPrefab;
     public GameObject llamaPrefab;
+    public GameObject zebraPrefab;
     public GameObject statsCanvasPrefab;
     public GameObject warningIconPrefab;
 
     public Sprite pigImage;
     public Sprite llamaImage;
+    public Sprite zebraImage;
 
     public GameObject currentHabitat;
     public HabitatStats statsScript;
@@ -47,15 +49,23 @@ public class HabitatUIManagement : MonoBehaviour
 
     public WorldManagement worldScript;
 
+    public Text[] animalButtonTexts;
+
     // Update is called once per frame
     void Update()
     {
+        
+
         if (currentHabitat != null)
         {
             string lowercase = currentHabitat.name.ToLower();
             if (lowercase.Contains("farm"))
             {
                 currentType = "Farm";
+            }
+            if (lowercase.Contains("savannah"))
+            {
+                currentType = "Savannah";
             }
             if (lowercase.Contains("small"))
             {
@@ -71,6 +81,11 @@ public class HabitatUIManagement : MonoBehaviour
             }
 
             statsScript = currentHabitat.GetComponent<HabitatStats>();
+
+            for (int i = 0; i < animalButtonTexts.Count(); i++)
+            {
+                animalButtonTexts[i].text = statsScript.possibleAnimals[i];
+            }
 
             //controls how many animal panels are enabled, depending on no. of animals in the habitat
             animalCount = statsScript.animals.Count;
@@ -107,6 +122,13 @@ public class HabitatUIManagement : MonoBehaviour
                         animalImage.sprite = llamaImage;
                         Color c = new Color();
                         ColorUtility.TryParseHtmlString("#8C6C0B", out c);
+                        animalImage.color = c;
+                    }
+                    else if (currentAnimal.GetComponent<AnimalStats>().animalType == "Zebra")
+                    {
+                        animalImage.sprite = zebraImage;
+                        Color c = new Color();
+                        ColorUtility.TryParseHtmlString("#FFFFFF", out c);
                         animalImage.color = c;
                     }
                 }
@@ -217,7 +239,7 @@ public class HabitatUIManagement : MonoBehaviour
             SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
             spawnScript.Spawn(pigPrefab, age, name, statsCanvasPrefab, warningIconPrefab);
         }
-        if (animal.Contains("Llama"))
+        else if (animal.Contains("Llama"))
         {
             if (isBabyMode == false)
             {
@@ -232,6 +254,22 @@ public class HabitatUIManagement : MonoBehaviour
 
             SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
             spawnScript.Spawn(llamaPrefab, age, name, statsCanvasPrefab, warningIconPrefab);
+        }
+        else if (animal.Contains("Zebra"))
+        {
+            if (isBabyMode == false)
+            {
+                age = ZebraStats.adultThreshold;
+                moneyScript.balance -= ZebraStats.costs[1];
+            }
+            else
+            {
+                age = 0;
+                moneyScript.balance -= ZebraStats.costs[0];
+            }
+
+            SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
+            spawnScript.Spawn(zebraPrefab, age, name, statsCanvasPrefab, warningIconPrefab);
         }
     }
 

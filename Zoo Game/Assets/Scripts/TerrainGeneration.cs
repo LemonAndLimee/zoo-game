@@ -44,6 +44,7 @@ public class TerrainGeneration : MonoBehaviour
     public GameObject smallFarmHabitat;
     public GameObject mediumFarmHabitat;
     public GameObject largeFarmHabitat;
+    public GameObject smallSavannahHabitat;
 
     // Start is called before the first frame update
     void Start()
@@ -256,6 +257,26 @@ public class TerrainGeneration : MonoBehaviour
         else if (worldScript.names[i] == "LargeFarmHabitat")
         {
             currentObject = Instantiate(largeFarmHabitat);
+
+            //not relevant to code, seems to remove error of raycast missing loaded objects
+            Debug.Log(currentObject.GetComponent<BoxCollider2D>());
+
+            currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], -1f);
+
+            currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
+
+            worldScript.habitats.Add(currentObject);
+
+            //sends array index of current object to its script
+            HabitatStats statsScript = currentObject.GetComponent<HabitatStats>();
+            statsScript.worldScriptIndex = worldScript.habitats.IndexOf(currentObject);
+
+            statsScript.placed = true;
+        }
+
+        else if (worldScript.names[i] == "SmallSavannahHabitat")
+        {
+            currentObject = Instantiate(smallSavannahHabitat);
 
             //not relevant to code, seems to remove error of raycast missing loaded objects
             Debug.Log(currentObject.GetComponent<BoxCollider2D>());

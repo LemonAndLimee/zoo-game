@@ -99,6 +99,23 @@ public class AnimalStats : MonoBehaviour
 
             costToFeed = LlamaStats.costToFeed;
         }
+        else if (gameObject.name.Contains("Zebra"))
+        {
+            animalType = "Zebra";
+
+            hungerPerDay = ZebraStats.hungerPerDay;
+            thirstPerDay = ZebraStats.thirstPerDay;
+
+            interestRating = ZebraStats.interestRating;
+
+            daysTilDeath = ZebraStats.daysTilDeath;
+            adultThreshold = ZebraStats.adultThreshold;
+
+            adultSize = ZebraStats.adultSize;
+            babySize = ZebraStats.babySize;
+
+            costToFeed = ZebraStats.costToFeed;
+        }
 
         startScript = GameObject.FindGameObjectWithTag("StartManager").GetComponent<StartManagement>();
         worldScript = GameObject.Find("GameManager").GetComponent<WorldManagement>();

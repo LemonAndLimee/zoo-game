@@ -49,9 +49,13 @@ public class HabitatStats : MonoBehaviour
 
             spaceLeft = capacity;
 
-            babyCosts = FarmEnclosureInfo.babyCosts.ToList();
-            adultCosts = FarmEnclosureInfo.adultCosts.ToList();
-
+        }
+        else if (gameObject.name.Contains("Savannah"))
+        {
+            possibleAnimals = SavannahEnclosureInfo.animals.ToList();
+            sizeInUnits = SavannahEnclosureInfo.sizes[size];
+            capacity = SavannahEnclosureInfo.capacity[size];
+            spaceLeft = capacity;
         }
 
         startScript = GameObject.FindGameObjectWithTag("StartManager").GetComponent<StartManagement>();

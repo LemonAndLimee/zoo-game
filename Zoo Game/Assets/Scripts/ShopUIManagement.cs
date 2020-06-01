@@ -26,6 +26,7 @@ public class ShopUIManagement : MonoBehaviour
 
     public GameObject pathsPanel;
     public GameObject farmPanel;
+    public GameObject savannahPanel;
 
     public PlacingLogic placeScript;
 
@@ -36,10 +37,18 @@ public class ShopUIManagement : MonoBehaviour
     public GameObject mediumFarmPrefab;
     public GameObject largeFarmPrefab;
 
+    public GameObject smallSavannahPrefab;
+
     public GameObject prefab;
 
     public Sprite pigImage;
     public Sprite llamaImage;
+
+    void Start()
+    {
+        farmPanel.SetActive(true);
+        activeSubPanel = farmPanel;
+    }
 
     void Update()
     {
@@ -218,6 +227,7 @@ public class ShopUIManagement : MonoBehaviour
     {
         if (activeSubPanel != pathsPanel)
         {
+            activeSubPanel.SetActive(false);
             activeSubPanel = pathsPanel;
             pathsPanel.SetActive(true);
         }
@@ -227,8 +237,18 @@ public class ShopUIManagement : MonoBehaviour
     {
         if (activeSubPanel != farmPanel)
         {
+            activeSubPanel.SetActive(false);
             activeSubPanel = farmPanel;
             farmPanel.SetActive(true);
+        }
+    }
+    public void SwitchToSavannah()
+    {
+        if (activeSubPanel != savannahPanel)
+        {
+            activeSubPanel.SetActive(false);
+            activeSubPanel = savannahPanel;
+            savannahPanel.SetActive(true);
         }
     }
 
@@ -264,5 +284,12 @@ public class ShopUIManagement : MonoBehaviour
         placeScript.currentCost = FarmEnclosureInfo.costPerUnit * FarmEnclosureInfo.sizes[2];
         placeScript.TogglePlacing(prefab, false, false, false);
         ToggleShop("place");
+    }
+
+    public void SmallSavannahHabitat()
+    {
+        prefab = smallSavannahPrefab;
+        placeScript.currentCost = SavannahEnclosureInfo.costPerUnit * SavannahEnclosureInfo.sizes[0];
+        placeScript.TogglePlacing(prefab, false, false, false);
     }
 }

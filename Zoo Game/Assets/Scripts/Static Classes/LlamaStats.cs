@@ -7,7 +7,7 @@ public static class LlamaStats
     public static int hungerPerDay = 30;
     public static int thirstPerDay = 40;
 
-    public static int interestRating = 1; //out of 5
+    public static int interestRating = 2; //out of 5
 
     public static int daysTilDeath = 2;
 
