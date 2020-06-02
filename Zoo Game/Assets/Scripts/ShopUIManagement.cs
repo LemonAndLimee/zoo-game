@@ -43,6 +43,7 @@ public class ShopUIManagement : MonoBehaviour
 
     public Sprite pigImage;
     public Sprite llamaImage;
+    public Sprite zebraImage;
 
     void Start()
     {
@@ -92,6 +93,13 @@ public class ShopUIManagement : MonoBehaviour
                     images[x].GetComponent<Image>().sprite = llamaImage;
                     Color c = new Color();
                     ColorUtility.TryParseHtmlString("#8C6C0B", out c);
+                    images[x].GetComponent<Image>().color = c;
+                }
+                else if (staffScript.workers[i].animalsToFeed[x].gameObject.name.Contains("Zebra"))
+                {
+                    images[x].GetComponent<Image>().sprite = zebraImage;
+                    Color c = new Color();
+                    ColorUtility.TryParseHtmlString("#FFFFFF", out c);
                     images[x].GetComponent<Image>().color = c;
                 }
             }
@@ -146,10 +154,23 @@ public class ShopUIManagement : MonoBehaviour
 
     public void ToggleShop(string buttonPressed)
     {
-        if (isShopUp == false)
+        if (isShopUp == false && buttonPressed != "off")
         {
+            //Debug.Log("up");
             anim.Play("SlideUp");
             isShopUp = true;
+        }
+        else if (buttonPressed == "off" && isShopUp == true)
+        {
+            anim.Play("SlideDown");
+            isShopUp = false;
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+        else if (buttonPressed == "place")
+        {
+            anim.Play("SlideDown");
+            isShopUp = false;
+            EventSystem.current.SetSelectedGameObject(null);
         }
         else if (buttonPressed == "f" && isFacilities == true)
         {
@@ -164,13 +185,6 @@ public class ShopUIManagement : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(null);
         }
         else if (buttonPressed == "w" && isWorkers == true)
-        {
-            anim.Play("SlideDown");
-            isShopUp = false;
-            EventSystem.current.SetSelectedGameObject(null);
-        }
-        //if entering place mode
-        else if (buttonPressed == "place")
         {
             anim.Play("SlideDown");
             isShopUp = false;
@@ -291,5 +305,6 @@ public class ShopUIManagement : MonoBehaviour
         prefab = smallSavannahPrefab;
         placeScript.currentCost = SavannahEnclosureInfo.costPerUnit * SavannahEnclosureInfo.sizes[0];
         placeScript.TogglePlacing(prefab, false, false, false);
+        ToggleShop("place");
     }
 }

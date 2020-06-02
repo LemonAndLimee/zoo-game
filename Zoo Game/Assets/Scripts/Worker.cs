@@ -6,7 +6,7 @@ public class Worker
 {
     public List<GameObject> animalsToFeed = new List<GameObject>();
 
-    public string name = "Jim";
+    public string name;
 
     public int capacity = 6;
 

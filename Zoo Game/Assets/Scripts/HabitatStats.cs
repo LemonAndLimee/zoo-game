@@ -15,6 +15,7 @@ public class HabitatStats : MonoBehaviour
 
     public WorldManagement worldScript;
     public int worldScriptIndex;
+    public int objectIndex;
 
     public StartManagement startScript;
 
@@ -83,5 +84,24 @@ public class HabitatStats : MonoBehaviour
             spaceLeft = capacity;
         }
         
+    }
+
+    public void Destroy()
+    {
+        for (int i = 0; i < animals.Count; i++)
+        {
+            animals[i].GetComponent<AnimalStats>().Delete();
+        } //deletes all animals
+
+        worldScript.habitats.RemoveAt(worldScriptIndex);
+        worldScript.habitatsSpaceLeft.RemoveAt(worldScriptIndex);
+
+        worldScript.objects.RemoveAt(objectIndex);
+        worldScript.names.RemoveAt(objectIndex);
+        worldScript.x_positions.RemoveAt(objectIndex);
+        worldScript.y_positions.RemoveAt(objectIndex);
+        worldScript.sizes.RemoveAt(objectIndex);
+
+        Destroy(gameObject);
     }
 }

@@ -228,6 +228,7 @@ public class TerrainGeneration : MonoBehaviour
             currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
 
             worldScript.habitats.Add(currentObject);
+            worldScript.objects.Add(currentObject);
 
             //sends array index of current object to its script
             HabitatStats statsScript = currentObject.GetComponent<HabitatStats>();
@@ -247,6 +248,7 @@ public class TerrainGeneration : MonoBehaviour
             currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
 
             worldScript.habitats.Add(currentObject);
+            worldScript.objects.Add(currentObject);
 
             //sends array index of current object to its script
             HabitatStats statsScript = currentObject.GetComponent<HabitatStats>();
@@ -266,6 +268,7 @@ public class TerrainGeneration : MonoBehaviour
             currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
 
             worldScript.habitats.Add(currentObject);
+            worldScript.objects.Add(currentObject);
 
             //sends array index of current object to its script
             HabitatStats statsScript = currentObject.GetComponent<HabitatStats>();
@@ -286,6 +289,7 @@ public class TerrainGeneration : MonoBehaviour
             currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
 
             worldScript.habitats.Add(currentObject);
+            worldScript.objects.Add(currentObject);
 
             //sends array index of current object to its script
             HabitatStats statsScript = currentObject.GetComponent<HabitatStats>();

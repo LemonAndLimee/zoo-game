@@ -54,8 +54,6 @@ public class HabitatUIManagement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
         if (currentHabitat != null)
         {
             string lowercase = currentHabitat.name.ToLower();
@@ -154,18 +152,32 @@ public class HabitatUIManagement : MonoBehaviour
         habitatSizeText.text = currentSize;
     }
 
-    public void TogglePanel()
+    public void TogglePanel(string state)
     {
-        if (panelUp == false)
-        {
-            anim.Play("SlideUp");
-            panelUp = true;
-        }
-        else
+        if (panelUp == true && state == "down")
         {
             anim.Play("SlideDown");
             panelUp = false;
+            //Debug.Log("1");
         }
+        else if (panelUp == true)
+        {
+            anim.Play("SlideDown");
+            panelUp = false;
+            //Debug.Log("2");
+        }
+        else if (panelUp == false && state != "down")
+        {
+            anim.Play("SlideUp");
+            panelUp = true;
+            //Debug.Log("3");
+        }
+    }
+
+    public void DestroyButton()
+    {
+        TogglePanel("down");
+        statsScript.Destroy();
     }
 
     public void BabyMode()

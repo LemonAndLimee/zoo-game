@@ -95,7 +95,7 @@ public class PlacingLogic : MonoBehaviour
         isEvenY = evenY;
         if (placeMode == false)
         {
-            placeMode = true;
+            Invoke("PlaceModeTrue", 0.3f);
             prefab = obj;
             continuousPlacingMode = continous;
             placeModeText.text = "Press 'x' to exit placing mode";
@@ -107,6 +107,11 @@ public class PlacingLogic : MonoBehaviour
             previousSnappedPos = new Vector2(800f, 800f);
             placeModeText.text = "";
         }
+    }
+
+    public void PlaceModeTrue()
+    {
+        placeMode = true;
     }
 
     public static Vector2 getMousePos()
@@ -247,6 +252,7 @@ public class PlacingLogic : MonoBehaviour
             worldScript.habitatsSpaceLeft.Add(statsScript.spaceLeft);
             worldScript.habitats.Add(currentObject);
             statsScript.worldScriptIndex = worldScript.habitats.IndexOf(currentObject);
+            statsScript.objectIndex = worldScript.objects.IndexOf(currentObject);
             statsScript.placed = true;
         }
 

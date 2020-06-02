@@ -37,6 +37,7 @@ public class StaffManagement : MonoBehaviour
             {
                 Worker worker = new Worker();
                 worker.animalsToFeed.Add(animal);
+                worker.name = "Worker " + (workers.Count + 1).ToString();
                 worker.CalculateSalary();
                 workers.Add(worker);
                 Debug.Log("hire new");
@@ -45,6 +46,7 @@ public class StaffManagement : MonoBehaviour
             {
                 Worker worker = new Worker();
                 worker.animalsToFeed.Add(animal);
+                worker.name = "Worker " + (workers.Count + 1).ToString();
                 worker.CalculateSalary();
                 workers.Add(worker);
                 Debug.Log("hire new");
