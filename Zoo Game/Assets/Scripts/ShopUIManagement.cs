@@ -44,6 +44,7 @@ public class ShopUIManagement : MonoBehaviour
     public Sprite pigImage;
     public Sprite llamaImage;
     public Sprite zebraImage;
+    public Sprite lionImage;
 
     void Start()
     {
@@ -100,6 +101,13 @@ public class ShopUIManagement : MonoBehaviour
                     images[x].GetComponent<Image>().sprite = zebraImage;
                     Color c = new Color();
                     ColorUtility.TryParseHtmlString("#FFFFFF", out c);
+                    images[x].GetComponent<Image>().color = c;
+                }
+                else if (staffScript.workers[i].animalsToFeed[x].gameObject.name.Contains("Lion"))
+                {
+                    images[x].GetComponent<Image>().sprite = lionImage;
+                    Color c = new Color();
+                    ColorUtility.TryParseHtmlString("#F5EA54", out c);
                     images[x].GetComponent<Image>().color = c;
                 }
             }

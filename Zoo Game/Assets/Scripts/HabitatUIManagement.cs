@@ -14,12 +14,15 @@ public class HabitatUIManagement : MonoBehaviour
     public GameObject pigPrefab;
     public GameObject llamaPrefab;
     public GameObject zebraPrefab;
+    public GameObject lionPrefab;
+
     public GameObject statsCanvasPrefab;
     public GameObject warningIconPrefab;
 
     public Sprite pigImage;
     public Sprite llamaImage;
     public Sprite zebraImage;
+    public Sprite lionImage;
 
     public GameObject currentHabitat;
     public HabitatStats statsScript;
@@ -129,6 +132,14 @@ public class HabitatUIManagement : MonoBehaviour
                         ColorUtility.TryParseHtmlString("#FFFFFF", out c);
                         animalImage.color = c;
                     }
+                    else if (currentAnimal.GetComponent<AnimalStats>().animalType == "Lion")
+                    {
+                        animalImage.sprite = lionImage;
+                        Color c = new Color();
+                        ColorUtility.TryParseHtmlString("#F5EA54", out c);
+                        animalImage.color = c;
+                    }
+                    
                 }
                 else
                 {
@@ -282,6 +293,22 @@ public class HabitatUIManagement : MonoBehaviour
 
             SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
             spawnScript.Spawn(zebraPrefab, age, name, statsCanvasPrefab, warningIconPrefab);
+        }
+        else if (animal.Contains("Lion"))
+        {
+            if (isBabyMode == false)
+            {
+                age = LionStats.adultThreshold;
+                moneyScript.balance -= LionStats.costs[1];
+            }
+            else
+            {
+                age = 0;
+                moneyScript.balance -= LionStats.costs[0];
+            }
+
+            SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
+            spawnScript.Spawn(lionPrefab, age, name, statsCanvasPrefab, warningIconPrefab);
         }
     }
 

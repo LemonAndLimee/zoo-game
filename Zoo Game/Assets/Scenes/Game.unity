@@ -3025,6 +3025,8 @@ MonoBehaviour:
     type: 3}
   zebraPrefab: {fileID: 2471192815473056843, guid: 264f60eb44ad8403b916aa2ea6ada9e2,
     type: 3}
+  lionPrefab: {fileID: 4209785083520318486, guid: 0691f1babacf04d748881e28413d15ce,
+    type: 3}
 --- !u!114 &113580483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24613,6 +24615,7 @@ MonoBehaviour:
   pigImage: {fileID: 21300000, guid: a42206ffd109747188d80a216c02e861, type: 3}
   llamaImage: {fileID: 21300000, guid: b261e098af10a42c3ba054c8a8aa7541, type: 3}
   zebraImage: {fileID: 21300000, guid: 6348dd6d948d64039a380a1b0bdf4583, type: 3}
+  lionImage: {fileID: 21300000, guid: 558b0bfb0948e46f5be31ca694132735, type: 3}
 --- !u!114 &1496655451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24648,6 +24651,8 @@ MonoBehaviour:
     type: 3}
   zebraPrefab: {fileID: 2471192815473056843, guid: 264f60eb44ad8403b916aa2ea6ada9e2,
     type: 3}
+  lionPrefab: {fileID: 4209785083520318486, guid: 0691f1babacf04d748881e28413d15ce,
+    type: 3}
   statsCanvasPrefab: {fileID: 8005434218261172094, guid: 2be59d4bcf6a04b0e8bd3dcdfb1d9ffb,
     type: 3}
   warningIconPrefab: {fileID: 1319861185439284217, guid: 134d56474c7c843b5b974bc8fff97f64,
@@ -24655,6 +24660,7 @@ MonoBehaviour:
   pigImage: {fileID: 21300000, guid: a42206ffd109747188d80a216c02e861, type: 3}
   llamaImage: {fileID: 21300000, guid: b261e098af10a42c3ba054c8a8aa7541, type: 3}
   zebraImage: {fileID: 21300000, guid: 6348dd6d948d64039a380a1b0bdf4583, type: 3}
+  lionImage: {fileID: 21300000, guid: 8a41edb96b1364d2e87907fdaf26e6c8, type: 3}
   currentHabitat: {fileID: 0}
   statsScript: {fileID: 0}
   currentType: 
