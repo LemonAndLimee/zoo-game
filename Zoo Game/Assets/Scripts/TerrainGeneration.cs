@@ -41,10 +41,9 @@ public class TerrainGeneration : MonoBehaviour
     public string[] pathNames;
 
     public List<GameObject> habitats = new List<GameObject>();
-    public GameObject smallFarmHabitat;
-    public GameObject mediumFarmHabitat;
-    public GameObject largeFarmHabitat;
-    public GameObject smallSavannahHabitat;
+
+
+    public PrefabsManagement prefabScript;
 
     // Start is called before the first frame update
     void Start()
@@ -185,6 +184,11 @@ public class TerrainGeneration : MonoBehaviour
 
             }
 
+            //SpawnHabitat(i);
+        }
+
+        for (int i = 0; i < worldScript.habitatPrefabIndexes.Count; i++)
+        {
             SpawnHabitat(i);
         }
 
@@ -216,87 +220,17 @@ public class TerrainGeneration : MonoBehaviour
 
     public void SpawnHabitat(int i)
     {
-        if (worldScript.names[i] == "SmallFarmHabitat")
-        {
-            currentObject = Instantiate(smallFarmHabitat);
-
-            //not relevant to code, seems to remove error of raycast missing loaded objects
-            Debug.Log(currentObject.GetComponent<BoxCollider2D>());
-
-            currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], -1f);
-
-            currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
-
-            worldScript.habitats.Add(currentObject);
-            worldScript.objects.Add(currentObject);
-
-            //sends array index of current object to its script
-            HabitatStats statsScript = currentObject.GetComponent<HabitatStats>();
-            statsScript.worldScriptIndex = worldScript.habitats.IndexOf(currentObject);
-
-            statsScript.placed = true;
-        }
-        else if (worldScript.names[i] == "MediumFarmHabitat")
-        {
-            currentObject = Instantiate(mediumFarmHabitat);
-
-            //not relevant to code, seems to remove error of raycast missing loaded objects
-            Debug.Log(currentObject.GetComponent<BoxCollider2D>());
-
-            currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], -1f);
-
-            currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
-
-            worldScript.habitats.Add(currentObject);
-            worldScript.objects.Add(currentObject);
-
-            //sends array index of current object to its script
-            HabitatStats statsScript = currentObject.GetComponent<HabitatStats>();
-            statsScript.worldScriptIndex = worldScript.habitats.IndexOf(currentObject);
-
-            statsScript.placed = true;
-        }
-        else if (worldScript.names[i] == "LargeFarmHabitat")
-        {
-            currentObject = Instantiate(largeFarmHabitat);
-
-            //not relevant to code, seems to remove error of raycast missing loaded objects
-            Debug.Log(currentObject.GetComponent<BoxCollider2D>());
-
-            currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], -1f);
-
-            currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
-
-            worldScript.habitats.Add(currentObject);
-            worldScript.objects.Add(currentObject);
-
-            //sends array index of current object to its script
-            HabitatStats statsScript = currentObject.GetComponent<HabitatStats>();
-            statsScript.worldScriptIndex = worldScript.habitats.IndexOf(currentObject);
-
-            statsScript.placed = true;
-        }
-
-        else if (worldScript.names[i] == "SmallSavannahHabitat")
-        {
-            currentObject = Instantiate(smallSavannahHabitat);
-
-            //not relevant to code, seems to remove error of raycast missing loaded objects
-            Debug.Log(currentObject.GetComponent<BoxCollider2D>());
-
-            currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], -1f);
-
-            currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
-
-            worldScript.habitats.Add(currentObject);
-            worldScript.objects.Add(currentObject);
-
-            //sends array index of current object to its script
-            HabitatStats statsScript = currentObject.GetComponent<HabitatStats>();
-            statsScript.worldScriptIndex = worldScript.habitats.IndexOf(currentObject);
-
-            statsScript.placed = true;
-        }
+        currentObject = Instantiate(prefabScript.habitats[worldScript.habitatPrefabIndexes[i]]);
+        Debug.Log(currentObject.GetComponent<BoxCollider2D>());
+        int objectIndex = worldScript.habitatObjectIndexes[i];
+        currentObject.transform.position = new Vector3(worldScript.x_positions[objectIndex], worldScript.y_positions[objectIndex], -1f);
+        currentObject.transform.localScale = new Vector3(worldScript.sizes[objectIndex], worldScript.sizes[objectIndex], 1f);
+        worldScript.habitats.Add(currentObject);
+        worldScript.objects.Add(currentObject);
+        //sends array index of current object to its script
+        HabitatStats statsScript = currentObject.GetComponent<HabitatStats>();
+        statsScript.worldScriptIndex = worldScript.habitats.IndexOf(currentObject);
+        statsScript.placed = true;
 
     }
 

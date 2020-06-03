@@ -33,18 +33,9 @@ public class ShopUIManagement : MonoBehaviour
     //different prefabs
     public GameObject[] stonePathPrefabs;
 
-    public GameObject smallFarmPrefab;
-    public GameObject mediumFarmPrefab;
-    public GameObject largeFarmPrefab;
-
-    public GameObject smallSavannahPrefab;
-
     public GameObject prefab;
 
-    public Sprite pigImage;
-    public Sprite llamaImage;
-    public Sprite zebraImage;
-    public Sprite lionImage;
+    public PrefabsManagement prefabScript;
 
     void Start()
     {
@@ -82,34 +73,10 @@ public class ShopUIManagement : MonoBehaviour
                 Text animalNameText = images[x].transform.Find("Name").GetComponent<Text>();
                 animalNameText.text = staffScript.workers[i].animalsToFeed[x].GetComponent<AnimalStats>().animalName;
 
-                if (staffScript.workers[i].animalsToFeed[x].gameObject.name.Contains("Pig"))
-                {
-                    images[x].GetComponent<Image>().sprite = pigImage;
-                    Color c = new Color();
-                    ColorUtility.TryParseHtmlString("#FACCE1", out c);
-                    images[x].GetComponent<Image>().color = c;
-                }
-                else if (staffScript.workers[i].animalsToFeed[x].gameObject.name.Contains("Llama"))
-                {
-                    images[x].GetComponent<Image>().sprite = llamaImage;
-                    Color c = new Color();
-                    ColorUtility.TryParseHtmlString("#8C6C0B", out c);
-                    images[x].GetComponent<Image>().color = c;
-                }
-                else if (staffScript.workers[i].animalsToFeed[x].gameObject.name.Contains("Zebra"))
-                {
-                    images[x].GetComponent<Image>().sprite = zebraImage;
-                    Color c = new Color();
-                    ColorUtility.TryParseHtmlString("#FFFFFF", out c);
-                    images[x].GetComponent<Image>().color = c;
-                }
-                else if (staffScript.workers[i].animalsToFeed[x].gameObject.name.Contains("Lion"))
-                {
-                    images[x].GetComponent<Image>().sprite = lionImage;
-                    Color c = new Color();
-                    ColorUtility.TryParseHtmlString("#F5EA54", out c);
-                    images[x].GetComponent<Image>().color = c;
-                }
+                int animalIndex = staffScript.workers[i].animalsToFeed[x].GetComponent<AnimalStats>().animalIndex;
+                images[x].GetComponent<Image>().sprite = prefabScript.animalImages[animalIndex];
+                images[x].GetComponent<Image>().color = prefabScript.animalColours[animalIndex];
+                
             }
 
             workerPanels[i].SetActive(true);
@@ -288,30 +255,47 @@ public class ShopUIManagement : MonoBehaviour
 
     public void SmallFarmHabitat()
     {
-        prefab = smallFarmPrefab;
-        placeScript.currentCost = FarmEnclosureInfo.costPerUnit * FarmEnclosureInfo.sizes[0];
-        placeScript.TogglePlacing(prefab, false, false, false);
-        ToggleShop("place");
+        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "smallFarm");
+        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Farm");
+        Habitat(habitatIndex, typeIndex, 0);
     }
     public void MediumFarmHabitat()
     {
-        prefab = mediumFarmPrefab;
-        placeScript.currentCost = FarmEnclosureInfo.costPerUnit * FarmEnclosureInfo.sizes[1];
-        placeScript.TogglePlacing(prefab, false, false, false);
-        ToggleShop("place");
+        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "mediumFarm");
+        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Farm");
+        Habitat(habitatIndex, typeIndex, 1);
     }
     public void LargeFarmHabitat()
     {
-        prefab = largeFarmPrefab;
-        placeScript.currentCost = FarmEnclosureInfo.costPerUnit * FarmEnclosureInfo.sizes[2];
-        placeScript.TogglePlacing(prefab, false, false, false);
-        ToggleShop("place");
+        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "largeFarm");
+        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Farm");
+        Habitat(habitatIndex, typeIndex, 2);
     }
-
     public void SmallSavannahHabitat()
     {
-        prefab = smallSavannahPrefab;
-        placeScript.currentCost = SavannahEnclosureInfo.costPerUnit * SavannahEnclosureInfo.sizes[0];
+        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "smallSavannah");
+        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Savannah");
+        Habitat(habitatIndex, typeIndex, 0);
+    }
+    public void MediumSavannahHabitat()
+    {
+        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "mediumSavannah");
+        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Savannah");
+        Habitat(habitatIndex, typeIndex, 1);
+    }
+    public void LargeSavannahHabitat()
+    {
+        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "largeSavannah");
+        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Savannah");
+        Habitat(habitatIndex, typeIndex, 2);
+    }
+
+    public void Habitat(int habitatIndex, int typeIndex, int size)
+    {
+        prefab = prefabScript.habitats[habitatIndex];
+        placeScript.currentHabitatIndex = habitatIndex;
+        placeScript.currentHabitatTypeIndex = typeIndex;
+        placeScript.currentCost = prefabScript.habitatScripts[typeIndex].costPerUnit * prefabScript.habitatScripts[typeIndex].sizes[size];
         placeScript.TogglePlacing(prefab, false, false, false);
         ToggleShop("place");
     }

@@ -11,18 +11,10 @@ public class HabitatUIManagement : MonoBehaviour
     public Text habitatTypeText;
     public Text habitatSizeText;
 
-    public GameObject pigPrefab;
-    public GameObject llamaPrefab;
-    public GameObject zebraPrefab;
-    public GameObject lionPrefab;
+    public PrefabsManagement prefabScript;
 
     public GameObject statsCanvasPrefab;
     public GameObject warningIconPrefab;
-
-    public Sprite pigImage;
-    public Sprite llamaImage;
-    public Sprite zebraImage;
-    public Sprite lionImage;
 
     public GameObject currentHabitat;
     public HabitatStats statsScript;
@@ -111,34 +103,9 @@ public class HabitatUIManagement : MonoBehaviour
 
                     nameText.text = currentAnimal.GetComponent<AnimalStats>().animalName;
 
-                    if (currentAnimal.GetComponent<AnimalStats>().animalType == "Pig")
-                    {
-                        animalImage.sprite = pigImage;
-                        Color c = new Color();
-                        ColorUtility.TryParseHtmlString("#FACCE1", out c);
-                        animalImage.color = c;
-                    }
-                    else if (currentAnimal.GetComponent<AnimalStats>().animalType == "Llama")
-                    {
-                        animalImage.sprite = llamaImage;
-                        Color c = new Color();
-                        ColorUtility.TryParseHtmlString("#8C6C0B", out c);
-                        animalImage.color = c;
-                    }
-                    else if (currentAnimal.GetComponent<AnimalStats>().animalType == "Zebra")
-                    {
-                        animalImage.sprite = zebraImage;
-                        Color c = new Color();
-                        ColorUtility.TryParseHtmlString("#FFFFFF", out c);
-                        animalImage.color = c;
-                    }
-                    else if (currentAnimal.GetComponent<AnimalStats>().animalType == "Lion")
-                    {
-                        animalImage.sprite = lionImage;
-                        Color c = new Color();
-                        ColorUtility.TryParseHtmlString("#F5EA54", out c);
-                        animalImage.color = c;
-                    }
+                    int animalIndex = currentAnimal.GetComponent<AnimalStats>().animalIndex;
+                    animalImage.sprite = prefabScript.animalImages[animalIndex];
+                    animalImage.color = prefabScript.animalColours[animalIndex];
                     
                 }
                 else
@@ -244,72 +211,22 @@ public class HabitatUIManagement : MonoBehaviour
         string[] possibleAnimals = statsScript.possibleAnimals.ToArray();
         string animal = possibleAnimals[animalNumber];
 
+        int animalIndex = System.Array.IndexOf(prefabScript.animalNames, animal);
+
         int age;
 
-        if (animal.Contains("Pig"))
+        if (isBabyMode == true)
         {
-            if (isBabyMode == false)
-            {
-                age = PigStats.adultThreshold;
-                moneyScript.balance -= PigStats.costs[1];
-            }
-            else
-            {
-                age = 0;
-                moneyScript.balance -= PigStats.costs[0];
-            }
-
-            SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
-            spawnScript.Spawn(pigPrefab, age, name, statsCanvasPrefab, warningIconPrefab);
+            age = 0;
+            moneyScript.balance -= prefabScript.scripts[animalIndex].costs[0];
         }
-        else if (animal.Contains("Llama"))
+        else
         {
-            if (isBabyMode == false)
-            {
-                age = LlamaStats.adultThreshold;
-                moneyScript.balance -= LlamaStats.costs[1];
-            }
-            else
-            {
-                age = 0;
-                moneyScript.balance -= LlamaStats.costs[0];
-            }
-
-            SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
-            spawnScript.Spawn(llamaPrefab, age, name, statsCanvasPrefab, warningIconPrefab);
+            age = prefabScript.scripts[animalIndex].adultThreshold;
+            moneyScript.balance -= prefabScript.scripts[animalIndex].costs[1];
         }
-        else if (animal.Contains("Zebra"))
-        {
-            if (isBabyMode == false)
-            {
-                age = ZebraStats.adultThreshold;
-                moneyScript.balance -= ZebraStats.costs[1];
-            }
-            else
-            {
-                age = 0;
-                moneyScript.balance -= ZebraStats.costs[0];
-            }
-
-            SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
-            spawnScript.Spawn(zebraPrefab, age, name, statsCanvasPrefab, warningIconPrefab);
-        }
-        else if (animal.Contains("Lion"))
-        {
-            if (isBabyMode == false)
-            {
-                age = LionStats.adultThreshold;
-                moneyScript.balance -= LionStats.costs[1];
-            }
-            else
-            {
-                age = 0;
-                moneyScript.balance -= LionStats.costs[0];
-            }
-
-            SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
-            spawnScript.Spawn(lionPrefab, age, name, statsCanvasPrefab, warningIconPrefab);
-        }
+        SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
+        spawnScript.Spawn(prefabScript.animals[animalIndex], age, name, animalIndex, statsCanvasPrefab, warningIconPrefab);
     }
 
     public void Hire0()

@@ -14,10 +14,8 @@ public class AnimalGeneration : MonoBehaviour
     public GameObject currentIcon;
     public GameObject prefab;
 
-    public GameObject pigPrefab;
-    public GameObject llamaPrefab;
-    public GameObject zebraPrefab;
-    public GameObject lionPrefab;
+    public PrefabsManagement prefabScript;
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,28 +36,14 @@ public class AnimalGeneration : MonoBehaviour
 
         for (int i = 0; i < worldScript.animalNames.Count; i++)
         {
-            if (worldScript.animalNames[i] == "Pig")
-            {
-                prefab = pigPrefab;
-            }
-            else if (worldScript.animalNames[i] == "Llama")
-            {
-                prefab = llamaPrefab;
-            }
-            else if (worldScript.animalNames[i] == "Zebra")
-            {
-                prefab = zebraPrefab;
-            }
-            else if (worldScript.animalNames[i] == "Lion")
-            {
-                prefab = lionPrefab;
-            }
+            int animalIndex = System.Array.IndexOf(prefabScript.animalNames, worldScript.animalNames[i]);
+            prefab = prefabScript.animals[animalIndex];
 
-            SpawnAnimal(prefab, worldScript.animal_x_positions[i], worldScript.animal_y_positions[i], i);
+            SpawnAnimal(prefab, animalIndex, worldScript.animal_x_positions[i], worldScript.animal_y_positions[i], i);
         }
     }
 
-    public void SpawnAnimal(GameObject pref, float x, float y, int i)
+    public void SpawnAnimal(GameObject pref, int animalIndex, float x, float y, int i)
     {
         currentObject = Instantiate(pref);
         currentObject.transform.position = new Vector3(x, y, -2f);
@@ -77,6 +61,8 @@ public class AnimalGeneration : MonoBehaviour
 
         statsScript.age = worldScript.ages[i];
         statsScript.animalName = worldScript.animalGivenNames[i];
+
+        statsScript.animalIndex = animalIndex;
 
         //spawn stats canvas
         currentCanvas = Instantiate(canvasPrefab);

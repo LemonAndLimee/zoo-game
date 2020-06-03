@@ -32,6 +32,8 @@ public class AnimalStats : MonoBehaviour
 
     public NotificationManagement notificationScript;
 
+    public PrefabsManagement prefabScript;
+
     public string animalType;
 
     public int age; //days
@@ -45,9 +47,13 @@ public class AnimalStats : MonoBehaviour
 
     public int costToFeed;
 
+    public int animalIndex; //used for inheriting values from prefab script
+
     // Start is called before the first frame update
     void Start()
     {
+        prefabScript = GameObject.Find("PrefabManager").GetComponent<PrefabsManagement>();
+
         notificationScript = GameObject.Find("GameManager").GetComponent<NotificationManagement>();
 
         childStatsPanel.SetActive(false);
@@ -64,75 +70,15 @@ public class AnimalStats : MonoBehaviour
         previousDay = dayScript.dayCount;
 
         //inherits correct values
-        if (gameObject.name.Contains("Pig"))
-        {
-            animalType = "Pig";
-
-            hungerPerDay = PigStats.hungerPerDay;
-            thirstPerDay = PigStats.thirstPerDay;
-
-            interestRating = PigStats.interestRating;
-
-            daysTilDeath = PigStats.daysTilDeath;
-            adultThreshold = PigStats.adultThreshold;
-
-            adultSize = PigStats.adultSize;
-            babySize = PigStats.babySize;
-
-            costToFeed = PigStats.costToFeed;
-
-        }
-        else if (gameObject.name.Contains("Llama"))
-        {
-            animalType = "Llama";
-
-            hungerPerDay = LlamaStats.hungerPerDay;
-            thirstPerDay = LlamaStats.thirstPerDay;
-
-            interestRating = LlamaStats.interestRating;
-
-            daysTilDeath = LlamaStats.daysTilDeath;
-            adultThreshold = LlamaStats.adultThreshold;
-
-            adultSize = LlamaStats.adultSize;
-            babySize = LlamaStats.babySize;
-
-            costToFeed = LlamaStats.costToFeed;
-        }
-        else if (gameObject.name.Contains("Zebra"))
-        {
-            animalType = "Zebra";
-
-            hungerPerDay = ZebraStats.hungerPerDay;
-            thirstPerDay = ZebraStats.thirstPerDay;
-
-            interestRating = ZebraStats.interestRating;
-
-            daysTilDeath = ZebraStats.daysTilDeath;
-            adultThreshold = ZebraStats.adultThreshold;
-
-            adultSize = ZebraStats.adultSize;
-            babySize = ZebraStats.babySize;
-
-            costToFeed = ZebraStats.costToFeed;
-        }
-        else if (gameObject.name.Contains("Lion"))
-        {
-            animalType = "Lion";
-
-            hungerPerDay = LionStats.hungerPerDay;
-            thirstPerDay = LionStats.thirstPerDay;
-
-            interestRating = LionStats.interestRating;
-
-            daysTilDeath = LionStats.daysTilDeath;
-            adultThreshold = LionStats.adultThreshold;
-
-            adultSize = LionStats.adultSize;
-            babySize = LionStats.babySize;
-
-            costToFeed = LionStats.costToFeed;
-        }
+        animalType = prefabScript.animalNames[animalIndex];
+        hungerPerDay = prefabScript.scripts[animalIndex].hungerPerDay;
+        thirstPerDay = prefabScript.scripts[animalIndex].thirstPerDay;
+        interestRating = prefabScript.scripts[animalIndex].interestRating;
+        daysTilDeath = prefabScript.scripts[animalIndex].daysTilDeath;
+        adultThreshold = prefabScript.scripts[animalIndex].adultThreshold;
+        adultSize = prefabScript.scripts[animalIndex].adultSize;
+        babySize = prefabScript.scripts[animalIndex].babySize;
+        costToFeed = prefabScript.scripts[animalIndex].costToFeed;
 
         startScript = GameObject.FindGameObjectWithTag("StartManager").GetComponent<StartManagement>();
         worldScript = GameObject.Find("GameManager").GetComponent<WorldManagement>();

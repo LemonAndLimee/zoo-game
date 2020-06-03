@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,6 +34,11 @@ public class PlacingLogic : MonoBehaviour
     public MoneyLogic moneyScript;
 
     public List<GameObject> continousPrefabs = new List<GameObject>();
+
+    public int currentHabitatIndex;
+    public int currentHabitatTypeIndex;
+
+    public PrefabsManagement prefabScript;
 
     // Update is called once per frame
     void Update()
@@ -254,6 +260,18 @@ public class PlacingLogic : MonoBehaviour
             statsScript.worldScriptIndex = worldScript.habitats.IndexOf(currentObject);
             statsScript.objectIndex = worldScript.objects.IndexOf(currentObject);
             statsScript.placed = true;
+
+            worldScript.habitatPrefabIndexes.Add(currentHabitatIndex);
+            worldScript.habitatTypeIndexes.Add(currentHabitatTypeIndex);
+            //Debug.Log(currentHabitatTypeIndex);
+            //Debug.Log(worldScript.objects.IndexOf(currentObject));
+            worldScript.habitatObjectIndexes.Add(worldScript.objects.IndexOf(currentObject));
+
+            statsScript.habitatTypeIndex = currentHabitatTypeIndex;
+            statsScript.possibleAnimals = prefabScript.habitatScripts[currentHabitatTypeIndex].animals.ToList();
+            statsScript.sizeInUnits = prefabScript.habitatScripts[currentHabitatTypeIndex].sizes[statsScript.size];
+            statsScript.capacity = prefabScript.habitatScripts[currentHabitatTypeIndex].capacity[statsScript.size];
+            statsScript.spaceLeft = statsScript.capacity;
         }
 
 

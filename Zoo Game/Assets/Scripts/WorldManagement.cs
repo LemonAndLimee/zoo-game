@@ -41,6 +41,10 @@ public class WorldManagement : MonoBehaviour
     public List<GameObject> habitats; //not saved and loaded, just used for giving a habitat an index
     public List<int> habitatsSpaceLeft;
 
+    public List<int> habitatPrefabIndexes = new List<int>();
+    public List<int> habitatTypeIndexes = new List<int>();
+    public List<int> habitatObjectIndexes = new List<int>();
+
     public float gameTimer; //not for saving, for tracking game running
 
     public void Save()
@@ -78,8 +82,11 @@ public class WorldManagement : MonoBehaviour
         isAlive = data.isAlive.ToList();
 
         animalHabitatIndexes = data.habitatIndexes.ToList();
-
         habitatsSpaceLeft = data.habitatSpaceLeft.ToList();
+
+        habitatPrefabIndexes = data.habitatPrefabIndexes.ToList();
+        habitatTypeIndexes = data.habitatTypeIndexes.ToList();
+        habitatObjectIndexes = data.habitatObjectIndexes.ToList();
     }
 
     public void Update()

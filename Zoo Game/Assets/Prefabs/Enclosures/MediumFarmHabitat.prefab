@@ -194,7 +194,7 @@ Transform:
   m_GameObject: {fileID: 3853733762819824369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1, y: -5, z: 1}
-  m_LocalScale: {x: 1.04, y: 1, z: 1}
+  m_LocalScale: {x: 1.04, y: 1.04, z: 1}
   m_Children:
   - {fileID: 566519569844323415}
   - {fileID: 4523813005752663728}
@@ -350,9 +350,12 @@ MonoBehaviour:
   spaceLeft: 0
   worldScript: {fileID: 0}
   worldScriptIndex: 0
+  objectIndex: 0
   startScript: {fileID: 0}
   placed: 0
   animals: []
+  habitatTypeIndex: 0
+  prefabScript: {fileID: 0}
 --- !u!1 &7090632368709782529
 GameObject:
   m_ObjectHideFlags: 0

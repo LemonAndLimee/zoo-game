@@ -6,16 +6,14 @@ using UnityEngine;
 public class HabitatStats : MonoBehaviour
 {
     public List<string> possibleAnimals = new List<string>();
-    public List<int> babyCosts = new List<int>();
-    public List<int> adultCosts = new List<int>();
     public int size;
     public int sizeInUnits;
     public int capacity;
     public int spaceLeft;
 
-    public WorldManagement worldScript;
+    public WorldManagement worldScript; //applies to habitat lists
     public int worldScriptIndex;
-    public int objectIndex;
+    public int objectIndex; // applies to object lists
 
     public StartManagement startScript;
 
@@ -23,9 +21,13 @@ public class HabitatStats : MonoBehaviour
 
     public List<GameObject> animals = new List<GameObject>();
 
+    public int habitatTypeIndex;
+    public PrefabsManagement prefabScript;
+
     // Start is called before the first frame update
     void Start()
     {
+        prefabScript = GameObject.Find("PrefabManager").GetComponent<PrefabsManagement>();
 
         //assigns integer value to size
         if (gameObject.name.Contains("Small"))
@@ -39,24 +41,6 @@ public class HabitatStats : MonoBehaviour
         else if (gameObject.name.Contains("Large"))
         {
             size = 2;
-        }
-
-        //assigns correct values to habitat stats - sets spaceleft to capacity
-        if (gameObject.name.Contains("Farm"))
-        {
-            possibleAnimals = FarmEnclosureInfo.animals.ToList();
-            sizeInUnits = FarmEnclosureInfo.sizes[size];
-            capacity = FarmEnclosureInfo.capacity[size];
-
-            spaceLeft = capacity;
-
-        }
-        else if (gameObject.name.Contains("Savannah"))
-        {
-            possibleAnimals = SavannahEnclosureInfo.animals.ToList();
-            sizeInUnits = SavannahEnclosureInfo.sizes[size];
-            capacity = SavannahEnclosureInfo.capacity[size];
-            spaceLeft = capacity;
         }
 
         startScript = GameObject.FindGameObjectWithTag("StartManager").GetComponent<StartManagement>();
@@ -76,6 +60,11 @@ public class HabitatStats : MonoBehaviour
     {
         if (placed == true)
         {
+            worldScriptIndex = worldScript.habitats.IndexOf(gameObject);
+
+            objectIndex = worldScript.objects.IndexOf(gameObject);
+            worldScript.habitatObjectIndexes[worldScriptIndex] = objectIndex;
+
             worldScript.habitatsSpaceLeft[worldScriptIndex] = spaceLeft;
             spaceLeft = capacity - animals.Count;
         }
@@ -101,6 +90,10 @@ public class HabitatStats : MonoBehaviour
         worldScript.x_positions.RemoveAt(objectIndex);
         worldScript.y_positions.RemoveAt(objectIndex);
         worldScript.sizes.RemoveAt(objectIndex);
+
+        worldScript.habitatPrefabIndexes.RemoveAt(worldScriptIndex);
+        worldScript.habitatTypeIndexes.RemoveAt(worldScriptIndex);
+        worldScript.habitatObjectIndexes.RemoveAt(worldScriptIndex);
 
         Destroy(gameObject);
     }

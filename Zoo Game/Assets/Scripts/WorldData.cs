@@ -34,8 +34,11 @@ public class WorldData
     public bool[] isAlive;
 
     public int[] habitatIndexes;
-
     public int[] habitatSpaceLeft;
+
+    public int[] habitatPrefabIndexes;
+    public int[] habitatTypeIndexes;
+    public int[] habitatObjectIndexes;
 
     public WorldData (WorldManagement worldScript)
     {
@@ -65,7 +68,10 @@ public class WorldData
         isAlive = worldScript.isAlive.ToArray();
 
         habitatIndexes = worldScript.animalHabitatIndexes.ToArray();
-
         habitatSpaceLeft = worldScript.habitatsSpaceLeft.ToArray();
+
+        habitatPrefabIndexes = worldScript.habitatPrefabIndexes.ToArray();
+        habitatTypeIndexes = worldScript.habitatTypeIndexes.ToArray();
+        habitatObjectIndexes = worldScript.habitatObjectIndexes.ToArray();
     }
 }
