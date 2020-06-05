@@ -40,3 +40,13 @@ public class Jungle : Habitat
         costPerUnit = 150;
     }
 }
+public class Arctic : Habitat
+{
+    void Awake()
+    {
+        animals = new string[2] { "Penguin", "Polar Bear" };
+        sizes = new int[3] { 1, 4, 9 };
+        capacity = new int[] { 1, 3, 6 };
+        costPerUnit = 200;
+    }
+}

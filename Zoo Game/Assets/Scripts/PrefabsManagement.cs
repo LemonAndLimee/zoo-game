@@ -33,6 +33,7 @@ public class PrefabsManagement : MonoBehaviour
         habitatScripts.Add(gameObject.AddComponent<Farm>());
         habitatScripts.Add(gameObject.AddComponent<Savannah>());
         habitatScripts.Add(gameObject.AddComponent<Jungle>());
+        habitatScripts.Add(gameObject.AddComponent<Arctic>());
     }
 
 }

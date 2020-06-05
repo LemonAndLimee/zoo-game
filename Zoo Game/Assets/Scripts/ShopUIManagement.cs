@@ -29,6 +29,7 @@ public class ShopUIManagement : MonoBehaviour
     public GameObject farmPanel;
     public GameObject savannahPanel;
     public GameObject junglePanel;
+    public GameObject arcticPanel;
 
     public PlacingLogic placeScript;
 
@@ -251,7 +252,15 @@ public class ShopUIManagement : MonoBehaviour
             junglePanel.SetActive(true);
         }
     }
-
+    public void SwitchToArctic()
+    {
+        if (activeSubPanel != arcticPanel)
+        {
+            activeSubPanel.SetActive(false);
+            activeSubPanel = arcticPanel;
+            arcticPanel.SetActive(true);
+        }
+    }
 
     //different purchase options
     public void StonePath()
@@ -319,6 +328,25 @@ public class ShopUIManagement : MonoBehaviour
     {
         int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "largeJungle");
         int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Jungle");
+        Habitat(habitatIndex, typeIndex, 2);
+    }
+
+    public void SmallArcticHabitat()
+    {
+        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "smallArctic");
+        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Arctic");
+        Habitat(habitatIndex, typeIndex, 0);
+    }
+    public void MediumArcticHabitat()
+    {
+        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "mediumArctic");
+        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Arctic");
+        Habitat(habitatIndex, typeIndex, 1);
+    }
+    public void LargeArcticHabitat()
+    {
+        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "largeArctic");
+        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Arctic");
         Habitat(habitatIndex, typeIndex, 2);
     }
 
