@@ -40,10 +40,14 @@ public class ShopUIManagement : MonoBehaviour
 
     public PrefabsManagement prefabScript;
 
+    public GameObject[] habitatPanels;
+
+    public int currentHabitatType;
+
     void Start()
     {
-        farmPanel.SetActive(true);
-        activeSubPanel = farmPanel;
+        SwitchToFarms();
+        currentHabitatType = 0;
     }
 
     void Update()
@@ -87,6 +91,29 @@ public class ShopUIManagement : MonoBehaviour
             nameText.text = staffScript.workers[i].name;
             Text salaryText = workerPanels[i].transform.Find("Salary").GetComponent<Text>();
             salaryText.text = "$" + staffScript.workers[i].dailySalary + "/day";
+        }
+
+        for (int i = 0; i < habitatPanels.Count(); i++)
+        {
+            habitatPanels[i].GetComponent<Button>().image.sprite = prefabScript.habitatImages[currentHabitatType];
+            Text nameText = habitatPanels[i].transform.Find("Name").GetComponent<Text>();
+            nameText.text = prefabScript.habitatTypeNames[currentHabitatType] + " Habitat";
+            Text priceText = habitatPanels[i].transform.Find("Price").GetComponent<Text>();
+            int price = prefabScript.habitatScripts[currentHabitatType].costPerUnit * prefabScript.habitatScripts[currentHabitatType].sizes[i];
+            priceText.text = "$" + price.ToString();
+            Text sizeText = habitatPanels[i].transform.Find("Size").GetComponent<Text>();
+            if (i == 0)
+            {
+                sizeText.text = "Small";
+            }
+            else if (i == 1)
+            {
+                sizeText.text = "Medium";
+            }
+            else if (i == 2)
+            {
+                sizeText.text = "Large";
+            }
         }
     }
 
@@ -227,39 +254,19 @@ public class ShopUIManagement : MonoBehaviour
 
     public void SwitchToFarms()
     {
-        if (activeSubPanel != farmPanel)
-        {
-            activeSubPanel.SetActive(false);
-            activeSubPanel = farmPanel;
-            farmPanel.SetActive(true);
-        }
+        currentHabitatType = 0;
     }
     public void SwitchToSavannah()
     {
-        if (activeSubPanel != savannahPanel)
-        {
-            activeSubPanel.SetActive(false);
-            activeSubPanel = savannahPanel;
-            savannahPanel.SetActive(true);
-        }
+        currentHabitatType = 1;
     }
     public void SwitchToJungle()
     {
-        if (activeSubPanel != junglePanel)
-        {
-            activeSubPanel.SetActive(false);
-            activeSubPanel = junglePanel;
-            junglePanel.SetActive(true);
-        }
+        currentHabitatType = 2;
     }
     public void SwitchToArctic()
     {
-        if (activeSubPanel != arcticPanel)
-        {
-            activeSubPanel.SetActive(false);
-            activeSubPanel = arcticPanel;
-            arcticPanel.SetActive(true);
-        }
+        currentHabitatType = 3;
     }
 
     //different purchase options
@@ -273,82 +280,25 @@ public class ShopUIManagement : MonoBehaviour
         ToggleShop("place");
     }
 
-    public void SmallFarmHabitat()
+    public void SmallHabitat()
     {
-        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "smallFarm");
-        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Farm");
+        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "small" + prefabScript.habitatTypeNames[currentHabitatType]);
+        int typeIndex = currentHabitatType;
         Habitat(habitatIndex, typeIndex, 0);
     }
-    public void MediumFarmHabitat()
+    public void MediumHabitat()
     {
-        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "mediumFarm");
-        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Farm");
+        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "medium" + prefabScript.habitatTypeNames[currentHabitatType]);
+        int typeIndex = currentHabitatType;
         Habitat(habitatIndex, typeIndex, 1);
     }
-    public void LargeFarmHabitat()
+    public void LargeHabitat()
     {
-        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "largeFarm");
-        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Farm");
+        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "large" + prefabScript.habitatTypeNames[currentHabitatType]);
+        int typeIndex = currentHabitatType;
         Habitat(habitatIndex, typeIndex, 2);
     }
 
-    public void SmallSavannahHabitat()
-    {
-        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "smallSavannah");
-        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Savannah");
-        Habitat(habitatIndex, typeIndex, 0);
-    }
-    public void MediumSavannahHabitat()
-    {
-        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "mediumSavannah");
-        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Savannah");
-        Habitat(habitatIndex, typeIndex, 1);
-    }
-    public void LargeSavannahHabitat()
-    {
-        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "largeSavannah");
-        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Savannah");
-        Habitat(habitatIndex, typeIndex, 2);
-    }
-
-    public void SmallJungleHabitat()
-    {
-        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "smallJungle");
-        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Jungle");
-        Debug.Log(typeIndex);
-        Habitat(habitatIndex, typeIndex, 0);
-    }
-    public void MediumJungleHabitat()
-    {
-        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "mediumJungle");
-        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Jungle");
-        Habitat(habitatIndex, typeIndex, 1);
-    }
-    public void LargeJungleHabitat()
-    {
-        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "largeJungle");
-        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Jungle");
-        Habitat(habitatIndex, typeIndex, 2);
-    }
-
-    public void SmallArcticHabitat()
-    {
-        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "smallArctic");
-        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Arctic");
-        Habitat(habitatIndex, typeIndex, 0);
-    }
-    public void MediumArcticHabitat()
-    {
-        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "mediumArctic");
-        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Arctic");
-        Habitat(habitatIndex, typeIndex, 1);
-    }
-    public void LargeArcticHabitat()
-    {
-        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "largeArctic");
-        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Arctic");
-        Habitat(habitatIndex, typeIndex, 2);
-    }
 
     public void Habitat(int habitatIndex, int typeIndex, int size)
     {

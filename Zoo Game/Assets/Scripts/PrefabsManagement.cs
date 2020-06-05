@@ -21,6 +21,8 @@ public class PrefabsManagement : MonoBehaviour
 
     public GameObject[] habitats;
 
+    public Sprite[] habitatImages;
+
     void Start()
     {
         scripts.Add(gameObject.AddComponent<Pig>());
