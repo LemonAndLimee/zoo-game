@@ -27,10 +27,12 @@ public class PrefabsManagement : MonoBehaviour
         scripts.Add(gameObject.AddComponent<Llama>());
         scripts.Add(gameObject.AddComponent<Zebra>());
         scripts.Add(gameObject.AddComponent<Lion>());
+        scripts.Add(gameObject.AddComponent<Monkey>());
+        scripts.Add(gameObject.AddComponent<Tiger>());
 
         habitatScripts.Add(gameObject.AddComponent<Farm>());
         habitatScripts.Add(gameObject.AddComponent<Savannah>());
-
+        habitatScripts.Add(gameObject.AddComponent<Jungle>());
     }
 
 }

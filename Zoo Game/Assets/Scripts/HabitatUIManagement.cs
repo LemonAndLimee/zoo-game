@@ -51,15 +51,16 @@ public class HabitatUIManagement : MonoBehaviour
     {
         if (currentHabitat != null)
         {
+            for (int i = 0; i < prefabScript.habitatTypeNames.Count(); i++)
+            {
+                if (currentHabitat.name.Contains(prefabScript.habitatTypeNames[i]))
+                {
+                    currentType = prefabScript.habitatTypeNames[i];
+                }
+            }
+
             string lowercase = currentHabitat.name.ToLower();
-            if (lowercase.Contains("farm"))
-            {
-                currentType = "Farm";
-            }
-            if (lowercase.Contains("savannah"))
-            {
-                currentType = "Savannah";
-            }
+
             if (lowercase.Contains("small"))
             {
                 currentSize = "Small";
@@ -245,6 +246,22 @@ public class HabitatUIManagement : MonoBehaviour
     {
         HireWorker(3);
     }
+    public void Hire4()
+    {
+        HireWorker(4);
+    }
+    public void Hire5()
+    {
+        HireWorker(5);
+    }
+    public void Hire6()
+    {
+        HireWorker(6);
+    }
+    public void Hire7()
+    {
+        HireWorker(7);
+    }
 
     public void HireWorker(int index)
     {
@@ -268,6 +285,22 @@ public class HabitatUIManagement : MonoBehaviour
     public void Feed3()
     {
         FeedAnimal(3);
+    }
+    public void Feed4()
+    {
+        FeedAnimal(4);
+    }
+    public void Feed5()
+    {
+        FeedAnimal(5);
+    }
+    public void Feed6()
+    {
+        FeedAnimal(6);
+    }
+    public void Feed7()
+    {
+        FeedAnimal(7);
     }
 
     public void FeedAnimal(int index)

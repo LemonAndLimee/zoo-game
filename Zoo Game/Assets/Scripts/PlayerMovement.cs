@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
 
     public int[] cameraSizes;
-    public int currentindex = 1;
+    public int currentindex = 2;
     public Camera cam;
 
     // Start is called before the first frame update

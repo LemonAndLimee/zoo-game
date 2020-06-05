@@ -30,3 +30,13 @@ public class Savannah : Habitat
         costPerUnit = 100;
     }
 }
+public class Jungle : Habitat
+{
+    void Awake()
+    {
+        animals = new string[2] { "Monkey", "Tiger" };
+        sizes = new int[3] { 1, 4, 9 };
+        capacity = new int[] { 1, 3, 6 };
+        costPerUnit = 150;
+    }
+}

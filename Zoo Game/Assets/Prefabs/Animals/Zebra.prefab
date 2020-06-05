@@ -101,7 +101,7 @@ SpriteRenderer:
   m_SortingLayerID: -1788226513
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6348dd6d948d64039a380a1b0bdf4583, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eec9d054e024d4ed088e0992de36b73f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,6 +132,8 @@ MonoBehaviour:
   timeLimit: 0
   targetRotation: 0
   moveChance: 2
+  prefabScript: {fileID: 0}
+  animalIndex: 0
 --- !u!50 &230849216487173023
 Rigidbody2D:
   serializedVersion: 4
@@ -183,6 +185,7 @@ MonoBehaviour:
   isDanger: 0
   zeroHealthCounter: 0
   notificationScript: {fileID: 0}
+  prefabScript: {fileID: 0}
   animalType: 
   age: 0
   isAdult: 0
@@ -191,6 +194,7 @@ MonoBehaviour:
   adultSize: 0
   animalName: 
   costToFeed: 0
+  animalIndex: 0
 --- !u!111 &5533837877040029428
 Animation:
   m_ObjectHideFlags: 0

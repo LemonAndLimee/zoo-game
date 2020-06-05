@@ -25,8 +25,10 @@ public class ShopUIManagement : MonoBehaviour
     public GameObject activeSubPanel;
 
     public GameObject pathsPanel;
+
     public GameObject farmPanel;
     public GameObject savannahPanel;
+    public GameObject junglePanel;
 
     public PlacingLogic placeScript;
 
@@ -240,6 +242,15 @@ public class ShopUIManagement : MonoBehaviour
             savannahPanel.SetActive(true);
         }
     }
+    public void SwitchToJungle()
+    {
+        if (activeSubPanel != junglePanel)
+        {
+            activeSubPanel.SetActive(false);
+            activeSubPanel = junglePanel;
+            junglePanel.SetActive(true);
+        }
+    }
 
 
     //different purchase options
@@ -271,6 +282,7 @@ public class ShopUIManagement : MonoBehaviour
         int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Farm");
         Habitat(habitatIndex, typeIndex, 2);
     }
+
     public void SmallSavannahHabitat()
     {
         int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "smallSavannah");
@@ -287,6 +299,26 @@ public class ShopUIManagement : MonoBehaviour
     {
         int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "largeSavannah");
         int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Savannah");
+        Habitat(habitatIndex, typeIndex, 2);
+    }
+
+    public void SmallJungleHabitat()
+    {
+        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "smallJungle");
+        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Jungle");
+        Debug.Log(typeIndex);
+        Habitat(habitatIndex, typeIndex, 0);
+    }
+    public void MediumJungleHabitat()
+    {
+        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "mediumJungle");
+        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Jungle");
+        Habitat(habitatIndex, typeIndex, 1);
+    }
+    public void LargeJungleHabitat()
+    {
+        int habitatIndex = System.Array.IndexOf(prefabScript.habitatNames, "largeJungle");
+        int typeIndex = System.Array.IndexOf(prefabScript.habitatTypeNames, "Jungle");
         Habitat(habitatIndex, typeIndex, 2);
     }
 
