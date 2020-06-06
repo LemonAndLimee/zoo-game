@@ -6577,6 +6577,7 @@ MonoBehaviour:
   - Lion
   - Monkey
   - Tiger
+  - Penguin
   animals:
   - {fileID: 8283085786118565881, guid: d4a331a6d7ced4d8f8a4508bd20d6666, type: 3}
   - {fileID: 1467170965726420297, guid: b0f47618f412149a4870b28398d04deb, type: 3}
@@ -6584,6 +6585,7 @@ MonoBehaviour:
   - {fileID: 4209785083520318486, guid: 0691f1babacf04d748881e28413d15ce, type: 3}
   - {fileID: 5079835561993518276, guid: 2c1bf63f89a5f47979f575aeb833965c, type: 3}
   - {fileID: 476531326275296023, guid: e0e83570fce8d4b38afbe77bdd34ce59, type: 3}
+  - {fileID: 6800504636163797632, guid: ef40b4f1e22764d91a0347ddf2fbbddb, type: 3}
   animalImages:
   - {fileID: 21300000, guid: a42206ffd109747188d80a216c02e861, type: 3}
   - {fileID: 21300000, guid: b261e098af10a42c3ba054c8a8aa7541, type: 3}
@@ -6591,6 +6593,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 558b0bfb0948e46f5be31ca694132735, type: 3}
   - {fileID: 21300000, guid: 82a2d6c7b307741ab870bec8665b9ffd, type: 3}
   - {fileID: 21300000, guid: 6348dd6d948d64039a380a1b0bdf4583, type: 3}
+  - {fileID: 21300000, guid: 0c9d59ffa78cb4181981d04cc2e648cb, type: 3}
   animalColours:
   - {r: 0.98039216, g: 0.8, b: 0.88235295, a: 1}
   - {r: 0.5882353, g: 0.3882353, b: 0.08627451, a: 1}
@@ -6598,6 +6601,7 @@ MonoBehaviour:
   - {r: 0.9607843, g: 0.91764706, b: 0.32941177, a: 1}
   - {r: 0.6117647, g: 0.42352942, b: 0.1764706, a: 1}
   - {r: 0.9529412, g: 0.52156866, b: 0.039215688, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
   scripts: []
   habitatScripts: []
   habitatNames:

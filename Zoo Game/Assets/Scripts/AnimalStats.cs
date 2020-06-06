@@ -97,35 +97,6 @@ public class AnimalStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        worldScriptIndex = worldScript.animals.IndexOf(gameObject);
-
-        if (age >= adultThreshold)
-        {
-            isAdult = true;
-            gameObject.transform.localScale = new Vector3(adultSize, adultSize, 1f);
-        }
-        else
-        {
-            isAdult = false;
-            gameObject.transform.localScale = new Vector3(babySize, babySize, 1f);
-
-        }
-
-        UpdateStatsSliders();
-
-        worldScript.ages[worldScriptIndex] = age;
-        //Debug.Log("index - " + worldScriptIndex);
-        //Debug.Log("count - " + worldScript.animalFoodLevels.Count);
-        worldScript.animal_x_positions[worldScriptIndex] = transform.position.x;
-        worldScript.animal_y_positions[worldScriptIndex] = transform.position.y;
-        worldScript.animal_z_rotations[worldScriptIndex] = transform.eulerAngles.z;
-
-        worldScript.animalFoodLevels[worldScriptIndex] = foodLevel;
-        worldScript.animalWaterLevels[worldScriptIndex] = waterLevel;
-
-        worldScript.animalZeroCounters[worldScriptIndex] = zeroHealthCounter;
-        worldScript.isAlive[worldScriptIndex] = isAlive;
-
         if (isAlive == false) //if dead
         {
             isDanger = false;
@@ -137,24 +108,56 @@ public class AnimalStats : MonoBehaviour
 
             Animation anim = gameObject.GetComponent<Animation>();
             anim.Play();
-            Invoke("Delete", anim.clip.length);
+            Invoke("Delete", 6f);
 
         }
-        else if (foodLevel <= 0 || waterLevel <= 0) //elif in danger zone
+        else
         {
-            isDanger = true;
-            if (warningIcon.activeInHierarchy == false)
+            worldScriptIndex = worldScript.animals.IndexOf(gameObject);
+
+            if (age >= adultThreshold)
             {
-                notificationScript.target = gameObject;
-                notificationScript.AddNotification("Warning");
-                notificationScript.animals.Add(gameObject);
+                isAdult = true;
+                gameObject.transform.localScale = new Vector3(adultSize, adultSize, 1f);
             }
-            warningIcon.SetActive(true);
-        }
-        else //if healthy
-        {
-            isDanger = false;
-            warningIcon.SetActive(false);
+            else
+            {
+                isAdult = false;
+                gameObject.transform.localScale = new Vector3(babySize, babySize, 1f);
+
+            }
+
+            UpdateStatsSliders();
+
+            worldScript.ages[worldScriptIndex] = age;
+            //Debug.Log("index - " + worldScriptIndex);
+            //Debug.Log("count - " + worldScript.animalFoodLevels.Count);
+            worldScript.animal_x_positions[worldScriptIndex] = transform.position.x;
+            worldScript.animal_y_positions[worldScriptIndex] = transform.position.y;
+            worldScript.animal_z_rotations[worldScriptIndex] = transform.eulerAngles.z;
+
+            worldScript.animalFoodLevels[worldScriptIndex] = foodLevel;
+            worldScript.animalWaterLevels[worldScriptIndex] = waterLevel;
+
+            worldScript.animalZeroCounters[worldScriptIndex] = zeroHealthCounter;
+            worldScript.isAlive[worldScriptIndex] = isAlive;
+
+            if (foodLevel <= 0 || waterLevel <= 0) //elif in danger zone
+            {
+                isDanger = true;
+                if (warningIcon.activeInHierarchy == false)
+                {
+                    notificationScript.target = gameObject;
+                    notificationScript.AddNotification("Warning");
+                    notificationScript.animals.Add(gameObject);
+                }
+                warningIcon.SetActive(true);
+            }
+            else //if healthy
+            {
+                isDanger = false;
+                warningIcon.SetActive(false);
+            }
         }
 
     }
@@ -218,6 +221,8 @@ public class AnimalStats : MonoBehaviour
 
     public void Delete()
     {
+        worldScriptIndex = worldScript.animals.IndexOf(gameObject);
+
         Debug.Log("delete");
         worldScript.animals.RemoveAt(worldScriptIndex);
         worldScript.hasWorker.RemoveAt(worldScriptIndex);

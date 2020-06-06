@@ -124,3 +124,20 @@ public class Tiger : Animal
         averageSpeed = 25;
     }
 }
+
+public class Penguin : Animal
+{
+    void Awake()
+    {
+        hungerPerDay = 20;
+        thirstPerDay = 30;
+        interestRating = 3; //out of 5
+        daysTilDeath = 2;
+        adultThreshold = 15;
+        adultSize = 0.3f;
+        babySize = 0.15f;
+        costs = new int[2] { 350, 400 };
+        costToFeed = 15;
+        averageSpeed = 15;
+    }
+}
