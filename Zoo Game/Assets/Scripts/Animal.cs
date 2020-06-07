@@ -141,3 +141,20 @@ public class Penguin : Animal
         averageSpeed = 15;
     }
 }
+
+public class PolarBear : Animal
+{
+    void Awake()
+    {
+        hungerPerDay = 10;
+        thirstPerDay = 20;
+        interestRating = 5; //out of 5
+        daysTilDeath = 3;
+        adultThreshold = 25;
+        adultSize = 1f;
+        babySize = 0.6f;
+        costs = new int[2] { 2500, 3000 };
+        costToFeed = 100;
+        averageSpeed = 20;
+    }
+}
