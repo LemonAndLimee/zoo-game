@@ -225,7 +225,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7, y: 7}
+  m_Size: {x: 7.5, y: 7.5}
   m_EdgeRadius: 0
 --- !u!212 &4947774238620954390
 SpriteRenderer:
@@ -342,8 +342,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   possibleAnimals: []
-  babyCosts: 
-  adultCosts: 
   size: 0
   sizeInUnits: 0
   capacity: 0
@@ -454,8 +452,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -3.2520895, y: 3.347763}
-  - {x: -3.2520885, y: -3.3092852}
-  - {x: 3.2412586, y: -3.2212372}
-  - {x: 3.2510388, y: 3.270804}
-  - {x: -3.1355982, y: 3.270805}
+  - {x: -3.6275432, y: 3.5210495}
+  - {x: -3.540898, y: -3.6269755}
+  - {x: 3.55895, y: -3.59669}
+  - {x: 3.482087, y: 3.5596144}
+  - {x: -3.3927925, y: 3.656597}

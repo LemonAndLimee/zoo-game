@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -45,6 +46,7 @@ public class HabitatUIManagement : MonoBehaviour
     public WorldManagement worldScript;
 
     public Text[] animalButtonTexts;
+    public Text[] priceTexts;
 
     // Update is called once per frame
     void Update()
@@ -78,7 +80,15 @@ public class HabitatUIManagement : MonoBehaviour
 
             for (int i = 0; i < animalButtonTexts.Count(); i++)
             {
-                animalButtonTexts[i].text = statsScript.possibleAnimals[i];
+                animalButtonTexts[i].text = prefabScript.habitatScripts[statsScript.habitatTypeIndex].animalTexts[i];
+
+                int currentAnimalIndex = Array.IndexOf(prefabScript.animalNames, statsScript.possibleAnimals[i]);
+                int animalSize = 0;
+                if (isBabyMode == false)
+                {
+                    animalSize = 1;
+                }
+                priceTexts[i].text = "$" + prefabScript.scripts[currentAnimalIndex].costs[animalSize].ToString();
             }
 
             //controls how many animal panels are enabled, depending on no. of animals in the habitat
@@ -129,6 +139,7 @@ public class HabitatUIManagement : MonoBehaviour
 
         habitatTypeText.text = currentType;
         habitatSizeText.text = currentSize;
+
     }
 
     public void TogglePanel(string state)
@@ -211,6 +222,8 @@ public class HabitatUIManagement : MonoBehaviour
     {
         string[] possibleAnimals = statsScript.possibleAnimals.ToArray();
         string animal = possibleAnimals[animalNumber];
+
+        animal = animal.Replace(" ", string.Empty);
 
         int animalIndex = System.Array.IndexOf(prefabScript.animalNames, animal);
 

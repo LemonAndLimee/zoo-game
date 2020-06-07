@@ -101,7 +101,7 @@ public class Monkey : Animal
         daysTilDeath = 2;
         adultThreshold = 15;
         adultSize = 0.3f;
-        babySize = 0.1f;
+        babySize = 0.2f;
         costs = new int[2] { 400, 500 };
         costToFeed = 15;
         averageSpeed = 25;
@@ -151,8 +151,8 @@ public class PolarBear : Animal
         interestRating = 5; //out of 5
         daysTilDeath = 3;
         adultThreshold = 25;
-        adultSize = 1f;
-        babySize = 0.6f;
+        adultSize = 0.8f;
+        babySize = 0.5f;
         costs = new int[2] { 2500, 3000 };
         costToFeed = 100;
         averageSpeed = 20;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -57,7 +58,7 @@ public class TerrainGeneration : MonoBehaviour
         }
         else if (startScript.isLoad == true && startScript.isNew == false)
         {
-            LoadWorld();
+            Invoke("LoadWorld", 0.1f);
         }
         
     }
@@ -229,9 +230,26 @@ public class TerrainGeneration : MonoBehaviour
         worldScript.objects.Add(currentObject);
         //sends array index of current object to its script
         HabitatStats statsScript = currentObject.GetComponent<HabitatStats>();
+
         statsScript.worldScriptIndex = worldScript.habitats.IndexOf(currentObject);
+        statsScript.objectIndex = objectIndex;
         statsScript.placed = true;
 
+        int typeIndex = worldScript.habitatTypeIndexes[i];
+        statsScript.habitatTypeIndex = typeIndex;
+        statsScript.possibleAnimals = prefabScript.habitatScripts[typeIndex].animals.ToList();
+        int size = 0;
+        if (currentObject.name.Contains("Medium"))
+        {
+            size = 1;
+        }
+        else if (currentObject.name.Contains("Large"))
+        {
+            size = 2;
+        }
+        statsScript.sizeInUnits = prefabScript.habitatScripts[typeIndex].sizes[size];
+        statsScript.capacity = prefabScript.habitatScripts[typeIndex].capacity[size];
+        statsScript.spaceLeft = worldScript.habitatsSpaceLeft[i];
     }
 
 }
