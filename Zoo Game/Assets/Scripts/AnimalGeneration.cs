@@ -25,8 +25,7 @@ public class AnimalGeneration : MonoBehaviour
         //if world is being loaded
         if (startScript.isLoad == true && startScript.isNew == false)
         {
-            LoadAnimals();
-            
+            Invoke("LoadAnimals", 0.11f);//0.01 ahead of habitat loading
         }
     }
 
@@ -54,7 +53,9 @@ public class AnimalGeneration : MonoBehaviour
         HabitatStats habitatStatsScript = currentHabitat.GetComponent<HabitatStats>();
         habitatStatsScript.animals.Add(currentObject);
 
+        Debug.Log(worldScript.animals.Count);
         worldScript.animals.Add(currentObject);
+        Debug.Log(worldScript.animals.Count);
 
         AnimalStats statsScript = currentObject.GetComponent<AnimalStats>();
         statsScript.worldScriptIndex = i;

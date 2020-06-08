@@ -60,6 +60,18 @@ public class HabitatStats : MonoBehaviour
     {
         if (placed == true)
         {
+            if (animals.Count > 0 && worldScript.animalHabitatIndexes.Count > 0)
+            {
+                for (int i = 0; i < animals.Count; i++)
+                {
+                    int animalWorldIndex = animals[i].GetComponent<AnimalStats>().worldScriptIndex;
+                    if (animalWorldIndex < worldScript.animalHabitatIndexes.Count)
+                    {
+                        worldScript.animalHabitatIndexes[animalWorldIndex] = worldScriptIndex;
+                    }
+                }
+            }
+
             worldScriptIndex = worldScript.habitats.IndexOf(gameObject);
 
             objectIndex = worldScript.objects.IndexOf(gameObject);
@@ -77,7 +89,7 @@ public class HabitatStats : MonoBehaviour
 
     public void Destroy()
     {
-        for (int i = 0; i < animals.Count; i++)
+        for (int i = animals.Count - 1; i >= 0; i--)
         {
             animals[i].GetComponent<AnimalStats>().Delete();
         } //deletes all animals

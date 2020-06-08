@@ -75,14 +75,21 @@ public class ShopUIManagement : MonoBehaviour
             }
             for (int x = 0; x < staffScript.workers[i].animalsToFeed.Count; x++)
             {
-                images[x].SetActive(true);
+                if (staffScript.workers[i].animalsToFeed[x] != null)
+                {
+                    images[x].SetActive(true);
 
-                Text animalNameText = images[x].transform.Find("Name").GetComponent<Text>();
-                animalNameText.text = staffScript.workers[i].animalsToFeed[x].GetComponent<AnimalStats>().animalName;
+                    Text animalNameText = images[x].transform.Find("Name").GetComponent<Text>();
+                    animalNameText.text = staffScript.workers[i].animalsToFeed[x].GetComponent<AnimalStats>().animalName;
 
-                int animalIndex = staffScript.workers[i].animalsToFeed[x].GetComponent<AnimalStats>().animalIndex;
-                images[x].GetComponent<Image>().sprite = prefabScript.animalImages[animalIndex];
-                images[x].GetComponent<Image>().color = prefabScript.animalColours[animalIndex];
+                    int animalIndex = staffScript.workers[i].animalsToFeed[x].GetComponent<AnimalStats>().animalIndex;
+                    images[x].GetComponent<Image>().sprite = prefabScript.animalImages[animalIndex];
+                    images[x].GetComponent<Image>().color = prefabScript.animalColours[animalIndex];
+                }
+                else
+                {
+                    staffScript.workers[i].animalsToFeed.RemoveAt(x);
+                }
                 
             }
 

@@ -225,6 +225,8 @@ public class AnimalStats : MonoBehaviour
 
         Debug.Log("delete");
         worldScript.animals.RemoveAt(worldScriptIndex);
+        worldScript.animalGivenNames.RemoveAt(worldScriptIndex);
+        worldScript.ages.RemoveAt(worldScriptIndex);
         worldScript.hasWorker.RemoveAt(worldScriptIndex);
         worldScript.animalNames.RemoveAt(worldScriptIndex);
         worldScript.animal_x_positions.RemoveAt(worldScriptIndex);

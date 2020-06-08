@@ -18,13 +18,18 @@ public class StaffManagement : MonoBehaviour
 
         if (startScript.isLoad == true)
         {
-            worldScript.Load();
-            for (int i = 0; i < worldScript.hasWorker.Count; i++)
+            Invoke("LoadWorkers", 0.12f);
+        }
+    }
+    public void LoadWorkers()
+    {
+        worldScript.Load();
+        for (int i = 0; i < worldScript.hasWorker.Count; i++)
+        {
+            if (worldScript.hasWorker[i] == true)
             {
-                if (worldScript.hasWorker[i] == true)
-                {
-                    AddWorker(worldScript.animals[i], true);
-                }
+                Debug.Log("animals length: " + worldScript.animals.Count.ToString());
+                AddWorker(worldScript.animals[i], true);
             }
         }
     }
