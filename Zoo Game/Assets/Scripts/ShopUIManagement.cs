@@ -275,6 +275,10 @@ public class ShopUIManagement : MonoBehaviour
     {
         currentHabitatType = 3;
     }
+    public void SwitchToWater()
+    {
+        currentHabitatType = 4;
+    }
 
     //different purchase options
     public void StonePath()

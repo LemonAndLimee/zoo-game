@@ -158,3 +158,37 @@ public class PolarBear : Animal
         averageSpeed = 20;
     }
 }
+
+public class Shark : Animal
+{
+    void Awake()
+    {
+        hungerPerDay = 20;
+        thirstPerDay = 30;
+        interestRating = 5; //out of 5
+        daysTilDeath = 2;
+        adultThreshold = 10;
+        adultSize = 0.9f;
+        babySize = 0.5f;
+        costs = new int[2] { 1800, 2000 };
+        costToFeed = 75;
+        averageSpeed = 25;
+    }
+}
+
+public class Clownfish : Animal
+{
+    void Awake()
+    {
+        hungerPerDay = 30;
+        thirstPerDay = 40;
+        interestRating = 1; //out of 5
+        daysTilDeath = 2;
+        adultThreshold = 10;
+        adultSize = 0.2f;
+        babySize = 0.1f;
+        costs = new int[2] { 5, 10 };
+        costToFeed = 1;
+        averageSpeed = 25;
+    }
+}

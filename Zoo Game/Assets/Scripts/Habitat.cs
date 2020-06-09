@@ -55,3 +55,14 @@ public class Arctic : Habitat
         costPerUnit = 200;
     }
 }
+public class Water : Habitat
+{
+    void Awake()
+    {
+        animals = new string[2] { "Shark", "Clownfish" };
+        animalTexts = new string[2] { "Shark", "Clownfish" };
+        sizes = new int[3] { 4, 9, 16 };
+        capacity = new int[] { 2, 4, 8 };
+        costPerUnit = 200;
+    }
+}
