@@ -47,6 +47,8 @@ public class AnimalStats : MonoBehaviour
 
     public int costToFeed;
 
+    public int capacityPoints;
+
     public int animalIndex; //used for inheriting values from prefab script
 
     // Start is called before the first frame update
@@ -79,6 +81,7 @@ public class AnimalStats : MonoBehaviour
         adultSize = prefabScript.scripts[animalIndex].adultSize;
         babySize = prefabScript.scripts[animalIndex].babySize;
         costToFeed = prefabScript.scripts[animalIndex].costToFeed;
+        capacityPoints = prefabScript.scripts[animalIndex].capacityPoints;
 
         startScript = GameObject.FindGameObjectWithTag("StartManager").GetComponent<StartManagement>();
         worldScript = GameObject.Find("GameManager").GetComponent<WorldManagement>();

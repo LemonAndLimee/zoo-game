@@ -181,15 +181,24 @@ public class HabitatUIManagement : MonoBehaviour
 
     public void ShowAnimalNamePanel()
     {
-        if (statsScript.spaceLeft >= 1)
-        {
-            animalNamePanel.SetActive(true);
-            Animation anim = animalNamePanel.GetComponent<Animation>();
-            anim.Play("FadeIn");
-            PlayerMovement movementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
-            movementScript.enabled = false;
-        }
+        animalNamePanel.SetActive(true);
+        Animation anim = animalNamePanel.GetComponent<Animation>();
+        anim.Play("FadeIn");
+        PlayerMovement movementScript = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        movementScript.enabled = false;
 
+    }
+
+    public void CheckCapacity()
+    {
+        string[] possibleAnimals = statsScript.possibleAnimals.ToArray();
+        string animal = possibleAnimals[animalNumber];
+        int animalIndex = Array.IndexOf(prefabScript.animalNames, animal);
+
+        if (statsScript.spaceLeft >= prefabScript.scripts[animalIndex].capacityPoints)
+        {
+            ShowAnimalNamePanel();
+        }
     }
 
     public void SubmitName()
@@ -211,12 +220,12 @@ public class HabitatUIManagement : MonoBehaviour
     public void SpawnAnimalZero()
     {
         animalNumber = 0;
-        ShowAnimalNamePanel();
+        CheckCapacity();
     }
     public void SpawnAnimalOne()
     {
         animalNumber = 1;
-        ShowAnimalNamePanel();
+        CheckCapacity();
     }
     public void Animal(string name)
     {
@@ -225,7 +234,7 @@ public class HabitatUIManagement : MonoBehaviour
 
         animal = animal.Replace(" ", string.Empty);
 
-        int animalIndex = System.Array.IndexOf(prefabScript.animalNames, animal);
+        int animalIndex = Array.IndexOf(prefabScript.animalNames, animal);
 
         int age;
 
@@ -239,8 +248,11 @@ public class HabitatUIManagement : MonoBehaviour
             age = prefabScript.scripts[animalIndex].adultThreshold;
             moneyScript.balance -= prefabScript.scripts[animalIndex].costs[1];
         }
+
+        int capacityPoints = prefabScript.scripts[animalIndex].capacityPoints;
+
         SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
-        spawnScript.Spawn(prefabScript.animals[animalIndex], age, name, animalIndex, statsCanvasPrefab, warningIconPrefab);
+        spawnScript.Spawn(prefabScript.animals[animalIndex], age, name, animalIndex, statsCanvasPrefab, warningIconPrefab, capacityPoints);
     }
 
     public void Hire0()

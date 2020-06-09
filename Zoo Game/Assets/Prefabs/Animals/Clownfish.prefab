@@ -194,6 +194,7 @@ MonoBehaviour:
   adultSize: 0
   animalName: 
   costToFeed: 0
+  capacityPoints: 0
   animalIndex: 0
 --- !u!111 &2441371882378751142
 Animation:
@@ -204,8 +205,9 @@ Animation:
   m_GameObject: {fileID: 5721306787460263449}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
+  m_Animation: {fileID: 7400000, guid: 0a4b3c48d7d4b40e3802a996d606addf, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 0a4b3c48d7d4b40e3802a996d606addf, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0

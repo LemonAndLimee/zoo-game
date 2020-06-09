@@ -21,6 +21,8 @@ public class Animal : MonoBehaviour
     public int costToFeed;
 
     public int averageSpeed;
+
+    public int capacityPoints; // 1 = small, 2 = medium, 4 = large
 }
 
 public class Pig : Animal
@@ -37,6 +39,7 @@ public class Pig : Animal
         costs = new int[2] { 100, 150 };
         costToFeed = 5;
         averageSpeed = 15;
+        capacityPoints = 2;
     }
 }
 
@@ -54,6 +57,7 @@ public class Llama : Animal
         costs = new int[2] { 150, 200 };
         costToFeed = 10;
         averageSpeed = 10;
+        capacityPoints = 2;
     }
 }
 
@@ -71,6 +75,7 @@ public class Zebra : Animal
         costs = new int[2] { 800, 1000 };
         costToFeed = 50;
         averageSpeed = 10;
+        capacityPoints = 2;
     }
 }
 
@@ -88,6 +93,7 @@ public class Lion : Animal
         costs = new int[2] { 2500, 3000 };
         costToFeed = 100;
         averageSpeed = 20;
+        capacityPoints = 4;
     }
 }
 
@@ -105,6 +111,7 @@ public class Monkey : Animal
         costs = new int[2] { 400, 500 };
         costToFeed = 15;
         averageSpeed = 25;
+        capacityPoints = 2;
     }
 }
 
@@ -122,6 +129,7 @@ public class Tiger : Animal
         costs = new int[2] { 2500, 3000 };
         costToFeed = 100;
         averageSpeed = 25;
+        capacityPoints = 4;
     }
 }
 
@@ -139,6 +147,7 @@ public class Penguin : Animal
         costs = new int[2] { 350, 400 };
         costToFeed = 15;
         averageSpeed = 15;
+        capacityPoints = 2;
     }
 }
 
@@ -156,6 +165,7 @@ public class PolarBear : Animal
         costs = new int[2] { 2500, 3000 };
         costToFeed = 100;
         averageSpeed = 20;
+        capacityPoints = 4;
     }
 }
 
@@ -173,6 +183,7 @@ public class Shark : Animal
         costs = new int[2] { 1800, 2000 };
         costToFeed = 75;
         averageSpeed = 25;
+        capacityPoints = 4;
     }
 }
 
@@ -190,5 +201,6 @@ public class Clownfish : Animal
         costs = new int[2] { 5, 10 };
         costToFeed = 1;
         averageSpeed = 25;
+        capacityPoints = 1;
     }
 }

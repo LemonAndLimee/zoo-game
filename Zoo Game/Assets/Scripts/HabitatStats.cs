@@ -78,7 +78,16 @@ public class HabitatStats : MonoBehaviour
             worldScript.habitatObjectIndexes[worldScriptIndex] = objectIndex;
 
             worldScript.habitatsSpaceLeft[worldScriptIndex] = spaceLeft;
-            spaceLeft = capacity - animals.Count;
+
+            int totalCapacityPoints = 0;
+            if (animals.Count > 0)
+            {
+                for (int i = 0; i < animals.Count; i++)
+                {
+                    totalCapacityPoints += animals[i].GetComponent<AnimalStats>().capacityPoints;
+                }
+            }
+            spaceLeft = capacity - totalCapacityPoints;
         }
         else
         {
