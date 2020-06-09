@@ -35,12 +35,15 @@ public class PrefabsManagement : MonoBehaviour
         scripts.Add(gameObject.AddComponent<PolarBear>());
         scripts.Add(gameObject.AddComponent<Shark>());
         scripts.Add(gameObject.AddComponent<Clownfish>());
+        scripts.Add(gameObject.AddComponent<Camel>());
+        scripts.Add(gameObject.AddComponent<Lizard>());
 
         habitatScripts.Add(gameObject.AddComponent<Farm>());
         habitatScripts.Add(gameObject.AddComponent<Savannah>());
         habitatScripts.Add(gameObject.AddComponent<Jungle>());
         habitatScripts.Add(gameObject.AddComponent<Arctic>());
         habitatScripts.Add(gameObject.AddComponent<Water>());
+        habitatScripts.Add(gameObject.AddComponent<Desert>());
     }
 
 }

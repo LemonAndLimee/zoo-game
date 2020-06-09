@@ -6658,6 +6658,8 @@ MonoBehaviour:
   - PolarBear
   - Shark
   - Clownfish
+  - Camel
+  - Lizard
   animals:
   - {fileID: 8283085786118565881, guid: d4a331a6d7ced4d8f8a4508bd20d6666, type: 3}
   - {fileID: 1467170965726420297, guid: b0f47618f412149a4870b28398d04deb, type: 3}
@@ -6669,6 +6671,8 @@ MonoBehaviour:
   - {fileID: 3859995137865841247, guid: 976dd5447bd274491bc3eea075111360, type: 3}
   - {fileID: 5150253262423562547, guid: ac82a2ede213e43268628228799d3532, type: 3}
   - {fileID: 5721306787460263449, guid: 86d24700aecfe4177b7e780324a1353e, type: 3}
+  - {fileID: 7410482983024076519, guid: 7cfe9777b687742dbae8ec42b1cebb0d, type: 3}
+  - {fileID: 3072909013484022144, guid: 19f66591c50984958b657e671efc2d77, type: 3}
   animalImages:
   - {fileID: 21300000, guid: a42206ffd109747188d80a216c02e861, type: 3}
   - {fileID: 21300000, guid: b261e098af10a42c3ba054c8a8aa7541, type: 3}
@@ -6680,6 +6684,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f8a203691794e4f7fbb852f111782d0b, type: 3}
   - {fileID: 21300000, guid: 9f44d9d8f09604fd0a728de29ee2b0d9, type: 3}
   - {fileID: 21300000, guid: cc7ed93979130419c803a617ab31e7a5, type: 3}
+  - {fileID: 21300000, guid: b654eaf61088d47689ee739e5bcefc6d, type: 3}
+  - {fileID: 21300000, guid: d674ac5dea72d468190cd476fb3cad62, type: 3}
   animalColours:
   - {r: 0.98039216, g: 0.8, b: 0.88235295, a: 1}
   - {r: 0.5882353, g: 0.3882353, b: 0.08627451, a: 1}
@@ -6691,6 +6697,8 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.46666667, g: 0.53333336, b: 0.59607846, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.7647059, g: 0.6666667, b: 0.07450981, a: 1}
+  - {r: 0.5803922, g: 0.6313726, b: 0.2901961, a: 1}
   scripts: []
   habitatScripts: []
   habitatNames:
@@ -6709,12 +6717,16 @@ MonoBehaviour:
   - smallWater
   - mediumWater
   - largeWater
+  - smallDesert
+  - mediumDesert
+  - largeDesert
   habitatTypeNames:
   - Farm
   - Savannah
   - Jungle
   - Arctic
   - Water
+  - Desert
   habitats:
   - {fileID: 6787353839244051694, guid: a0d2791712c0d40f888c283fbc2f66b0, type: 3}
   - {fileID: 3853733762819824369, guid: 6fa35e2e9ecc94682ae314e6a55c2dd6, type: 3}
@@ -6731,12 +6743,16 @@ MonoBehaviour:
   - {fileID: 8278325449456227582, guid: c49259ca38f4d4e51af979c78dfc136d, type: 3}
   - {fileID: 548756997938285845, guid: ef6d8c0a1d05b489f8fa81d0165cc8ab, type: 3}
   - {fileID: 3461339761673830626, guid: cb154a406cdd144dfab5ed88760a734c, type: 3}
+  - {fileID: 3755111353291307504, guid: ee5cf4537988346ed8f72ea747779c67, type: 3}
+  - {fileID: 4757909613594772475, guid: a809addb8720146d1a4987c059a547e0, type: 3}
+  - {fileID: 6191007665382656857, guid: 6efff65a42d434908967caca1b0897c3, type: 3}
   habitatImages:
   - {fileID: 21300000, guid: a7ac94d333488459a863130d912525d3, type: 3}
   - {fileID: 21300000, guid: ef8fc749959aa4162960726956c3e8c5, type: 3}
   - {fileID: 21300000, guid: b009b570198794fd2bd33b30fb16e786, type: 3}
   - {fileID: 21300000, guid: f538c96973a7e4e65879e4394f3db792, type: 3}
   - {fileID: 21300000, guid: ae0237368c3b54ecc8a2a55546402c75, type: 3}
+  - {fileID: 21300000, guid: 8e769776963b04056bd10806b88c06da, type: 3}
 --- !u!4 &264411248
 Transform:
   m_ObjectHideFlags: 0
@@ -15570,7 +15586,7 @@ GameObject:
   - component: {fileID: 868889761}
   - component: {fileID: 868889760}
   m_Layer: 5
-  m_Name: BlankButton
+  m_Name: DesertButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15637,7 +15653,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 868889761}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1496655450}
+        m_MethodName: SwitchToDesert
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &868889761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15656,7 +15683,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f6a5bbd65c57244c39010504ad32b602, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e769776963b04056bd10806b88c06da, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -35863,7 +35890,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1036594600}
   m_Direction: 2
   m_Value: 1.0000002
-  m_Size: 0.5079175
+  m_Size: 0.50791746
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

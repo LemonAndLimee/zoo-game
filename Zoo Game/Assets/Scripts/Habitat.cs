@@ -66,3 +66,14 @@ public class Water : Habitat
         costPerUnit = 200;
     }
 }
+public class Desert : Habitat
+{
+    void Awake()
+    {
+        animals = new string[2] { "Camel", "Lizard" };
+        animalTexts = new string[2] { "Camel", "Lizard" };
+        sizes = new int[3] { 1, 4, 9 };
+        capacity = new int[] { 2, 6, 12 };
+        costPerUnit = 100;
+    }
+}

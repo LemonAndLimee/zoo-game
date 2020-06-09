@@ -193,7 +193,7 @@ public class Clownfish : Animal
     {
         hungerPerDay = 30;
         thirstPerDay = 40;
-        interestRating = 1; //out of 5
+        interestRating = 2; //out of 5
         daysTilDeath = 2;
         adultThreshold = 10;
         adultSize = 0.2f;
@@ -201,6 +201,42 @@ public class Clownfish : Animal
         costs = new int[2] { 5, 10 };
         costToFeed = 1;
         averageSpeed = 25;
+        capacityPoints = 1;
+    }
+}
+
+public class Camel : Animal
+{
+    void Awake()
+    {
+        hungerPerDay = 30;
+        thirstPerDay = 40;
+        interestRating = 3; //out of 5
+        daysTilDeath = 2;
+        adultThreshold = 25;
+        adultSize = 0.8f;
+        babySize = 0.6f;
+        costs = new int[2] { 500, 600 };
+        costToFeed = 30;
+        averageSpeed = 10;
+        capacityPoints = 2;
+    }
+}
+
+public class Lizard : Animal
+{
+    void Awake()
+    {
+        hungerPerDay = 20;
+        thirstPerDay = 30;
+        interestRating = 3; //out of 5
+        daysTilDeath = 2;
+        adultThreshold = 15;
+        adultSize = 0.4f;
+        babySize = 0.25f;
+        costs = new int[2] { 100, 150 };
+        costToFeed = 10;
+        averageSpeed = 20;
         capacityPoints = 1;
     }
 }
