@@ -43,6 +43,9 @@ public class ShopUIManagement : MonoBehaviour
     public GameObject[] habitatPanels;
 
     public int currentHabitatType;
+    public int currentFacilitiesType;
+
+    public GameObject[] facilitiesPanels;
 
     void Start()
     {
@@ -120,6 +123,58 @@ public class ShopUIManagement : MonoBehaviour
             else if (i == 2)
             {
                 sizeText.text = "Large";
+            }
+        }
+
+        for (int i = 0; i < facilitiesPanels.Count(); i++)
+        {
+            if (currentFacilitiesType == 0)
+            {
+                if (i < prefabScript.pathImages.Count())
+                {
+                    facilitiesPanels[i].SetActive(true);
+                    facilitiesPanels[i].GetComponent<Button>().image.sprite = prefabScript.pathImages[i];
+                    Text nameText = facilitiesPanels[i].transform.Find("Name").GetComponent<Text>();
+                    nameText.text = prefabScript.pathScripts[i].nameText;
+                    Text priceText = facilitiesPanels[i].transform.Find("Price").GetComponent<Text>();
+                    priceText.text = "$" + prefabScript.pathScripts[i].cost.ToString();
+                }
+                else
+                {
+                    facilitiesPanels[i].SetActive(false);
+                }
+            }
+            else if (currentFacilitiesType == 1)
+            {
+                if (i < prefabScript.hygieneImages.Count())
+                {
+                    facilitiesPanels[i].SetActive(true);
+                    facilitiesPanels[i].GetComponent<Button>().image.sprite = prefabScript.hygieneImages[i];
+                    Text nameText = facilitiesPanels[i].transform.Find("Name").GetComponent<Text>();
+                    nameText.text = prefabScript.hygieneScripts[i].nameText;
+                    Text priceText = facilitiesPanels[i].transform.Find("Price").GetComponent<Text>();
+                    priceText.text = "$" + prefabScript.hygieneScripts[i].cost.ToString();
+                }
+                else
+                {
+                    facilitiesPanels[i].SetActive(false);
+                }
+            }
+            else if (currentFacilitiesType == 2)
+            {
+                if (i < prefabScript.shopImages.Count())
+                {
+                    facilitiesPanels[i].SetActive(true);
+                    facilitiesPanels[i].GetComponent<Button>().image.sprite = prefabScript.shopImages[i];
+                    Text nameText = facilitiesPanels[i].transform.Find("Name").GetComponent<Text>();
+                    nameText.text = prefabScript.shopScripts[i].nameText;
+                    Text priceText = facilitiesPanels[i].transform.Find("Price").GetComponent<Text>();
+                    priceText.text = "$" + prefabScript.shopScripts[i].cost.ToString();
+                }
+                else
+                {
+                    facilitiesPanels[i].SetActive(false);
+                }
             }
         }
     }
@@ -251,12 +306,15 @@ public class ShopUIManagement : MonoBehaviour
     //different facilites categories
     public void SwitchToPaths()
     {
-        if (activeSubPanel != pathsPanel)
-        {
-            activeSubPanel.SetActive(false);
-            activeSubPanel = pathsPanel;
-            pathsPanel.SetActive(true);
-        }
+        currentFacilitiesType = 0;
+    }
+    public void SwitchToHygiene()
+    {
+        currentFacilitiesType = 1;
+    }
+    public void SwitchToShops()
+    {
+        currentFacilitiesType = 2;
     }
 
     public void SwitchToFarms()
@@ -284,14 +342,42 @@ public class ShopUIManagement : MonoBehaviour
         currentHabitatType = 5;
     }
 
-    //different purchase options
-    public void StonePath()
+    public void Facility0()
     {
-        int num = Random.Range(0, stonePathPrefabs.Length);
-        prefab = stonePathPrefabs[num];
-        placeScript.currentCost = 2;
-        placeScript.TogglePlacing(prefab, true, true, true);
-        placeScript.continousPrefabs = stonePathPrefabs.ToList();
+        Facility(0);
+    }
+    public void Facility1()
+    {
+        Facility(1);
+    }
+    public void Facility2()
+    {
+        Facility(2);
+    }
+
+    public void Facility(int index)
+    {
+        if (currentFacilitiesType == 0)
+        {
+            prefab = prefabScript.pathScripts[index].prefabs[Random.Range(0, prefabScript.pathScripts[index].prefabs.Count())];
+            placeScript.currentCost = prefabScript.pathScripts[index].cost;
+            placeScript.continousPrefabs = prefabScript.pathScripts[index].prefabs.ToList();
+            placeScript.TogglePlacing(prefab, true, true, true);
+        }
+        else if (currentFacilitiesType == 1)
+        {
+            prefab = prefabScript.hygieneFacilities[index];
+            placeScript.currentCost = prefabScript.hygieneScripts[index].cost;
+            placeScript.currentComfortPoints = prefabScript.hygieneScripts[index].comfortPoints;
+            placeScript.TogglePlacing(prefab, false, false, false);
+        }
+        else if (currentFacilitiesType == 2)
+        {
+            prefab = prefabScript.shops[index];
+            placeScript.currentCost = prefabScript.shopScripts[index].cost;
+            placeScript.currentComfortPoints = prefabScript.shopScripts[index].comfortPoints;
+            placeScript.TogglePlacing(prefab, false, false, false);
+        }
         ToggleShop("place");
     }
 
@@ -313,7 +399,6 @@ public class ShopUIManagement : MonoBehaviour
         int typeIndex = currentHabitatType;
         Habitat(habitatIndex, typeIndex, 2);
     }
-
 
     public void Habitat(int habitatIndex, int typeIndex, int size)
     {

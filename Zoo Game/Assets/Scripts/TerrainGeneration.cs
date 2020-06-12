@@ -41,6 +41,11 @@ public class TerrainGeneration : MonoBehaviour
     public GameObject[] pathPrefabs;
     public string[] pathNames;
 
+    public string[] hygieneNames;
+    public string[] shopNames;
+
+    public CustomerManagement customerScript;
+
     public List<GameObject> habitats = new List<GameObject>();
 
 
@@ -178,6 +183,30 @@ public class TerrainGeneration : MonoBehaviour
             if (pos > -1)
             {
                 currentObject = Instantiate(pathPrefabs[pos]);
+                currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], 0f);
+
+                currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
+                worldScript.objects.Add(currentObject);
+            }
+
+            pos = Array.IndexOf(hygieneNames, worldScript.names[i]);
+            if (pos > -1)
+            {
+                customerScript.comfortPoints += prefabScript.hygieneScripts[pos].comfortPoints;
+
+                currentObject = Instantiate(prefabScript.hygieneFacilities[pos]);
+                currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], 0f);
+
+                currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
+                worldScript.objects.Add(currentObject);
+            }
+
+            pos = Array.IndexOf(shopNames, worldScript.names[i]);
+            if (pos > -1)
+            {
+                customerScript.comfortPoints += prefabScript.shopScripts[pos].comfortPoints;
+
+                currentObject = Instantiate(prefabScript.shops[pos]);
                 currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], 0f);
 
                 currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);

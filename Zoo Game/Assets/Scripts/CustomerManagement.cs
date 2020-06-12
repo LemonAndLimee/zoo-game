@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
@@ -18,7 +19,13 @@ public class CustomerManagement : MonoBehaviour
 
     public float customerEntryFee = 5f;
 
-    public float meanCustomerRating;
+    public int reputation;
+    public int starsRating;
+
+    public int reputationPreComfortPoints; // without being affected by comfort points
+    public int comfortPoints;
+    public int expectedComfortPoints;
+    public int comfortPointsDifference;
 
     public Image[] stars;
     public Color ratingGreen;
@@ -27,53 +34,54 @@ public class CustomerManagement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //temporary 5 star rating assignment
-        meanCustomerRating = 5f;
+        StartManagement startScript = GameObject.FindGameObjectWithTag("StartManager").GetComponent<StartManagement>();
+
+        if (startScript.isLoad == true)
+        {
+            worldScript.Load();
+            reputationPreComfortPoints = worldScript.reputation;
+        }
+        else
+        {
+            reputationPreComfortPoints = 80;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (worldScript.animals.Count >= 1)
+        expectedComfortPoints = Mathf.RoundToInt(worldScript.animals.Count * meanInterestRating);
+        comfortPointsDifference = comfortPoints - expectedComfortPoints;
+
+        reputation = reputationPreComfortPoints + comfortPointsDifference;
+
+        starsRating = Convert.ToInt32(Mathf.Round(reputation / 20f));
+
+        if (worldScript.animals.Count >= 1) //calculates interest rating
         {
             int total = 0;
-
-            float ratingTotal = 0;
 
             for (int i = 0; i < worldScript.animals.Count; i++)
             {
                 AnimalStats statsScript = worldScript.animals[i].GetComponent<AnimalStats>();
 
                 total += statsScript.interestRating;
-
-                if (statsScript.isAlive == true)
-                {
-                    ratingTotal += 5f;
-                }
             }
+
             totalInterestRating = total;
 
             meanInterestRating = totalInterestRating / worldScript.animals.Count;
-
-            if (ratingTotal > 0)
-            {
-                meanCustomerRating = Mathf.Round(ratingTotal / worldScript.animals.Count);
-            }
-            else
-            {
-                meanCustomerRating = 1;
-            }
         }
 
-
-
-        int num = Mathf.RoundToInt(worldScript.animals.Count * meanInterestRating * meanCustomerRating * 2);
+        int num = Mathf.RoundToInt(worldScript.animals.Count * meanInterestRating * starsRating * 2);
         customerNumber = num;
         customerText.text = customerNumber.ToString();
 
+        worldScript.reputation = reputationPreComfortPoints;
+
         for (int i = 0; i < stars.Count(); i++)
         {
-            if (i < meanCustomerRating)
+            if (i < starsRating)
             {
                 stars[i].color = ratingGreen;
             }

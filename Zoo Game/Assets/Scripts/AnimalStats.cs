@@ -184,6 +184,9 @@ public class AnimalStats : MonoBehaviour
                 isAlive = false;
 
                 notificationScript.DeathMessage(animalType, animalName, "died of starvation");
+
+                CustomerManagement customerScript = GameObject.Find("GameManager").GetComponent<CustomerManagement>();
+                customerScript.reputation -= 10;
             }
         }
         else
@@ -219,6 +222,10 @@ public class AnimalStats : MonoBehaviour
         {
             foodLevel = 100;
             waterLevel = 100;
+
+            Debug.Log("feed");
+            MoneyLogic moneyScript = GameObject.Find("GameManager").GetComponent<MoneyLogic>();
+            moneyScript.balance -= costToFeed;
         }
     }
 

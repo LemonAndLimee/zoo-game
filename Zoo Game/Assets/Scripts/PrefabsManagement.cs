@@ -23,6 +23,19 @@ public class PrefabsManagement : MonoBehaviour
 
     public Sprite[] habitatImages;
 
+    public List<Path> pathScripts = new List<Path>();
+    public List<Hygiene> hygieneScripts = new List<Hygiene>();
+    public List<Shop> shopScripts = new List<Shop>();
+
+    public GameObject[] hygieneFacilities;
+    public GameObject[] shops;
+
+    public Sprite[] pathImages;
+    public Sprite[] hygieneImages;
+    public Sprite[] shopImages;
+
+    public GameObject[] stonePaths;
+
     void Start()
     {
         scripts.Add(gameObject.AddComponent<Pig>());
@@ -44,6 +57,15 @@ public class PrefabsManagement : MonoBehaviour
         habitatScripts.Add(gameObject.AddComponent<Arctic>());
         habitatScripts.Add(gameObject.AddComponent<Water>());
         habitatScripts.Add(gameObject.AddComponent<Desert>());
+
+        pathScripts.Add(gameObject.AddComponent<StonePath>());
+        pathScripts[0].prefabs = stonePaths;
+
+        hygieneScripts.Add(gameObject.AddComponent<Toilet>());
+
+        shopScripts.Add(gameObject.AddComponent<BurgerStand>());
+        shopScripts.Add(gameObject.AddComponent<IceCreamStand>());
+        shopScripts.Add(gameObject.AddComponent<LemonadeStand>());
     }
 
 }

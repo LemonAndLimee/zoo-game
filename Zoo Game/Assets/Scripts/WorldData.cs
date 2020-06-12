@@ -40,6 +40,8 @@ public class WorldData
     public int[] habitatTypeIndexes;
     public int[] habitatObjectIndexes;
 
+    public int reputation;
+
     public WorldData (WorldManagement worldScript)
     {
         names = worldScript.names.ToArray();
@@ -73,5 +75,7 @@ public class WorldData
         habitatPrefabIndexes = worldScript.habitatPrefabIndexes.ToArray();
         habitatTypeIndexes = worldScript.habitatTypeIndexes.ToArray();
         habitatObjectIndexes = worldScript.habitatObjectIndexes.ToArray();
+
+        reputation = worldScript.reputation;
     }
 }

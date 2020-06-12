@@ -45,6 +45,8 @@ public class WorldManagement : MonoBehaviour
     public List<int> habitatTypeIndexes = new List<int>();
     public List<int> habitatObjectIndexes = new List<int>();
 
+    public int reputation;
+
     public float gameTimer; //not for saving, for tracking game running
 
     public void Save()
@@ -87,6 +89,8 @@ public class WorldManagement : MonoBehaviour
         habitatPrefabIndexes = data.habitatPrefabIndexes.ToList();
         habitatTypeIndexes = data.habitatTypeIndexes.ToList();
         habitatObjectIndexes = data.habitatObjectIndexes.ToList();
+
+        reputation = data.reputation;
     }
 
     public void Update()

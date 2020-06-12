@@ -38,6 +38,9 @@ public class PlacingLogic : MonoBehaviour
     public int currentHabitatIndex;
     public int currentHabitatTypeIndex;
 
+    public int currentComfortPoints;
+    public CustomerManagement customerScript;
+
     public PrefabsManagement prefabScript;
 
     // Update is called once per frame
@@ -236,6 +239,9 @@ public class PlacingLogic : MonoBehaviour
 
     public void Place()
     {
+        customerScript.comfortPoints += currentComfortPoints;
+        currentComfortPoints = 0;
+
         //deletes any trees or rocks at same position
         DeleteTerrainAtPosition();
 
