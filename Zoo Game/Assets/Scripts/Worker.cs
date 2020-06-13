@@ -21,7 +21,7 @@ public class Worker
             AnimalStats statsScript = animalsToFeed[index].GetComponent<AnimalStats>();
             if (statsScript.foodLevel <= 30 || statsScript.waterLevel <= 30)
             {
-                statsScript.Feed();
+                statsScript.Feed(false);
             }
         }
         else

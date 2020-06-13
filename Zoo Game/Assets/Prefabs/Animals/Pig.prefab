@@ -103,7 +103,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a42206ffd109747188d80a216c02e861, type: 3}
   m_Color: {r: 0.9622642, g: 0.739854, b: 0.8382277, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 10, y: 4}
@@ -132,6 +132,13 @@ MonoBehaviour:
   timeLimit: 0
   targetRotation: 0
   moveChance: 2
+  prefabScript: {fileID: 0}
+  worldScript: {fileID: 0}
+  worldScriptIndex: 0
+  habitat: {fileID: 0}
+  animalIndex: 0
+  target: {fileID: 0}
+  chasingTarget: 0
 --- !u!50 &-3203121164841986003
 Rigidbody2D:
   serializedVersion: 4
@@ -182,9 +189,20 @@ MonoBehaviour:
   isAlive: 1
   isDanger: 0
   zeroHealthCounter: 0
-  healthyColour: {r: 0, g: 0, b: 0, a: 0}
-  deadColour: {r: 0, g: 0, b: 0, a: 0}
   notificationScript: {fileID: 0}
+  prefabScript: {fileID: 0}
+  animalType: 
+  age: 0
+  isAdult: 0
+  adultThreshold: 0
+  babySize: 0
+  adultSize: 0
+  animalName: 
+  costToFeed: 0
+  capacityPoints: 0
+  animalIndex: 0
+  isPredator: 0
+  foodAnimals: []
 --- !u!111 &2050327897674706246
 Animation:
   m_ObjectHideFlags: 0
@@ -195,7 +213,8 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 07c26127ae0f2423f8d9d7ea66b6e927, type: 2}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400000, guid: 07c26127ae0f2423f8d9d7ea66b6e927, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0

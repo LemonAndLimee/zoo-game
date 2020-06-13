@@ -23,6 +23,9 @@ public class Animal : MonoBehaviour
     public int averageSpeed;
 
     public int capacityPoints; // 1 = small, 2 = medium, 4 = large
+
+    public bool isPredator;
+    public string[] foodAnimals;
 }
 
 public class Pig : Animal
@@ -40,6 +43,7 @@ public class Pig : Animal
         costToFeed = 5;
         averageSpeed = 15;
         capacityPoints = 2;
+        isPredator = false;
     }
 }
 
@@ -58,6 +62,7 @@ public class Llama : Animal
         costToFeed = 10;
         averageSpeed = 10;
         capacityPoints = 2;
+        isPredator = false;
     }
 }
 
@@ -76,6 +81,7 @@ public class Zebra : Animal
         costToFeed = 50;
         averageSpeed = 10;
         capacityPoints = 2;
+        isPredator = false;
     }
 }
 
@@ -94,6 +100,8 @@ public class Lion : Animal
         costToFeed = 100;
         averageSpeed = 20;
         capacityPoints = 4;
+        isPredator = true;
+        foodAnimals = new string[1] {"Zebra"};
     }
 }
 
@@ -112,6 +120,7 @@ public class Monkey : Animal
         costToFeed = 15;
         averageSpeed = 25;
         capacityPoints = 2;
+        isPredator = false;
     }
 }
 
@@ -130,6 +139,8 @@ public class Tiger : Animal
         costToFeed = 100;
         averageSpeed = 25;
         capacityPoints = 4;
+        isPredator = true;
+        foodAnimals = new string[1] { "Monkey" };
     }
 }
 
@@ -148,6 +159,7 @@ public class Penguin : Animal
         costToFeed = 15;
         averageSpeed = 15;
         capacityPoints = 2;
+        isPredator = false;
     }
 }
 
@@ -166,6 +178,8 @@ public class PolarBear : Animal
         costToFeed = 100;
         averageSpeed = 20;
         capacityPoints = 4;
+        isPredator = true;
+        foodAnimals = new string[1] { "Penguin" };
     }
 }
 
@@ -184,6 +198,8 @@ public class Shark : Animal
         costToFeed = 75;
         averageSpeed = 25;
         capacityPoints = 4;
+        isPredator = true;
+        foodAnimals = new string[1] { "Clownfish" };
     }
 }
 
@@ -202,6 +218,7 @@ public class Clownfish : Animal
         costToFeed = 1;
         averageSpeed = 25;
         capacityPoints = 1;
+        isPredator = false;
     }
 }
 
@@ -220,6 +237,7 @@ public class Camel : Animal
         costToFeed = 30;
         averageSpeed = 10;
         capacityPoints = 2;
+        isPredator = false;
     }
 }
 
@@ -238,5 +256,6 @@ public class Lizard : Animal
         costToFeed = 10;
         averageSpeed = 20;
         capacityPoints = 1;
+        isPredator = false;
     }
 }

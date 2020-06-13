@@ -103,7 +103,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 82a2d6c7b307741ab870bec8665b9ffd, type: 3}
   m_Color: {r: 0.6132076, g: 0.42460415, b: 0.17644179, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 5.12, y: 5.12}
@@ -133,7 +133,12 @@ MonoBehaviour:
   targetRotation: 0
   moveChance: 2
   prefabScript: {fileID: 0}
+  worldScript: {fileID: 0}
+  worldScriptIndex: 0
+  habitat: {fileID: 0}
   animalIndex: 0
+  target: {fileID: 0}
+  chasingTarget: 0
 --- !u!50 &7422045856354061072
 Rigidbody2D:
   serializedVersion: 4
@@ -194,7 +199,10 @@ MonoBehaviour:
   adultSize: 0
   animalName: 
   costToFeed: 0
+  capacityPoints: 0
   animalIndex: 0
+  isPredator: 0
+  foodAnimals: []
 --- !u!111 &2952223323357150843
 Animation:
   m_ObjectHideFlags: 0

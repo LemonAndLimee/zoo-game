@@ -333,6 +333,6 @@ public class HabitatUIManagement : MonoBehaviour
         statsScript = currentHabitat.GetComponent<HabitatStats>();
         GameObject animal = statsScript.animals[index];
         AnimalStats animalScript = animal.GetComponent<AnimalStats>();
-        animalScript.Feed();
+        animalScript.Feed(false);
     }
 }

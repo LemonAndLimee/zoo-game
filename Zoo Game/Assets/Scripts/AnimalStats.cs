@@ -51,6 +51,9 @@ public class AnimalStats : MonoBehaviour
 
     public int animalIndex; //used for inheriting values from prefab script
 
+    public bool isPredator;
+    public string[] foodAnimals;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +85,11 @@ public class AnimalStats : MonoBehaviour
         babySize = prefabScript.scripts[animalIndex].babySize;
         costToFeed = prefabScript.scripts[animalIndex].costToFeed;
         capacityPoints = prefabScript.scripts[animalIndex].capacityPoints;
+        isPredator = prefabScript.scripts[animalIndex].isPredator;
+        if (isPredator == true)
+        {
+            foodAnimals = prefabScript.scripts[animalIndex].foodAnimals;
+        }
 
         startScript = GameObject.FindGameObjectWithTag("StartManager").GetComponent<StartManagement>();
         worldScript = GameObject.Find("GameManager").GetComponent<WorldManagement>();
@@ -108,11 +116,14 @@ public class AnimalStats : MonoBehaviour
             movementScript.enabled = false;
             Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
             rb.freezeRotation = true;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
             Animation anim = gameObject.GetComponent<Animation>();
             anim.Play();
             Invoke("Delete", 6f);
 
+            CustomerManagement customerScript = GameObject.Find("GameManager").GetComponent<CustomerManagement>();
+            customerScript.reputation -= 10;
         }
         else
         {
@@ -185,8 +196,6 @@ public class AnimalStats : MonoBehaviour
 
                 notificationScript.DeathMessage(animalType, animalName, "died of starvation");
 
-                CustomerManagement customerScript = GameObject.Find("GameManager").GetComponent<CustomerManagement>();
-                customerScript.reputation -= 10;
             }
         }
         else
@@ -216,7 +225,7 @@ public class AnimalStats : MonoBehaviour
         waterSlider.value = waterLevel / 100f;
     }
 
-    public void Feed()
+    public void Feed(bool eaten)
     {
         if (isAlive == true)
         {
@@ -224,8 +233,11 @@ public class AnimalStats : MonoBehaviour
             waterLevel = 100;
 
             Debug.Log("feed");
-            MoneyLogic moneyScript = GameObject.Find("GameManager").GetComponent<MoneyLogic>();
-            moneyScript.balance -= costToFeed;
+            if (eaten == false)
+            {
+                MoneyLogic moneyScript = GameObject.Find("GameManager").GetComponent<MoneyLogic>();
+                moneyScript.balance -= costToFeed;
+            }
         }
     }
 
