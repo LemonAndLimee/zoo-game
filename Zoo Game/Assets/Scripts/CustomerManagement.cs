@@ -55,7 +55,14 @@ public class CustomerManagement : MonoBehaviour
 
         reputation = reputationPreComfortPoints + comfortPointsDifference;
 
-        starsRating = Convert.ToInt32(Mathf.Round(reputation / 20f));
+        if (reputation >= 100)
+        {
+            starsRating = 5;
+        }
+        else
+        {
+            starsRating = Convert.ToInt32(Mathf.Round(reputation / 20f));
+        }
 
         if (worldScript.animals.Count >= 1) //calculates interest rating
         {

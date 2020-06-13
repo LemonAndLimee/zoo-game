@@ -59,22 +59,26 @@ public class AnimalMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.GetComponent<AnimalStats>().isPredator == true && target == null && justEaten == false)
+        if (gameObject.GetComponent<AnimalStats>().isPredator == true && justEaten == false)
         {
-            HabitatStats habitatScript = habitat.GetComponent<HabitatStats>();
-            for (int i = 0; i < habitatScript.animals.Count; i++)
+            if (target == null)
             {
-                AnimalStats animalScript = habitatScript.animals[i].GetComponent<AnimalStats>();
-                if (gameObject.GetComponent<AnimalStats>().foodAnimals.Contains(animalScript.animalType))
+                chasingTarget = false;
+                HabitatStats habitatScript = habitat.GetComponent<HabitatStats>();
+                for (int i = 0; i < habitatScript.animals.Count; i++)
                 {
-                    //Debug.Log("Food detected");
-                    target = habitatScript.animals[i];
-                    chasingTarget = true;
+                    AnimalStats animalScript = habitatScript.animals[i].GetComponent<AnimalStats>();
+                    if (gameObject.GetComponent<AnimalStats>().foodAnimals.Contains(animalScript.animalType))
+                    {
+                        //Debug.Log("Food detected");
+                        target = habitatScript.animals[i];
+                        chasingTarget = true;
+                    }
                 }
             }
         }
 
-        if (chasingTarget == true)
+        if (chasingTarget == true && target != null)
         {
             transform.right = Vector3.Lerp(transform.right, (target.transform.position - transform.position), 0.03f);
         }
