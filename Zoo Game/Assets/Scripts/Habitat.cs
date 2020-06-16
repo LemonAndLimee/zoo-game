@@ -30,7 +30,7 @@ public class Savannah : Habitat
         animalTexts = new string[2] { "Zebra", "Lion" };
         sizes = new int[3] { 4, 9, 16 };
         capacity = new int[] { 4, 8, 16 };
-        costPerUnit = 100;
+        costPerUnit = 120;
     }
 }
 public class Jungle : Habitat
@@ -41,7 +41,7 @@ public class Jungle : Habitat
         animalTexts = new string[2] { "Monkey", "Tiger" };
         sizes = new int[3] { 1, 4, 9 };
         capacity = new int[] { 2, 6, 12 };
-        costPerUnit = 150;
+        costPerUnit = 160;
     }
 }
 public class Arctic : Habitat
@@ -52,7 +52,7 @@ public class Arctic : Habitat
         animalTexts = new string[2] {"Penguin", "Polar Bear"};
         sizes = new int[3] { 1, 4, 9 };
         capacity = new int[] { 2, 6, 12 };
-        costPerUnit = 200;
+        costPerUnit = 220;
     }
 }
 public class Water : Habitat
@@ -63,7 +63,7 @@ public class Water : Habitat
         animalTexts = new string[2] { "Shark", "Clownfish" };
         sizes = new int[3] { 4, 9, 16 };
         capacity = new int[] { 4, 8, 16 };
-        costPerUnit = 200;
+        costPerUnit = 250;
     }
 }
 public class Desert : Habitat
@@ -74,6 +74,6 @@ public class Desert : Habitat
         animalTexts = new string[2] { "Camel", "Lizard" };
         sizes = new int[3] { 1, 4, 9 };
         capacity = new int[] { 2, 6, 12 };
-        costPerUnit = 100;
+        costPerUnit = 120;
     }
 }

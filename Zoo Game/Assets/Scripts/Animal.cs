@@ -77,7 +77,7 @@ public class Zebra : Animal
         adultThreshold = 25;
         adultSize = 0.6f;
         babySize = 0.4f;
-        costs = new int[2] { 800, 1000 };
+        costs = new int[2] { 1200, 1500 };
         costToFeed = 50;
         averageSpeed = 10;
         capacityPoints = 2;
@@ -96,7 +96,7 @@ public class Lion : Animal
         adultThreshold = 25;
         adultSize = 0.8f;
         babySize = 0.5f;
-        costs = new int[2] { 2500, 3000 };
+        costs = new int[2] { 5000, 6000 };
         costToFeed = 100;
         averageSpeed = 20;
         capacityPoints = 4;
@@ -116,7 +116,7 @@ public class Monkey : Animal
         adultThreshold = 15;
         adultSize = 0.3f;
         babySize = 0.2f;
-        costs = new int[2] { 400, 500 };
+        costs = new int[2] { 600, 800 };
         costToFeed = 15;
         averageSpeed = 25;
         capacityPoints = 2;
@@ -135,7 +135,7 @@ public class Tiger : Animal
         adultThreshold = 25;
         adultSize = 0.8f;
         babySize = 0.5f;
-        costs = new int[2] { 2500, 3000 };
+        costs = new int[2] { 5000, 6000 };
         costToFeed = 100;
         averageSpeed = 25;
         capacityPoints = 4;
@@ -155,7 +155,7 @@ public class Penguin : Animal
         adultThreshold = 15;
         adultSize = 0.3f;
         babySize = 0.15f;
-        costs = new int[2] { 350, 400 };
+        costs = new int[2] { 600, 800 };
         costToFeed = 15;
         averageSpeed = 15;
         capacityPoints = 2;
@@ -174,7 +174,7 @@ public class PolarBear : Animal
         adultThreshold = 25;
         adultSize = 0.8f;
         babySize = 0.5f;
-        costs = new int[2] { 2500, 3000 };
+        costs = new int[2] { 5000, 6000 };
         costToFeed = 100;
         averageSpeed = 20;
         capacityPoints = 4;
@@ -194,7 +194,7 @@ public class Shark : Animal
         adultThreshold = 10;
         adultSize = 0.9f;
         babySize = 0.5f;
-        costs = new int[2] { 1800, 2000 };
+        costs = new int[2] { 4000, 5000 };
         costToFeed = 75;
         averageSpeed = 25;
         capacityPoints = 4;
@@ -214,7 +214,7 @@ public class Clownfish : Animal
         adultThreshold = 10;
         adultSize = 0.2f;
         babySize = 0.1f;
-        costs = new int[2] { 5, 10 };
+        costs = new int[2] { 50, 100 };
         costToFeed = 1;
         averageSpeed = 25;
         capacityPoints = 1;
@@ -233,7 +233,7 @@ public class Camel : Animal
         adultThreshold = 25;
         adultSize = 0.8f;
         babySize = 0.6f;
-        costs = new int[2] { 500, 600 };
+        costs = new int[2] { 700, 900 };
         costToFeed = 30;
         averageSpeed = 10;
         capacityPoints = 2;
@@ -252,7 +252,7 @@ public class Lizard : Animal
         adultThreshold = 15;
         adultSize = 0.4f;
         babySize = 0.25f;
-        costs = new int[2] { 100, 150 };
+        costs = new int[2] { 300, 500 };
         costToFeed = 10;
         averageSpeed = 20;
         capacityPoints = 1;

@@ -8,6 +8,7 @@ TagManager:
   - Terrain
   - Habitat
   - Animal
+  - Facility
   layers:
   - Default
   - TransparentFX

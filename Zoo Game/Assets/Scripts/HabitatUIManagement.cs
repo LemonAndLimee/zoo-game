@@ -287,6 +287,22 @@ public class HabitatUIManagement : MonoBehaviour
     {
         HireWorker(7);
     }
+    public void Hire8()
+    {
+        HireWorker(8);
+    }
+    public void Hire9()
+    {
+        HireWorker(9);
+    }
+    public void Hire10()
+    {
+        HireWorker(10);
+    }
+    public void Hire11()
+    {
+        HireWorker(11);
+    }
 
     public void HireWorker(int index)
     {
@@ -327,6 +343,22 @@ public class HabitatUIManagement : MonoBehaviour
     {
         FeedAnimal(7);
     }
+    public void Feed8()
+    {
+        FeedAnimal(8);
+    }
+    public void Feed9()
+    {
+        FeedAnimal(9);
+    }
+    public void Feed10()
+    {
+        FeedAnimal(10);
+    }
+    public void Feed11()
+    {
+        FeedAnimal(11);
+    }
 
     public void FeedAnimal(int index)
     {
@@ -334,5 +366,70 @@ public class HabitatUIManagement : MonoBehaviour
         GameObject animal = statsScript.animals[index];
         AnimalStats animalScript = animal.GetComponent<AnimalStats>();
         animalScript.Feed(false);
+    }
+
+    public void Sell0()
+    {
+        SellAnimal(0);
+    }
+    public void Sell1()
+    {
+        SellAnimal(1);
+    }
+    public void Sell2()
+    {
+        SellAnimal(2);
+    }
+    public void Sell3()
+    {
+        SellAnimal(3);
+    }
+    public void Sell4()
+    {
+        SellAnimal(4);
+    }
+    public void Sell5()
+    {
+        SellAnimal(5);
+    }
+    public void Sell6()
+    {
+        SellAnimal(6);
+    }
+    public void Sell7()
+    {
+        SellAnimal(7);
+    }
+    public void Sell8()
+    {
+        SellAnimal(8);
+    }
+    public void Sell9()
+    {
+        SellAnimal(9);
+    }
+    public void Sell10()
+    {
+        SellAnimal(10);
+    }
+    public void Sell11()
+    {
+        SellAnimal(11);
+    }
+
+    public void SellAnimal(int index)
+    {
+        statsScript = currentHabitat.GetComponent<HabitatStats>();
+        GameObject animal = statsScript.animals[index];
+        AnimalStats animalScript = animal.GetComponent<AnimalStats>();
+        if (animalScript.isAdult == true)
+        {
+            moneyScript.balance += (prefabScript.scripts[animalScript.animalIndex].costs[1]) / 2;
+        }
+        else
+        {
+            moneyScript.balance += prefabScript.scripts[animalScript.animalIndex].costs[0] / 2;
+        }
+        animalScript.Delete();
     }
 }

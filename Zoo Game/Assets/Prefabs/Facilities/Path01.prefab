@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8831562876055234981}
   m_Layer: 0
   m_Name: Path01
-  m_TagString: Untagged
+  m_TagString: Facility
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTouching: 0
   sr: {fileID: 0}
+  collisionObject: {fileID: 0}
 --- !u!212 &8411360765345405755
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -21,5 +21,24 @@ public class StonePath : Path
     }
 }
 
-
+public class Plant : Decoration
+{
+    public GameObject[] prefabs;
+}
+public class OakTree : Plant
+{
+    void Awake()
+    {
+        nameText = "Oak Tree";
+        cost = 20;
+    }
+}
+public class AppleTree : Plant
+{
+    void Awake()
+    {
+        nameText = "Apple Tree";
+        cost = 25;
+    }
+}
 

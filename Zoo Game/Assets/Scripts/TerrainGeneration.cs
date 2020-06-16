@@ -44,6 +44,9 @@ public class TerrainGeneration : MonoBehaviour
     public string[] hygieneNames;
     public string[] shopNames;
 
+    public string[] plantNames;
+    public GameObject[] plantPrefabs;
+
     public CustomerManagement customerScript;
 
     public List<GameObject> habitats = new List<GameObject>();
@@ -211,7 +214,16 @@ public class TerrainGeneration : MonoBehaviour
 
                 currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
                 worldScript.objects.Add(currentObject);
+            }
 
+            pos = Array.IndexOf(plantNames, worldScript.names[i]);
+            if (pos > -1)
+            {
+                currentObject = Instantiate(plantPrefabs[pos]);
+                currentObject.transform.position = new Vector3(worldScript.x_positions[i], worldScript.y_positions[i], 0f);
+
+                currentObject.transform.localScale = new Vector3(worldScript.sizes[i], worldScript.sizes[i], 1f);
+                worldScript.objects.Add(currentObject);
             }
 
             //SpawnHabitat(i);
@@ -231,18 +243,18 @@ public class TerrainGeneration : MonoBehaviour
     {
         for (int i = -2; i >= -8; i--)
         {
-            Path(new Vector3(0f, i*2, 0f));
+            Randomise(new Vector3(0f, i*2, 0f), pathPrefabs);
         }
 
     }
 
-    public void Path(Vector3 pos)
+    public void Randomise(Vector3 pos, GameObject[] prefabs)
     {
-        int n = Random.Range(0, pathPrefabs.Length);
-        currentObject = Instantiate(pathPrefabs[n]);
+        int n = Random.Range(0, prefabs.Length);
+        currentObject = Instantiate(prefabs[n]);
         currentObject.transform.position = pos;
         worldScript.objects.Add(currentObject);
-        worldScript.names.Add(pathPrefabs[n].name);
+        worldScript.names.Add(prefabs[n].name);
         worldScript.x_positions.Add(currentObject.transform.position.x);
         worldScript.y_positions.Add(currentObject.transform.position.y);
         worldScript.sizes.Add(currentObject.transform.localScale.x);

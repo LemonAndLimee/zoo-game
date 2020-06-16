@@ -26,6 +26,7 @@ public class PrefabsManagement : MonoBehaviour
     public List<Path> pathScripts = new List<Path>();
     public List<Hygiene> hygieneScripts = new List<Hygiene>();
     public List<Shop> shopScripts = new List<Shop>();
+    public List<Plant> plantScripts = new List<Plant>();
 
     public GameObject[] hygieneFacilities;
     public GameObject[] shops;
@@ -33,8 +34,11 @@ public class PrefabsManagement : MonoBehaviour
     public Sprite[] pathImages;
     public Sprite[] hygieneImages;
     public Sprite[] shopImages;
+    public Sprite[] plantImages;
 
     public GameObject[] stonePaths;
+    public GameObject[] oakTrees;
+    public GameObject[] appleTrees;
 
     void Start()
     {
@@ -66,6 +70,11 @@ public class PrefabsManagement : MonoBehaviour
         shopScripts.Add(gameObject.AddComponent<BurgerStand>());
         shopScripts.Add(gameObject.AddComponent<IceCreamStand>());
         shopScripts.Add(gameObject.AddComponent<LemonadeStand>());
+
+        plantScripts.Add(gameObject.AddComponent<OakTree>());
+        plantScripts[0].prefabs = oakTrees;
+        plantScripts.Add(gameObject.AddComponent<AppleTree>());
+        plantScripts[1].prefabs = appleTrees;
     }
 
 }
