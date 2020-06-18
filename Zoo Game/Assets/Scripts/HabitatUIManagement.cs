@@ -94,7 +94,21 @@ public class HabitatUIManagement : MonoBehaviour
                 {
                     animalSize = 1;
                 }
-                priceTexts[i].text = "$" + prefabScript.scripts[currentAnimalIndex].costs[animalSize].ToString();
+
+                int price = prefabScript.scripts[currentAnimalIndex].costs[animalSize];
+                priceTexts[i].text = "$" + price.ToString();
+
+                Button btn = animalButtonTexts[i].GetComponentInParent<Button>();
+                if (price > moneyScript.balance)
+                {
+                    btn.enabled = false;
+                    btn.image.color = new Color(0.08235294f, 0.4f, 0.1372549f, 0.4f);
+                }
+                else
+                {
+                    btn.enabled = true;
+                    btn.image.color = new Color(1, 1, 1, 1);
+                }
             }
 
             //controls how many animal panels are enabled, depending on no. of animals in the habitat

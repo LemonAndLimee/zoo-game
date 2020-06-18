@@ -47,6 +47,8 @@ public class ShopUIManagement : MonoBehaviour
 
     public GameObject[] facilitiesPanels;
 
+    public MoneyLogic moneyScript;
+
     void Start()
     {
         SwitchToFarms();
@@ -111,6 +113,18 @@ public class ShopUIManagement : MonoBehaviour
             Text priceText = habitatPanels[i].transform.Find("Price").GetComponent<Text>();
             int price = prefabScript.habitatScripts[currentHabitatType].costPerUnit * prefabScript.habitatScripts[currentHabitatType].sizes[i];
             priceText.text = "$" + price.ToString();
+
+            if (price > moneyScript.balance)
+            {
+                habitatPanels[i].GetComponent<Button>().enabled = false;
+                habitatPanels[i].GetComponent<Button>().image.color = new Color(1, 1, 1, 0.5f);
+            }
+            else
+            {
+                habitatPanels[i].GetComponent<Button>().enabled = true;
+                habitatPanels[i].GetComponent<Button>().image.color = new Color(1, 1, 1, 1f);
+            }
+
             Text sizeText = habitatPanels[i].transform.Find("Size").GetComponent<Text>();
             if (i == 0)
             {
@@ -128,6 +142,7 @@ public class ShopUIManagement : MonoBehaviour
 
         for (int i = 0; i < facilitiesPanels.Count(); i++)
         {
+            int price = 0;
             if (currentFacilitiesType == 0) //if paths
             {
                 if (i < prefabScript.pathImages.Count())
@@ -138,6 +153,7 @@ public class ShopUIManagement : MonoBehaviour
                     nameText.text = prefabScript.pathScripts[i].nameText;
                     Text priceText = facilitiesPanels[i].transform.Find("Price").GetComponent<Text>();
                     priceText.text = "$" + prefabScript.pathScripts[i].cost.ToString();
+                    price = prefabScript.pathScripts[i].cost;
                 }
                 else
                 {
@@ -154,6 +170,7 @@ public class ShopUIManagement : MonoBehaviour
                     nameText.text = prefabScript.hygieneScripts[i].nameText;
                     Text priceText = facilitiesPanels[i].transform.Find("Price").GetComponent<Text>();
                     priceText.text = "$" + prefabScript.hygieneScripts[i].cost.ToString();
+                    price = prefabScript.hygieneScripts[i].cost;
                 }
                 else
                 {
@@ -170,6 +187,7 @@ public class ShopUIManagement : MonoBehaviour
                     nameText.text = prefabScript.shopScripts[i].nameText;
                     Text priceText = facilitiesPanels[i].transform.Find("Price").GetComponent<Text>();
                     priceText.text = "$" + prefabScript.shopScripts[i].cost.ToString();
+                    price = prefabScript.shopScripts[i].cost;
                 }
                 else
                 {
@@ -186,11 +204,23 @@ public class ShopUIManagement : MonoBehaviour
                     nameText.text = prefabScript.plantScripts[i].nameText;
                     Text priceText = facilitiesPanels[i].transform.Find("Price").GetComponent<Text>();
                     priceText.text = "$" + prefabScript.plantScripts[i].cost.ToString();
+                    price = prefabScript.plantScripts[i].cost;
                 }
                 else
                 {
                     facilitiesPanels[i].SetActive(false);
                 }
+            }
+
+            if (price > moneyScript.balance)
+            {
+                facilitiesPanels[i].GetComponent<Button>().enabled = false;
+                facilitiesPanels[i].GetComponent<Button>().image.color = new Color(1, 1, 1, 0.5f);
+            }
+            else
+            {
+                facilitiesPanels[i].GetComponent<Button>().enabled = true;
+                facilitiesPanels[i].GetComponent<Button>().image.color = new Color(1, 1, 1, 1);
             }
         }
     }
