@@ -48,6 +48,12 @@ public class HabitatUIManagement : MonoBehaviour
     public Text[] animalButtonTexts;
     public Text[] priceTexts;
 
+    public GameObject infoPanel;
+
+    public Image[] infoPanelStars;
+    public Color ratingGreen;
+    public Color ratingGrey;
+
     // Update is called once per frame
     void Update()
     {
@@ -253,6 +259,60 @@ public class HabitatUIManagement : MonoBehaviour
 
         SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
         spawnScript.Spawn(prefabScript.animals[animalIndex], age, name, animalIndex, statsCanvasPrefab, warningIconPrefab, capacityPoints);
+    }
+
+    public void Info0()
+    {
+        ShowInfo(0);
+    }
+    public void Info1()
+    {
+        ShowInfo(1);
+    }
+
+    public void ShowInfo(int possibleAnimalIndex)
+    {
+        infoPanel.SetActive(true);
+
+        statsScript = currentHabitat.GetComponent<HabitatStats>();
+        int index = Array.IndexOf(prefabScript.animalNames, statsScript.possibleAnimals[possibleAnimalIndex]);
+        Animal animalScript = prefabScript.scripts[index];
+
+        Text nameText = infoPanel.transform.Find("Name").GetComponentInChildren<Text>();
+        nameText.text = statsScript.possibleAnimals[possibleAnimalIndex];
+
+        Image animalImage = infoPanel.transform.Find("AnimalImage").GetComponent<Image>();
+        animalImage.sprite = prefabScript.animalImages[index];
+        animalImage.color = prefabScript.animalColours[index];
+
+        Text habitatText = infoPanel.transform.Find("HabitatText").GetComponent<Text>();
+        habitatText.text = prefabScript.habitatTypeNames[statsScript.habitatTypeIndex];
+
+        Text priceText = infoPanel.transform.Find("PriceText").GetComponent<Text>();
+        priceText.text = "$" + animalScript.costs[1].ToString();
+
+        Text costToFeedText = infoPanel.transform.Find("CostToFeedText").GetComponent<Text>();
+        costToFeedText.text = animalScript.costToFeed.ToString();
+
+        Text feedingText = infoPanel.transform.Find("FeedingText").GetComponent<Text>();
+        int x = Mathf.RoundToInt(100 / animalScript.thirstPerDay) + 1;
+        feedingText.text = "Every " + x + " days";
+
+        for (int i = 0; i < infoPanelStars.Count(); i++)
+        {
+            if (i < animalScript.interestRating)
+            {
+                infoPanelStars[i].color = ratingGreen;
+            }
+            else
+            {
+                infoPanelStars[i].color = ratingGrey;
+            }
+        }
+    }
+    public void HideInfo()
+    {
+        infoPanel.SetActive(false);
     }
 
     public void Hire0()

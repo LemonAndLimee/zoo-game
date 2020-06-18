@@ -83,7 +83,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -184,8 +184,8 @@ MonoBehaviour:
     y: 0
     width: 222
     height: 440
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -220,9 +220,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 5e160100
-      m_LastClickedID: 0
-      m_ExpandedIDs: 227effff0caaffffbec0ffffc6c9ffff4acbffff1ce1ffff96e1ffff62f0ffffe2f5ffff6afbfffff43f000002430000a84b00007caf00008ab20000e4f700003af80000a6f900002cfc0000bcfc00009e0001006c05010008160100ca170100501a0100e01a0100c21e010090230100
+      m_SelectedIDs: 3216faff
+      m_LastClickedID: -387534
+      m_ExpandedIDs: 3216faff2c18faff5e43faff6a4dfaff1253faffbc53faff84bbfaffd000fbff4601fbfffa03fbff266dfcff4ab1fcffc8c7fcff3ac8fcff22cafcff2404fdff6e38fdffe438fdffa23afdfffa65fdff6c70fdff8a70fdff8aa5fdfff2affdff02e0fdff96edfdffd2f2fdff6228feffd828feffb029fefffa73feff7074fefffe81feff2c82feff7251ffff227effff0caaffffbec0ffffc6c9ffff4acbffff1ce1ffff96e1ffff62f0ffffe2f5ffff6afbfffff43f000002430000a84b00007caf00008ab20000e4f700003af80000a6f900002cfc0000bcfc00009e0001006c05010008160100ca170100501a0100e01a0100c21e010090230100dafa01007eff01002201020068020200c8030200ea0402005a070200f4460200c84b02007e4d0200de4e0200e253020068bb020006f50200b8ee040062700500b074050084770500e87805008e7d05000ec9050076cd05005ed60500
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -309,9 +309,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 434.99185, y: 389.09976, z: -2.7651403}
+    m_Target: {x: 430.91772, y: 454.77136, z: -33.583668}
     speed: 2
-    m_Value: {x: 434.99185, y: 389.09976, z: -2.7651403}
+    m_Value: {x: 431.8151, y: 455.45825, z: -33.4016}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -361,9 +361,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 91.80104
+    m_Target: 451.97903
     speed: 2
-    m_Value: 91.80104
+    m_Value: 446.61957
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -433,8 +433,8 @@ MonoBehaviour:
     y: 0
     width: 532
     height: 440
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 2}
@@ -507,19 +507,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Imports
+    - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Imports
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/lucy/Documents/Home/Unity/Zoo-Game/zoo-game/Zoo Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 29}
-    m_SelectedIDs: 143a0000
-    m_LastClickedID: 14868
+    m_SelectedIDs: 283a0000
+    m_LastClickedID: 14888
     m_ExpandedIDs: 00000000123a0000143a0000163a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -548,7 +548,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000123a0000143a0000163a0000
+    m_ExpandedIDs: 00000000123a0000143a0000163a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -573,8 +573,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 5e160100
-    m_LastClickedInstanceID: 71262
+    m_SelectedInstanceIDs: 3216faff
+    m_LastClickedInstanceID: -387534
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000000000000
     m_RenameOverlay:
@@ -600,7 +600,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 173}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 115
@@ -632,7 +632,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 46654
+  m_LastSelectedObjectID: 381460
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -723,7 +723,7 @@ MonoBehaviour:
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 465
 --- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
