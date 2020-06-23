@@ -86,29 +86,41 @@ public class HabitatUIManagement : MonoBehaviour
 
             for (int i = 0; i < animalButtonTexts.Count(); i++)
             {
-                animalButtonTexts[i].text = prefabScript.habitatScripts[statsScript.habitatTypeIndex].animalTexts[i];
-
-                int currentAnimalIndex = Array.IndexOf(prefabScript.animalNames, statsScript.possibleAnimals[i]);
-                int animalSize = 0;
-                if (isBabyMode == false)
+                if (i < prefabScript.habitatScripts[statsScript.habitatTypeIndex].animals.Count())
                 {
-                    animalSize = 1;
-                }
+                    animalButtonTexts[i].transform.parent.gameObject.SetActive(true);
+                    priceTexts[i].transform.parent.gameObject.SetActive(true);
 
-                int price = prefabScript.scripts[currentAnimalIndex].costs[animalSize];
-                priceTexts[i].text = "$" + price.ToString();
+                    animalButtonTexts[i].text = prefabScript.habitatScripts[statsScript.habitatTypeIndex].animalTexts[i];
 
-                Button btn = animalButtonTexts[i].GetComponentInParent<Button>();
-                if (price > moneyScript.balance)
-                {
-                    btn.enabled = false;
-                    btn.image.color = new Color(0.08235294f, 0.4f, 0.1372549f, 0.4f);
+                    int currentAnimalIndex = Array.IndexOf(prefabScript.animalNames, statsScript.possibleAnimals[i]);
+                    int animalSize = 0;
+                    if (isBabyMode == false)
+                    {
+                        animalSize = 1;
+                    }
+
+                    int price = prefabScript.scripts[currentAnimalIndex].costs[animalSize];
+                    priceTexts[i].text = "$" + price.ToString();
+
+                    Button btn = animalButtonTexts[i].GetComponentInParent<Button>();
+                    if (price > moneyScript.balance)
+                    {
+                        btn.enabled = false;
+                        btn.image.color = new Color(0.08235294f, 0.4f, 0.1372549f, 0.4f);
+                    }
+                    else
+                    {
+                        btn.enabled = true;
+                        btn.image.color = new Color(1, 1, 1, 1);
+                    }
                 }
                 else
                 {
-                    btn.enabled = true;
-                    btn.image.color = new Color(1, 1, 1, 1);
+                    animalButtonTexts[i].transform.parent.gameObject.SetActive(false);
+                    priceTexts[i].transform.parent.gameObject.SetActive(false);
                 }
+
             }
 
             //controls how many animal panels are enabled, depending on no. of animals in the habitat
@@ -247,6 +259,17 @@ public class HabitatUIManagement : MonoBehaviour
         animalNumber = 1;
         CheckCapacity();
     }
+    public void SpawnAnimalTwo()
+    {
+        animalNumber = 2;
+        CheckCapacity();
+    }
+    public void SpawnAnimalThree()
+    {
+        animalNumber = 3;
+        CheckCapacity();
+    }
+
     public void Animal(string name)
     {
         string[] possibleAnimals = statsScript.possibleAnimals.ToArray();
@@ -258,21 +281,22 @@ public class HabitatUIManagement : MonoBehaviour
 
         int age;
 
+        SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
+        int capacityPoints = prefabScript.scripts[animalIndex].capacityPoints;
         if (isBabyMode == true)
         {
             age = 0;
             moneyScript.balance -= prefabScript.scripts[animalIndex].costs[0];
+            spawnScript.Spawn(prefabScript.babyAnimals[animalIndex], age, name, animalIndex, statsCanvasPrefab, warningIconPrefab, capacityPoints);
+
         }
         else
         {
             age = prefabScript.scripts[animalIndex].adultThreshold;
             moneyScript.balance -= prefabScript.scripts[animalIndex].costs[1];
+            spawnScript.Spawn(prefabScript.animals[animalIndex], age, name, animalIndex, statsCanvasPrefab, warningIconPrefab, capacityPoints);
         }
 
-        int capacityPoints = prefabScript.scripts[animalIndex].capacityPoints;
-
-        SpawnAnimal spawnScript = currentHabitat.GetComponent<SpawnAnimal>();
-        spawnScript.Spawn(prefabScript.animals[animalIndex], age, name, animalIndex, statsCanvasPrefab, warningIconPrefab, capacityPoints);
     }
 
     public void Info0()
@@ -282,6 +306,14 @@ public class HabitatUIManagement : MonoBehaviour
     public void Info1()
     {
         ShowInfo(1);
+    }
+    public void Info2()
+    {
+        ShowInfo(2);
+    }
+    public void Info3()
+    {
+        ShowInfo(3);
     }
 
     public void ShowInfo(int possibleAnimalIndex)

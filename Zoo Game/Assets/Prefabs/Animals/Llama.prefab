@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: -1788226513
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b261e098af10a42c3ba054c8a8aa7541, type: 3}
-  m_Color: {r: 0.5849056, g: 0.38793382, b: 0.08552865, a: 1}
+  m_Sprite: {fileID: 21300000, guid: e0a771f3a75f149e3b64d81493a3d44d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -157,9 +157,11 @@ MonoBehaviour:
   worldScript: {fileID: 0}
   worldScriptIndex: 0
   habitat: {fileID: 0}
+  notificationScript: {fileID: 0}
   animalIndex: 0
   target: {fileID: 0}
   chasingTarget: 0
+  justEaten: 0
 --- !u!114 &2561465038901774516
 MonoBehaviour:
   m_ObjectHideFlags: 0

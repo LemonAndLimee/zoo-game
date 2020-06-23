@@ -133,12 +133,12 @@ public class AnimalStats : MonoBehaviour
             {
                 isAdult = true;
                 gameObject.transform.localScale = new Vector3(adultSize, adultSize, 1f);
+                gameObject.GetComponent<SpriteRenderer>().sprite = prefabScript.animalImages[animalIndex];
             }
             else
             {
                 isAdult = false;
                 gameObject.transform.localScale = new Vector3(babySize, babySize, 1f);
-
             }
 
             UpdateStatsSliders();

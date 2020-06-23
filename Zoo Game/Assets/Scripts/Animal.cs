@@ -94,8 +94,8 @@ public class Lion : Animal
         interestRating = 5; //out of 5
         daysTilDeath = 3;
         adultThreshold = 25;
-        adultSize = 0.8f;
-        babySize = 0.5f;
+        adultSize = 0.9f;
+        babySize = 0.4f;
         costs = new int[2] { 5000, 6000 };
         costToFeed = 100;
         averageSpeed = 20;
@@ -154,7 +154,7 @@ public class Penguin : Animal
         daysTilDeath = 2;
         adultThreshold = 15;
         adultSize = 0.3f;
-        babySize = 0.15f;
+        babySize = 0.2f;
         costs = new int[2] { 600, 800 };
         costToFeed = 15;
         averageSpeed = 15;
@@ -231,8 +231,8 @@ public class Camel : Animal
         interestRating = 3; //out of 5
         daysTilDeath = 2;
         adultThreshold = 25;
-        adultSize = 0.8f;
-        babySize = 0.6f;
+        adultSize = 0.6f;
+        babySize = 0.4f;
         costs = new int[2] { 700, 900 };
         costToFeed = 30;
         averageSpeed = 10;
@@ -257,5 +257,44 @@ public class Lizard : Animal
         averageSpeed = 20;
         capacityPoints = 1;
         isPredator = false;
+    }
+}
+
+public class Elephant : Animal
+{
+    void Awake()
+    {
+        hungerPerDay = 20;
+        thirstPerDay = 30;
+        interestRating = 5; //out of 5
+        daysTilDeath = 3;
+        adultThreshold = 25;
+        adultSize = 1f;
+        babySize = 0.7f;
+        costs = new int[2] { 6000, 8000 };
+        costToFeed = 150;
+        averageSpeed = 15;
+        capacityPoints = 4;
+        isPredator = false;
+    }
+}
+
+public class Leopard : Animal
+{
+    void Awake()
+    {
+        hungerPerDay = 10;
+        thirstPerDay = 20;
+        interestRating = 5; //out of 5
+        daysTilDeath = 3;
+        adultThreshold = 25;
+        adultSize = 0.7f;
+        babySize = 0.3f;
+        costs = new int[2] { 5000, 6000 };
+        costToFeed = 100;
+        averageSpeed = 20;
+        capacityPoints = 4;
+        isPredator = true;
+        foodAnimals = new string[1] { "Zebra" };
     }
 }

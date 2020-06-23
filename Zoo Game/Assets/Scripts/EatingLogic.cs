@@ -17,7 +17,7 @@ public class EatingLogic : MonoBehaviour
         if (collision.gameObject == movementScript.target)
         {
             timer += Time.deltaTime;
-            if (timer >= 4f)
+            if (timer >= 2.5f)
             {
                 movementScript.EatTarget();
             }

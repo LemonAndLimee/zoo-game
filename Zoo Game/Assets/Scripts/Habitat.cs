@@ -26,8 +26,8 @@ public class Savannah : Habitat
 {
     void Awake()
     {
-        animals = new string[2] { "Zebra", "Lion" };
-        animalTexts = new string[2] { "Zebra", "Lion" };
+        animals = new string[4] { "Zebra", "Lion", "Elephant", "Leopard"};
+        animalTexts = new string[4] { "Zebra", "Lion", "Elephant", "Leopard" };
         sizes = new int[3] { 4, 9, 16 };
         capacity = new int[] { 4, 8, 16 };
         costPerUnit = 120;

@@ -8,6 +8,7 @@ public class PrefabsManagement : MonoBehaviour
     public string[] animalNames;
 
     public GameObject[] animals;
+    public GameObject[] babyAnimals;
 
     public Sprite[] animalImages;
 
@@ -54,6 +55,8 @@ public class PrefabsManagement : MonoBehaviour
         scripts.Add(gameObject.AddComponent<Clownfish>());
         scripts.Add(gameObject.AddComponent<Camel>());
         scripts.Add(gameObject.AddComponent<Lizard>());
+        scripts.Add(gameObject.AddComponent<Elephant>());
+        scripts.Add(gameObject.AddComponent<Leopard>());
 
         habitatScripts.Add(gameObject.AddComponent<Farm>());
         habitatScripts.Add(gameObject.AddComponent<Savannah>());

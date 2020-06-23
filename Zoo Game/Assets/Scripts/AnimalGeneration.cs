@@ -36,7 +36,16 @@ public class AnimalGeneration : MonoBehaviour
         for (int i = 0; i < worldScript.animalNames.Count; i++)
         {
             int animalIndex = System.Array.IndexOf(prefabScript.animalNames, worldScript.animalNames[i]);
-            prefab = prefabScript.animals[animalIndex];
+            Animal script = prefabScript.scripts[animalIndex];
+
+            if (worldScript.ages[i] >= script.adultThreshold)
+            {
+                prefab = prefabScript.animals[animalIndex];
+            }
+            else
+            {
+                prefab = prefabScript.babyAnimals[animalIndex];
+            }
 
             SpawnAnimal(prefab, animalIndex, worldScript.animal_x_positions[i], worldScript.animal_y_positions[i], i);
         }
