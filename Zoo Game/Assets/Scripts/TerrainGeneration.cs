@@ -155,6 +155,8 @@ public class TerrainGeneration : MonoBehaviour
     {
         worldScript.Load();
 
+        int currentHabitatIndex = 0;
+
         //for every object in the list of names
         for (int i = 0; i < worldScript.names.Count; i++)
         {
@@ -226,13 +228,13 @@ public class TerrainGeneration : MonoBehaviour
                 worldScript.objects.Add(currentObject);
             }
 
-            //SpawnHabitat(i);
+            if (worldScript.names[i].Contains("Habitat"))
+            {
+                SpawnHabitat(currentHabitatIndex);
+                currentHabitatIndex += 1;
+            }
         }
 
-        for (int i = 0; i < worldScript.habitatPrefabIndexes.Count; i++)
-        {
-            SpawnHabitat(i);
-        }
 
 
         worldScript.canSave = true;
@@ -291,6 +293,7 @@ public class TerrainGeneration : MonoBehaviour
         statsScript.sizeInUnits = prefabScript.habitatScripts[typeIndex].sizes[size];
         statsScript.capacity = prefabScript.habitatScripts[typeIndex].capacity[size];
         statsScript.spaceLeft = worldScript.habitatsSpaceLeft[i];
+
     }
 
 }

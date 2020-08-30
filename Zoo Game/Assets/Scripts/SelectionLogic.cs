@@ -62,7 +62,7 @@ public class SelectionLogic : MonoBehaviour
                 }
             }
         }
-        else
+        else //if deleting is false
         {
             if (Input.GetMouseButtonDown(0))
             {

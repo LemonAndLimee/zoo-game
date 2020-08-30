@@ -33,11 +33,22 @@ public class Worker
     public void CalculateSalary()
     {
         dailySalary = 0;
-        for (int i = 0; i < animalsToFeed.Count; i++)
+
+        if (animalsToFeed.Count >= 1)
         {
-            dailySalary += animalsToFeed[i].GetComponent<AnimalStats>().costToFeed;
-            //Debug.Log(animalsToFeed[i].GetComponent<AnimalStats>().costToFeed);
+            for (int i = 0; i < animalsToFeed.Count; i++)
+            {
+                if (animalsToFeed[i] != null)
+                {
+                    dailySalary += animalsToFeed[i].GetComponent<AnimalStats>().costToFeed;
+                }
+                else
+                {
+                    animalsToFeed.RemoveAt(i);
+                }
+            }
+            dailySalary += 25;
         }
-        dailySalary += 25;
+
     }
 }

@@ -21,6 +21,21 @@ public class StaffManagement : MonoBehaviour
             Invoke("LoadWorkers", 0.12f);
         }
     }
+
+    void Update()
+    {
+        for (int i = 0; i < workers.Count; i++)
+        {
+            if (workers[i].dailySalary >= 1)
+            {
+                workers[i].CalculateSalary();
+            }
+            else 
+            {
+                workers.RemoveAt(i);
+            }
+        }
+    }
     public void LoadWorkers()
     {
         worldScript.Load();
@@ -47,20 +62,32 @@ public class StaffManagement : MonoBehaviour
                 workers.Add(worker);
                 Debug.Log("hire new");
             }
-            else if (workers[workers.Count - 1].animalsToFeed.Count >= workers[workers.Count - 1].capacity)
-            {
-                Worker worker = new Worker();
-                worker.animalsToFeed.Add(animal);
-                worker.name = "Worker " + (workers.Count + 1).ToString();
-                worker.CalculateSalary();
-                workers.Add(worker);
-                Debug.Log("hire new");
-            }
             else
             {
-                workers[workers.Count - 1].animalsToFeed.Add(animal);
-                workers[workers.Count - 1].CalculateSalary();
-                Debug.Log("assign");
+                bool foundSpace = false;
+                for (int i = 0; i < workers.Count; i++)
+                {
+                    if (foundSpace == false)
+                    {
+                        if (workers[i].animalsToFeed.Count < workers[i].capacity)
+                        {
+                            workers[i].animalsToFeed.Add(animal);
+                            workers[i].CalculateSalary();
+                            Debug.Log("assign");
+                            foundSpace = true;
+                        }
+                    }
+                    
+                }
+                if (foundSpace == false)
+                {
+                    Worker worker = new Worker();
+                    worker.animalsToFeed.Add(animal);
+                    worker.name = "Worker " + (workers.Count + 1).ToString();
+                    worker.CalculateSalary();
+                    workers.Add(worker);
+                    Debug.Log("hire new");
+                }
             }
 
             worldScript.hasWorker[animal.GetComponent<AnimalStats>().worldScriptIndex] = true;
